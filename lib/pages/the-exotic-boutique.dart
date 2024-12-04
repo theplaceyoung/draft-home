@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:draft_co/widgets/common_app_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:draft_co/widgets/footer.dart';
+
+import '../widgets/footer.dart';
 
 class TheExoticBoutiquePage extends StatelessWidget {
   @override

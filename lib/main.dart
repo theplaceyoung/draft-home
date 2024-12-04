@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
-import 'package:draft_co/pages/the-exotic-boutique.dart';
-import 'package:draft_co/pages/dusty-draft.dart';
-import 'package:draft_co/pages/contact_page.dart';
-import 'package:draft_co/widgets/footer.dart';
-import 'package:draft_co/pages/exotic-ordinary.dart';
+import 'pages/the-exotic-boutique.dart';
+import 'pages/dusty-draft.dart';
+import 'pages/contact_page.dart';
+import 'pages/exotic-ordinary.dart';
+import 'widgets/footer.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:draft_co/widgets/common_app_bar.dart';
-import 'package:draft_co/widgets/footer.dart';
+import 'package:flutter/material.dart';
+import '../widgets/footer.dart';
 
 class ContactPage extends StatelessWidget {
   @override
