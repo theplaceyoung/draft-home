@@ -22,7 +22,7 @@ Widget buildFooter() {
           ],
         ),
         Text(
-          '© 2024 My Website. All rights reserved.',
+          '© 2024 Draft Co. All rights reserved.',
           style: TextStyle(fontSize: 14, color: Colors.black54),
         ),
       ],

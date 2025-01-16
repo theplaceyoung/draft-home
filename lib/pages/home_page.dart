@@ -1,6 +1,7 @@
 import 'package:draft_co/widgets/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../widgets/footer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -29,8 +30,17 @@ class HomePage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.info),
               title: Text('exotic ordinary'),
-              onTap: () {
-                Navigator.pushNamed(context, '/exotic-ordinary');
+              onTap: () async {
+                final url =
+                    'https://smartstore.naver.com/exoticordinary'; // 외부 링크
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  // 링크를 열 수 없는 경우 처리
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('링크를 열 수 없습니다.'),
+                  ));
+                }
               },
             ),
             ListTile(

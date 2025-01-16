@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'pages/home_page.dart';
 import 'pages/the-exotic-boutique.dart';
 import 'pages/dusty-draft.dart';
@@ -40,25 +41,15 @@ class MyHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset('assets/logo_draft_transparentBG.png', height: 45),
-              // Text(
-              //   'My Website',
-              //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              // ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   _buildMenuButton(context, 'Home', '/home'),
+                  _buildMenuButton(context, 'Exotic Ordinary',
+                      'http://smartstore.naver.com/exoticordinary'), // 수정된 부분
                   _buildMenuButton(
-                    context,
-                    'Exotic Ordinary',
-                    '/exotic-ordinary',
-                  ),
-                  _buildMenuButton(
-                    context,
-                    'The Exotic Boutique',
-                    'the-exotic-boutique',
-                  ),
-                  _buildMenuButton(context, 'Dusty Draft', 'dusty-draft'),
+                      context, 'The Exotic Boutique', '/the-exotic-boutique'),
+                  _buildMenuButton(context, 'Dusty Draft', '/dusty-draft'),
                   _buildMenuButton(context, 'Contact', '/contact'),
                 ],
               ),
@@ -74,28 +65,22 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuButton(BuildContext context, String title, String route) {
+  Widget _buildMenuButton(BuildContext context, String title, dynamic route) {
     return TextButton(
-      onPressed: () {
-        Navigator.pushNamed(context, route);
+      onPressed: () async {
+        if (route is String && route.startsWith('http')) {
+          if (await canLaunch(route)) {
+            await launch(route);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('링크를 열 수 없습니다.'),
+            ));
+          }
+        } else {
+          Navigator.pushNamed(context, route);
+        }
       },
       child: Text(title, style: TextStyle(color: Colors.white, fontSize: 16)),
     );
   }
-
-  // Widget _buildFooter() {
-  //   return Container(
-  //     color: Colors.grey[200],
-  //     padding: EdgeInsets.all(10.0),
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: [
-  //         Text(
-  //           '© 2024 My Website. All rights reserved.',
-  //           style: TextStyle(fontSize: 14, color: Colors.black54),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
