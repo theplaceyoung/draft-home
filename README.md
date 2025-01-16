@@ -1,16 +1,22 @@
-# draft_co
+# Draft Co - GitHub Pages
+This repository contains the source files for the GitHub Pages deployed website for **Draft Co**.
 
-A new Flutter project.
+### Contents
++ build/: Contains the built static files for the website.
++ .gitignore: Defines which files and directories to ignore in version control.
++ .nojekyll: Ensures that GitHub Pages treats files as static files, not processed by Jekyll.
++ README.md: This README file.
++ index.html: Main HTML file of the website.
 
-## Getting Started
+### Deployment
+The website is hosted on GitHub Pages and updates automatically when changes are pushed to the gh-pages branch.
+You can view the live site at <http://draft.best>.
 
-This project is a starting point for a Flutter application.
+### Building the Website Locally
+1. Ensure that you have Flutter installed.
+2. Run the following commands to build the web version:
+   ```git checkout gh-pages```
+   ```flutter build web```
+3. Once built, commit and push the changes to the gh-pages branch to reflect them on the live site.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
