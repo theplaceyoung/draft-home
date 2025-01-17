@@ -40,6 +40,8 @@ class ContactPage extends StatelessWidget {
                 Image.asset('assets/symbol_about_us.png', height: 200),
                 SizedBox(height: 20),
                 Card(
+                  elevation: 0,
+                  color: Colors.transparent,
                   child: Image.asset('assets/about_us.png', width: 700),
                   // elevation: 5,
                   // color: Color.fromARGB(255, 247, 239, 173),
