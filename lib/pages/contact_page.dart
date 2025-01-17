@@ -1,88 +1,62 @@
 import 'package:draft_co/widgets/common_app_bar.dart';
+import 'package:draft_co/widgets/common_drawer.dart';
+import 'package:draft_co/widgets/footer.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../widgets/footer.dart';
 
 class ContactPage extends StatelessWidget {
+  const ContactPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(), // 공통 AppBar 사용
+      appBar: CommonAppBar(),
       drawer: Drawer(
-        // 왼쪽 드로어 설정
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blueAccent),
-              child: Text(
-                'Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
+        child: CommonDrawer(),
+        elevation: 10,
+        shadowColor: Colors.black.withOpacity(0.2),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('background_1.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 40),
+                Text(
+                  '** About Us **',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+                SizedBox(height: 20),
+                Image.asset('assets/symbol_about_us.png', height: 200),
+                SizedBox(height: 20),
+                Card(
+                  child: Image.asset('assets/about_us.png', width: 700),
+                  // elevation: 5,
+                  // color: Color.fromARGB(255, 247, 239, 173),
+                  // child: Padding(
+                  //   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  //   child: Text(
+                  //     'Visit Offline Shop in Seoul, The Exotic Boutique.',
+                  //     style: TextStyle(fontSize: 18, color: Colors.black),
+                  //   ),
+                  // ),
+                ),
+              ],
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                Navigator.pushNamed(context, '/home');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('exotic ordinary'),
-              onTap: () async {
-                final url =
-                    'https://smartstore.naver.com/exoticordinary'; // 외부 링크
-                if (await canLaunch(url)) {
-                  await launch(url);
-                } else {
-                  // 링크를 열 수 없는 경우 처리
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('링크를 열 수 없습니다.'),
-                  ));
-                }
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('the exotic boutique'),
-              onTap: () {
-                Navigator.pushNamed(context, '/the-exotic-boutique');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('dusty draft'),
-              onTap: () {
-                Navigator.pushNamed(context, '/dusty-draft');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.contact_page),
-              title: Text('Contact'),
-              onTap: () {
-                Navigator.pushNamed(context, '/contact');
-              },
-            ),
-          ],
+          ),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/logo_draft_transparentBG.png', height: 200),
-            SizedBox(height: 20),
-            Text(
-              'Welcome to the Contact Page!',
-              style: TextStyle(fontSize: 24),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: buildFooter(),
+      bottomNavigationBar: buildFooter(context),
     );
   }
 }
-
-// C:\Users\user\my_website\assets\logo_draft_transparentBG.png
