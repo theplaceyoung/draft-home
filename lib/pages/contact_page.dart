@@ -10,51 +10,39 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(),
-      drawer: Drawer(
-        child: CommonDrawer(),
-        elevation: 10,
-        shadowColor: Colors.black.withOpacity(0.2),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('background_1.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 40),
-                Text(
-                  '** About Us **',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                SizedBox(height: 20),
-                Image.asset('assets/symbol_about_us.png', height: 200),
-                SizedBox(height: 20),
-                Card(
-                  elevation: 0,
-                  color: Colors.transparent,
-                  child: Image.asset('assets/about_us.png', width: 700),
-                  // elevation: 5,
-                  // color: Color.fromARGB(255, 247, 239, 173),
-                  // child: Padding(
-                  //   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
-                  //   child: Text(
-                  //     'Visit Offline Shop in Seoul, The Exotic Boutique.',
-                  //     style: TextStyle(fontSize: 18, color: Colors.black),
-                  //   ),
-                  // ),
-                ),
-              ],
-            ),
+      drawer: CommonDrawer(),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 40),
+              Text(
+                'Core mission of creating ordinary life-style with you.',
+                style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
+              ),
+              SizedBox(height: 20),
+              Image.asset('assets/symbol_about_us.png', height: 200),
+              SizedBox(height: 20),
+              Card(
+                elevation: 0,
+                color: Colors.transparent,
+                child: Image.asset('assets/about_us.png', width: 700),
+                // elevation: 5,
+                // color: Color.fromARGB(255, 247, 239, 173),
+                // child: Padding(
+                //   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                //   child: Text(
+                //     'Visit Offline Shop in Seoul, The Exotic Boutique.',
+                //     style: TextStyle(fontSize: 18, color: Colors.black),
+                //   ),
+                // ),
+              ),
+            ],
           ),
         ),
       ),

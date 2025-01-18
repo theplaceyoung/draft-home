@@ -1,3 +1,4 @@
+import 'package:draft_co/main.dart';
 import 'package:flutter/material.dart';
 
 class CommonDrawer extends StatelessWidget {
@@ -9,20 +10,28 @@ class CommonDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration:
-                BoxDecoration(color: const Color.fromARGB(255, 194, 207, 221)),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                  color: const Color.fromARGB(255, 20, 21, 26), fontSize: 24),
-            ),
-          ),
+          // DrawerHeader(
+          //   decoration:
+          //       BoxDecoration(color: const Color.fromARGB(255, 194, 207, 221)),
+          //   child: Text(
+          //     'Business',
+          //     style: TextStyle(
+          //         color: const Color.fromARGB(255, 20, 21, 26), fontSize: 24),
+          //   ),
+          // ),
           ListTile(
             // leading: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text(''),
             onTap: () {
-              Navigator.pushNamed(context, '/home');
+              Navigator.pushNamed(context, '/');
+            },
+          ),
+          const Divider(), // 구분선
+          ListTile(
+            // leading: Icon(Icons.home),
+            title: Text('DRAFT'),
+            onTap: () {
+              Navigator.pushNamed(context, '/draft');
             },
           ),
           ListTile(
@@ -53,6 +62,7 @@ class CommonDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/contact');
             },
           ),
+          const Divider(), // 구분선
         ],
       ),
     );

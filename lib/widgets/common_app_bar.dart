@@ -1,3 +1,4 @@
+import 'package:draft_co/main.dart';
 import 'package:flutter/material.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -9,8 +10,8 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color.fromARGB(255, 109, 118, 133),
-      elevation: 0,
+      backgroundColor: Colors.transparent,
+      elevation: 1,
       title: Center(
         // Center 위젯 추가하여 중앙에 배치
         child: Row(
@@ -23,12 +24,47 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
               child: Image.asset(
                 'assets/logo_symbol_draft.png',
-                height: 45,
+                height: 35,
               ),
             ),
           ],
         ),
       ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.language),
+          onPressed: () {
+            // 언어 전환
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Select Language'),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ListTile(
+                        title: Text('English'),
+                        onTap: () {
+                          MyApp.setLocale(context, Locale('en'));
+                          Navigator.pop(context);
+                        },
+                      ),
+                      ListTile(
+                        title: Text('한국어'),
+                        onTap: () {
+                          MyApp.setLocale(context, Locale('ko'));
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 }
