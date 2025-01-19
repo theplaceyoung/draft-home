@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
 import 'package:draft_home/models/paint_model.dart';
 import 'package:draft_home/widgets/common_app_bar.dart';

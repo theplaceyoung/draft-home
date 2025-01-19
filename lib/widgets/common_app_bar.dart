@@ -1,5 +1,5 @@
-import 'package:draft_home/main.dart';
 import 'package:flutter/material.dart';
+import 'package:draft_home/main.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CommonAppBar({super.key});
@@ -46,14 +46,18 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ListTile(
                         title: Text('English'),
                         onTap: () {
-                          MyApp.setLocale(context, Locale('en'));
+                          context
+                              .findAncestorStateOfType<_MyAppState>()
+                              ?.setLocale(Locale('en', 'US'));
                           Navigator.pop(context);
                         },
                       ),
                       ListTile(
                         title: Text('한국어'),
                         onTap: () {
-                          MyApp.setLocale(context, Locale('ko'));
+                          context
+                              .findAncestorStateOfType<_MyAppState>()
+                              ?.setLocale(Locale('ko', ''));
                           Navigator.pop(context);
                         },
                       ),

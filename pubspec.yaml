@@ -40,10 +40,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   url_launcher: ^6.3.1
-  flutter_gen: ^5.8.0
   intl_translation: ^0.20.1
   provider: ^6.1.2
   flutter_colorpicker: ^1.1.0
+  flutter_gen: ^5.8.0
   
 dev_dependencies:
   flutter_test:
@@ -83,10 +83,12 @@ flutter:
     - assets/exoticordinary_background.jpg
     - assets/door_image.jpg
     - assets/about_us.png
-    - assets/fonts/
+    - assets/fonts/NotoSans-Regular.ttf
+    - assets/fonts/NotoSans-Bold.ttf
     - assets/DRAFT_dustydraft_service-description_24.pdf
     - lib/contents/PrivacyPolicy.md
     - lib/contents/TermsOfService.md
+    - lib/l10n/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -113,3 +115,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# l10n 설정 추가
+flutter_localizations:
+  - assets: true
+  - delegates:
+    - GlobalMaterialLocalizations.delegate:
+      supportedLocales:
+        - en
+        - ko
