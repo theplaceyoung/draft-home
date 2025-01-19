@@ -1,0 +1,4 @@
+arb-dir: lib/l10n # Directory for ARB files
+template-arb-file: app_en.arb # intl_en.arb # Template ARB file (default language)
+output-localization-file: app_localizations.dart # Generated localization file name
+output-class: AppLocalizations # Generated class name for localization
