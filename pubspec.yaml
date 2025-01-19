@@ -80,6 +80,7 @@ flutter:
     - assets/exoticordinary_background.jpg
     - assets/door_image.jpg
     - assets/about_us.png
+    - assets/DRAFT_dustydraft_service-description_24.pdf
     - lib/contents/PrivacyPolicy.md
     - lib/contents/TermsOfService.md
 
