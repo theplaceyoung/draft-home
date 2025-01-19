@@ -1,5 +1,5 @@
-import 'package:draft_co/pages/private_policy_page.dart';
-import 'package:draft_co/pages/terms_of_service_page.dart';
+import 'package:draft_home/pages/private_policy_page.dart';
+import 'package:draft_home/pages/terms_of_service_page.dart';
 import 'package:flutter/material.dart';
 
 Widget buildFooter(BuildContext context) {

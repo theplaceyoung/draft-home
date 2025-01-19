@@ -1,4 +1,4 @@
-name: draft_co
+name: draft_home
 description: "A new Flutter project for web pages."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -34,6 +34,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: 0.19.0
+  # flutter_log: ^2.15.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -41,6 +42,8 @@ dependencies:
   url_launcher: ^6.3.1
   flutter_gen: ^5.8.0
   intl_translation: ^0.20.1
+  provider: ^6.1.2
+  flutter_colorpicker: ^1.1.0
   
 dev_dependencies:
   flutter_test:
@@ -80,6 +83,7 @@ flutter:
     - assets/exoticordinary_background.jpg
     - assets/door_image.jpg
     - assets/about_us.png
+    - assets/fonts/
     - assets/DRAFT_dustydraft_service-description_24.pdf
     - lib/contents/PrivacyPolicy.md
     - lib/contents/TermsOfService.md
@@ -95,11 +99,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: NotoSans # Schyler
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf # fonts/Schyler-Regular.ttf
+        - asset: assets/fonts/NotoSans-Bold.ttf # fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

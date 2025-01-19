@@ -1,13 +1,14 @@
-import 'package:draft_co/widgets/common_app_bar.dart';
-import 'package:draft_co/widgets/common_drawer.dart';
-import 'package:draft_co/widgets/footer.dart';
+import 'package:draft_home/pages/canvas_page.dart';
+// import 'package:draft_home/pages/draft_page.dart';
+import 'package:draft_home/pages/the_exotic_boutique.dart';
+import 'package:draft_home/pages/dusty_draft.dart';
+import 'package:draft_home/pages/contact_page.dart';
+import 'package:draft_home/pages/exotic_ordinary.dart';
+import 'package:draft_home/widgets/common_app_bar.dart';
+import 'package:draft_home/widgets/common_drawer.dart';
+import 'package:draft_home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'pages/draft_page.dart';
-import 'pages/the_exotic_boutique.dart';
-import 'pages/dusty_draft.dart';
-import 'pages/contact_page.dart';
-import 'pages/exotic_ordinary.dart';
 // import 'widgets/footer.dart';
 // import 'widgets/common_app_bar.dart';
 
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
       ],
       home: MyHomePage(),
       routes: {
-        '/draft': (context) => DraftPage(),
+        '/draft': (context) => CanvasPage(),
         '/exotic-ordinary': (context) => ExoticOrdinaryPage(),
         '/the-exotic-boutique': (context) => TheExoticBoutiquePage(),
         '/dusty-draft': (context) => DustyDraftPage(),

@@ -1,5 +1,5 @@
-import 'package:draft_co/widgets/common_app_bar.dart';
-import 'package:draft_co/widgets/common_drawer.dart';
+import 'package:draft_home/widgets/common_app_bar.dart';
+import 'package:draft_home/widgets/common_drawer.dart';
 import 'package:flutter/material.dart';
 import '../widgets/footer.dart';
 

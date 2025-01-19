@@ -1,6 +1,6 @@
-import 'package:draft_co/widgets/common_app_bar.dart';
-import 'package:draft_co/widgets/common_drawer.dart';
-import 'package:draft_co/widgets/footer.dart';
+import 'package:draft_home/widgets/common_app_bar.dart';
+import 'package:draft_home/widgets/common_drawer.dart';
+import 'package:draft_home/widgets/footer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
