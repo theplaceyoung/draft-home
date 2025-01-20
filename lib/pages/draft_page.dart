@@ -1,5 +1,6 @@
-import 'package:draft_co/widgets/common_app_bar.dart';
-import 'package:draft_co/widgets/common_drawer.dart';
+import 'package:draft_home/utils/url_utils.dart';
+import 'package:draft_home/widgets/app_bar.dart';
+import 'package:draft_home/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import '../widgets/footer.dart';
 
@@ -8,9 +9,14 @@ class DraftPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String logoPath = 'assets/logo_symbol_draft.png';
+
     return Scaffold(
-      appBar: CommonAppBar(), // 공통 AppBar 사용
-      drawer: const CommonDrawer(),
+      drawer: CommonDrawer(),
+      appBar: CommonAppBar(
+        logoPath: logoPath,
+      ),
+      // drawer: const CommonDrawer(),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -23,9 +29,21 @@ class DraftPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 20),
-              Text('Welcome to the draft!', style: TextStyle(fontSize: 24)),
+              ElevatedButton(
+                onPressed: () => launchURL(
+                    'https://theplaceyoung.github.io/my_creative_canvas/',
+                    context),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor: Colors.white, // 텍스트 컬러
+                ),
+                child: Text('Draw your drafts!'),
+              ),
+              // Text('Draw your drafts!', style: TextStyle(fontSize: 24)),
               SizedBox(height: 20),
-              Image.asset('assets/logo_draft_transparentBG.png', height: 200),
+              Image.asset('assets/logo_draft_transparentBG.png', height: 100),
               SizedBox(height: 20),
             ],
           ),
@@ -34,4 +52,20 @@ class DraftPage extends StatelessWidget {
       bottomNavigationBar: buildFooter(context),
     );
   }
+
+  // Future<void> _launchURL(String url, BuildContext context) async {
+  //   final uri = Uri.parse(url);
+
+  //   try {
+  //     if (!await launchUrl(uri, mode: LaunchMode.platformDefault)) {
+  //       if (kDebugMode) {
+  //         debugPrint('링크를 열 수 없습니다: $uri');
+  //       }
+  //     }
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       debugPrint('예상치 못한 오류가 발생했습니다: $uri');
+  //     }
+  //   }
+  // }
 }

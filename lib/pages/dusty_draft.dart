@@ -1,18 +1,21 @@
-import 'package:draft_co/widgets/common_app_bar.dart';
-import 'package:draft_co/widgets/common_drawer.dart';
-import 'package:draft_co/widgets/footer.dart';
-import 'package:flutter/foundation.dart';
+import 'package:draft_home/utils/url_utils.dart';
+import 'package:draft_home/widgets/app_bar.dart';
+import 'package:draft_home/widgets/drawer.dart';
+import 'package:draft_home/widgets/footer.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DustyDraftPage extends StatelessWidget {
   const DustyDraftPage({super.key});
-
   @override
   Widget build(BuildContext context) {
+    String logoPath = 'assets/logo_symbol_draft_grey.png';
+
     return Scaffold(
-      appBar: CommonAppBar(),
-      drawer: const CommonDrawer(),
+      drawer: CommonDrawer(),
+      appBar: CommonAppBar(
+        logoPath: logoPath,
+      ),
+      // drawer: const CommonDrawer(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -39,25 +42,47 @@ class DustyDraftPage extends StatelessWidget {
               ),
               SizedBox(height: 60),
               ElevatedButton(
-                onPressed: () => _launchURL('https://www.dustydraft.com'),
+                onPressed: () =>
+                    launchURL('https://www.dustydraft.com', context),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
                   textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor: Colors.white, // 텍스트 컬러
                 ),
                 child: Text('웹사이트 바로가기'),
               ),
               SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {
-                  // 브라우저에서 에셋 PDF 열기
-                  const pdfPath =
-                      'https://github.com/theplaceyoung/draft_co/tree/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf';
-                  // 웹에서는 파일을 직접 열거나 다운로드하지 않고 브라우저로 전달
-                  openPDF(pdfPath);
+                onPressed: () => launchURL(
+                    'https://github.com/theplaceyoung/draft_co/blob/main/assets/DRAFT_dustydraft_service-description_24.pdf',
+                    context),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor: Colors.white, // 텍스트 컬러
+                ),
+                child: Text('소개자료 열어보기'),
+              ),
+              SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    // 브라우저에서 에셋 PDF 열기
+                    const pdfPath =
+                        'https://raw.githubusercontent.com/theplaceyoung/draft_home/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf';
+                    // 웹에서는 파일을 직접 열거나 다운로드하지 않고 브라우저로 전달
+                    await openPDF(pdfPath);
+                  } catch (e) {
+                    _showError(context, 'PDF 열기 실패: $e');
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
                   textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor: Colors.white, // 텍스트 컬러
                 ),
                 child: Text('소개자료 다운받기'),
               ),
@@ -69,34 +94,9 @@ class DustyDraftPage extends StatelessWidget {
     );
   }
 
-  Future<void> _launchURL(String url) async {
-    final uri = Uri.parse(url);
-    try {
-      if (!await launchUrl(uri, mode: LaunchMode.platformDefault)) {
-        if (kDebugMode) {
-          debugPrint('링크를 열 수 없습니다: $uri');
-        }
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        debugPrint('예상치 못한 오류가 발생했습니다: $uri');
-      }
-    }
-  }
-
-  void openPDF(String assetPath) async {
-    try {
-      // 현재 웹의 베이스 경로와 에셋 경로를 결합
-      final pdfUrl = Uri.base.resolve(assetPath).toString();
-      if (!await launchUrl(Uri.parse(pdfUrl))) {
-        if (kDebugMode) {
-          debugPrint('PDF를 열 수 없습니다: $pdfUrl');
-        }
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        debugPrint('PDF 열기 중 오류 발생: $e');
-      }
-    }
+  Future<void> _showError(BuildContext context, String message) async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
   }
 }

@@ -1,9 +1,51 @@
 {
-   "appTitle": "다국어 앱",
-  "homeTitle": "드래프트와 함께합시다.",
+  "@@locale": "ko",
+  "draft": "드래프트(draft)",
+  "@draft": {
+    "description": "앱의 제목이나 간략한 설명으로 사용됩니다."
+  },
+  "exoticOrdinary": "이그조틱 오디너리",
+  "@exoticOrdinary": {
+    "description": "이그조틱 오디너리 페이지의 제목입니다."
+  },
+  "theExoticBoutique": "디 이그조틱 부띠끄",
+  "@theExoticBoutique": {
+    "description": "디 이그조틱 부띠끄 페이지의 제목입니다."
+  },
+  "dustyDraft": "더스티 드래프트",
+  "@dustyDraft": {
+    "description": "더스티 드래프트 페이지의 제목입니다."
+  },
+  "ordinaryLife": "오디너리 라이프, 만세!",
+  "@ordinaryLife": {
+    "description": "오디너리 라이프의 슬로건입니다."
+  },
+  "appTitle": "드래프트",
+  "@appTitle": {
+    "description": "앱의 메인 제목입니다."
+  },
+  "homeTitle": "드래프트와 함께합시다!",
+  "@homeTitle": {
+    "description": "홈페이지의 슬로건 또는 제목입니다."
+  },
   "homePage": "홈",
-  "exoticOrdinaryPage": "이그조틱 오디너리",
-  "exoticBoutiquePage": "이그조틱 부띠끄",
-  "dustyDraftPage": "먼지낀 초안을 꺼내세요. 더스티드래프트",
-  "contactPage": "근황공유 및 만나보기"
+  "@homePage": {
+    "description": "홈페이지의 탭 이름입니다."
+  },
+  "exoticOrdinaryPage": "이그조틱오디너리",
+  "@exoticOrdinaryPage": {
+    "description": "이그조틱 오디너리 페이지의 탭 이름입니다."
+  },
+  "exoticBoutiquePage": "디 이그조틱 부띠끄",
+  "@exoticBoutiquePage": {
+    "description": "디 이그조틱 부띠끄 페이지의 탭 이름입니다."
+  },
+  "dustyDraftPage": "먼지낀 초안을 꺼내세요, 더스티드래프트.",
+  "@dustyDraftPage": {
+    "description": "더스티 드래프트 페이지의 설명입니다."
+  },
+  "contactPage": "근황공유 및 만나보기",
+  "@contactPage": {
+    "description": "연락처 페이지의 제목입니다."
+  }
 }

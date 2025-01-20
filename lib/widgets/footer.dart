@@ -1,5 +1,5 @@
-import 'package:draft_co/pages/private_policy_page.dart';
-import 'package:draft_co/pages/terms_of_service_page.dart';
+import 'package:draft_home/pages/private_policy_page.dart';
+import 'package:draft_home/pages/terms_of_service_page.dart';
 import 'package:flutter/material.dart';
 
 Widget buildFooter(BuildContext context) {
@@ -12,7 +12,7 @@ Widget buildFooter(BuildContext context) {
         _buildFooterLinks(context),
         const SizedBox(height: 8),
         const Text(
-          '© 2024 Draft Co. All rights reserved.',
+          '© 2025 Draft Co. All rights reserved.',
           style: TextStyle(fontSize: 14, color: Colors.black54),
           textAlign: TextAlign.center,
         ),
