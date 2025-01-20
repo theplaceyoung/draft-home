@@ -54,11 +54,24 @@ class DustyDraftPage extends StatelessWidget {
               ),
               SizedBox(height: 10),
               ElevatedButton(
+                onPressed: () => launchURL(
+                    'https://github.com/theplaceyoung/draft_co/blob/main/assets/DRAFT_dustydraft_service-description_24.pdf',
+                    context),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor: Colors.white, // 텍스트 컬러
+                ),
+                child: Text('소개자료 열어보기'),
+              ),
+              SizedBox(height: 10),
+              ElevatedButton(
                 onPressed: () async {
                   try {
                     // 브라우저에서 에셋 PDF 열기
                     const pdfPath =
-                        'https://raw.githubusercontent.com/theplaceyoung/draft_co/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf';
+                        'https://raw.githubusercontent.com/theplaceyoung/draft_home/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf';
                     // 웹에서는 파일을 직접 열거나 다운로드하지 않고 브라우저로 전달
                     await openPDF(pdfPath);
                   } catch (e) {
