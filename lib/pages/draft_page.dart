@@ -27,7 +27,8 @@ class DraftPage extends StatelessWidget {
             children: [
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () => _launchURL('https://www.dustydraft.com'),
+                onPressed: () => _launchURL(
+                    'https://theplaceyoung.github.io/my_creative_canvas/'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
                   textStyle: TextStyle(fontSize: 18),
