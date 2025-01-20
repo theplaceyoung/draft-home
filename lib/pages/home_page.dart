@@ -1,16 +1,20 @@
-import 'package:draft_home/widgets/common_app_bar.dart';
-import 'package:draft_home/widgets/common_drawer.dart';
+import 'package:draft_home/widgets/app_bar.dart';
+import 'package:draft_home/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import '../widgets/footer.dart';
 
-class DraftPage extends StatelessWidget {
-  const DraftPage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String logoPath = 'assets/logo_symbol_draft.png';
+
     return Scaffold(
       drawer: CommonDrawer(),
-      appBar: CommonAppBar(),
+      appBar: CommonAppBar(
+        logoPath: logoPath,
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

@@ -13,7 +13,7 @@ class PrivacyPolicyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Privacy Policy')),
+      appBar: AppBar(title: Text('개인정보 보호 정책 | Privacy Policy')),
       body: FutureBuilder<String>(
         future: _loadPrivacyPolicy(),
         builder: (context, snapshot) {

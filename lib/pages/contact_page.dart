@@ -1,5 +1,5 @@
-import 'package:draft_home/widgets/common_app_bar.dart';
-import 'package:draft_home/widgets/common_drawer.dart';
+import 'package:draft_home/widgets/app_bar.dart';
+import 'package:draft_home/widgets/drawer.dart';
 import 'package:draft_home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +8,10 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String logoPath = 'assets/logo_symbol_draft.png';
     return Scaffold(
       drawer: CommonDrawer(),
-      appBar: CommonAppBar(),
+      appBar: CommonAppBar(logoPath: logoPath),
       // drawer: CommonDrawer(),
       body: Center(
         child: Padding(
@@ -24,11 +25,11 @@ class ContactPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.normal,
-                    color: Colors.black),
+                    color: const Color.fromARGB(255, 225, 200, 200)),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 40),
               Image.asset('assets/symbol_about_us.png', height: 200),
-              SizedBox(height: 20),
+              SizedBox(height: 40),
               Card(
                 elevation: 0,
                 color: Colors.transparent,
@@ -43,11 +44,13 @@ class ContactPage extends StatelessWidget {
                 //   ),
                 // ),
               ),
+              SizedBox(height: 40),
             ],
           ),
         ),
       ),
       bottomNavigationBar: buildFooter(context),
+      backgroundColor: Colors.black,
     );
   }
 }

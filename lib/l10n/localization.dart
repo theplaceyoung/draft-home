@@ -1,56 +1,70 @@
-import 'dart:convert';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class Localization {
-  late final Locale _locale;
+  late final Locale locale;
 
-  Localization(this._locale);
+  Localization(this.locale);
 
-  static Future<Localization> load(Locale locale) async {
-    final localization = Localization(locale);
-    try {
-      await localization._initMessages();
-    } catch (e) {
-      // 로딩 실패 시 기본값 설정
-      await localization._setDefaultMessages();
-    }
-    return localization;
+  static Localization of(BuildContext context) =>
+      Localizations.of<Localization>(context, Localization)!;
+
+  static final Map<String, Map<String, String>> _localizedValues = {
+    // 'en': {
+    //   'draft': 'DRAFT Company',
+    //   'exoticOrdinary': 'Exotic Ordinary',
+    //   'theExoticBoutique': 'The Exotic Boutique',
+    //   'dustyDraft': 'Dusty Draft',
+    //   'contact': 'Ordinary Life',
+    // },
+    'en': {
+      'DRAFT Company': 'draft',
+      'Exotic Ordinary': 'exoticOrdinary',
+      'The Exotic Boutique': 'theExoticBoutique',
+      'Dusty Draft': 'dustyDraft',
+      'Ordinary Life': 'contact',
+    },
+    'ko': {
+      'DRAFT Company': '드래프트 컴퍼니',
+      'Exotic Ordinary': '이그조틱 오디너리',
+      'The Exotic Boutique': '디 이그조틱 부띠끄',
+      'Dusty Draft': '더스티 드래프트',
+      'Ordinary Life': '오디너리 라이프'
+    },
+    // 'ko': {
+    //   'draft': '드래프트 컴퍼니',
+    //   'exoticOrdinary': '이그조틱 오디너리',
+    //   'theExoticBoutique': '디 이그조틱 부띠끄',
+    //   'dustyDraft': '더스티 드래프트',
+    //   'contact': '오디너리 라이프'
+    // },
+  };
+
+  String get draft => _localizedValues[locale.languageCode]!['draft']!;
+  String get exoticOrdinary =>
+      _localizedValues[locale.languageCode]!['exoticOrdinary']!;
+  String get theExoticBoutique =>
+      _localizedValues[locale.languageCode]!['theExoticBoutique']!;
+  String get dustyDraft =>
+      _localizedValues[locale.languageCode]!['dustyDraft']!;
+  String get contact => _localizedValues[locale.languageCode]!['contact']!;
+
+  static const LocalizationsDelegate<Localization> delegate =
+      _LocalizationDelegate();
+}
+
+class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
+  const _LocalizationDelegate();
+
+  @override
+  bool isSupported(Locale locale) {
+    return ['en', 'ko'].contains(locale.languageCode);
   }
 
-  Future<void> _initMessages() async {
-    final jsonFileName = 'lib/l10n/${_locale.languageCode}.json';
-    try {
-      final String jsonString = await rootBundle.loadString(jsonFileName);
-      final Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-      Intl.defaultLocale = _locale.toString();
-    } catch (e) {
-      throw Exception('Failed to load localization messages');
-    }
+  @override
+  Future<Localization> load(Locale locale) async {
+    return Localization(locale);
   }
 
-  Future<void> _setDefaultMessages() async {
-    // 기본 메시지 설정
-    Intl.defaultLocale = 'en_US'; // 예시로 영어 기본 설정
-  }
-
-  static Localization of(BuildContext context) {
-    return Localizations.of<Localization>(context, Localization)!;
-  }
-
-  String get appTitle => Intl.message(
-        'Draft',
-        name: 'appTitle',
-        desc: 'The title of the app',
-        locale: _locale.toString(),
-      );
-
-  String get homePage => Intl.message(
-        '홈',
-        name: 'homePage',
-        desc: 'Home page title',
-        locale: _locale.toString(),
-      );
+  @override
+  bool shouldReload(_LocalizationDelegate old) => false;
 }

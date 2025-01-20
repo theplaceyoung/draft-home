@@ -1,17 +1,21 @@
-import 'package:draft_home/widgets/common_app_bar.dart';
-import 'package:draft_home/widgets/common_drawer.dart';
+import 'package:draft_home/utils/url_utils.dart';
+import 'package:draft_home/widgets/app_bar.dart';
+import 'package:draft_home/widgets/drawer.dart';
 import 'package:draft_home/widgets/footer.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ExoticOrdinaryPage extends StatelessWidget {
   const ExoticOrdinaryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String logoPath = 'assets/exotic-48x48.png';
+
     return Scaffold(
       drawer: CommonDrawer(),
-      appBar: CommonAppBar(),
+      appBar: CommonAppBar(
+        logoPath: logoPath,
+      ),
       // drawer: const CommonDrawer(),
       body: Center(
         child: Padding(
@@ -21,7 +25,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
             children: [
               // 첫 번째 버튼 크게
               ElevatedButton(
-                onPressed: () => _launchURL(
+                onPressed: () => launchURL(
                     'https://smartstore.naver.com/exoticordinary', context),
                 style: ElevatedButton.styleFrom(
                   padding:
@@ -39,7 +43,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () => _launchURL(
+                    onPressed: () => launchURL(
                         'https://www.instagram.com/exoticordinary_official/',
                         context),
                     style: ElevatedButton.styleFrom(
@@ -52,7 +56,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton(
-                    onPressed: () => _launchURL(
+                    onPressed: () => launchURL(
                         'https://www.youtube.com/@exoticordinary', context),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
@@ -68,25 +72,39 @@ class ExoticOrdinaryPage extends StatelessWidget {
 
               // 로고
               GestureDetector(
-                onTap: () => _launchURL(
+                onTap: () => launchURL(
                     'https://smartstore.naver.com/exoticordinary', context),
                 child: Image.asset(
                   'assets/logo_exoticordinary.png',
-                  height: 200,
+                  height: 220,
                 ),
               ),
               const SizedBox(height: 40),
 
               // Welcome 메시지
-              const Text(
-                'Beauty in the mirror, Smiling back at you.',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              ElevatedButton(
+                onPressed: () => launchURL(
+                    'https://www.instagram.com/exoticordinary_official/',
+                    context),
+                style: ElevatedButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  textStyle: const TextStyle(fontSize: 13),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor: Colors.white, // 텍스트 컬러
                 ),
-                textAlign: TextAlign.center,
+                child: const Text('Beauty in the mirror, Smiling back at you.'),
               ),
+              const SizedBox(height: 20),
+              // const Text(
+              //   'Beauty in the mirror, Smiling back at you.',
+              //   style: TextStyle(
+              //     fontSize: 14,
+              //     fontWeight: FontWeight.bold,
+              //     color: Colors.white,
+              //   ),
+              //   textAlign: TextAlign.center,
+              // ),
             ],
           ),
         ),
@@ -96,23 +114,23 @@ class ExoticOrdinaryPage extends StatelessWidget {
     );
   }
 
-  Future<void> _launchURL(String url, BuildContext context) async {
-    try {
-      final uri = Uri.parse(url);
+  // Future<void> _launchURL(String url, BuildContext context) async {
+  //   try {
+  //     final uri = Uri.parse(url);
 
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri);
-      } else {
-        await _showError(context, '링크를 열 수 없습니다.');
-      }
-    } catch (e) {
-      await _showError(context, '예상치 못한 오류가 발생했습니다.');
-    }
-  }
+  //     if (await canLaunchUrl(uri)) {
+  //       await launchUrl(uri);
+  //     } else {
+  //       await _showError(context, '링크를 열 수 없습니다.');
+  //     }
+  //   } catch (e) {
+  //     await _showError(context, '예상치 못한 오류가 발생했습니다.');
+  //   }
+  // }
 
-  Future<void> _showError(BuildContext context, String message) async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
+  // Future<void> _showError(BuildContext context, String message) async {
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     SnackBar(content: Text(message)),
+  //   );
+  // }
 }

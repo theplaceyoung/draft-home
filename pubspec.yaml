@@ -79,10 +79,16 @@ flutter:
     - assets/logo_exoticordinary.png
     - assets/logo_the_boutique.png
     - assets/logo_symbol_draft.png
+    - assets/logo_symbol_draft_grey.png
     - assets/symbol_about_us.png
+    - assets/evotic.png
+    - assets/exotic-48x48.png
+    - assets/exotic-yellow.png
     - assets/background_1.png
     - assets/exoticordinary_background.jpg
     - assets/door_image.jpg
+    - assets/AdobeStock_228406900.jpeg
+    - assets/AdobeStock_712861746.jpeg
     - assets/about_us.png
     - assets/fonts/NotoSans-Regular.ttf
     - assets/fonts/NotoSans-Bold.ttf

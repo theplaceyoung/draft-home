@@ -12,7 +12,7 @@ Widget buildFooter(BuildContext context) {
         _buildFooterLinks(context),
         const SizedBox(height: 8),
         const Text(
-          '© 2024 Draft Co. All rights reserved.',
+          '© 2025 Draft Co. All rights reserved.',
           style: TextStyle(fontSize: 14, color: Colors.black54),
           textAlign: TextAlign.center,
         ),
