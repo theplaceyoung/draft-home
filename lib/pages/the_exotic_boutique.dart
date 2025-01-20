@@ -11,8 +11,8 @@ class TheExoticBoutiquePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CommonDrawer(),
       appBar: CommonAppBar(),
-      drawer: const CommonDrawer(),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

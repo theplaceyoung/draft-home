@@ -9,8 +9,9 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(),
       drawer: CommonDrawer(),
+      appBar: CommonAppBar(),
+      // drawer: CommonDrawer(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

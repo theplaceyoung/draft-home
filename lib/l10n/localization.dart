@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class Localization {
@@ -8,22 +11,29 @@ class Localization {
 
   static Future<Localization> load(Locale locale) async {
     final localization = Localization(locale);
-    await localization._initMessages();
+    try {
+      await localization._initMessages();
+    } catch (e) {
+      // 로딩 실패 시 기본값 설정
+      await localization._setDefaultMessages();
+    }
     return localization;
   }
 
   Future<void> _initMessages() async {
-    // 직접 메시지 파일에서 로케일에 맞는 메시지 로드
-    // 예: assets 디렉토리에 lang 디렉토리가 있을 경우, 해당 파일에서 메시지 로드
-    // 예: assets/lang/{locale.languageCode}_{locale.countryCode}.json
-    // final jsonFileName = 'lib/l10n/${_locale.languageCode}.json';
+    final jsonFileName = 'lib/l10n/${_locale.languageCode}.json';
     try {
-      // final String jsonString = await rootBundle.loadString(jsonFileName);
-      // final Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+      final String jsonString = await rootBundle.loadString(jsonFileName);
+      final Map<String, dynamic> jsonMap = jsonDecode(jsonString);
       Intl.defaultLocale = _locale.toString();
     } catch (e) {
-      // print('Error loading localization file: $e');
+      throw Exception('Failed to load localization messages');
     }
+  }
+
+  Future<void> _setDefaultMessages() async {
+    // 기본 메시지 설정
+    Intl.defaultLocale = 'en_US'; // 예시로 영어 기본 설정
   }
 
   static Localization of(BuildContext context) {

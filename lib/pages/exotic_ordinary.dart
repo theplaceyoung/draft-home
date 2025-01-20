@@ -10,8 +10,9 @@ class ExoticOrdinaryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CommonDrawer(),
       appBar: CommonAppBar(),
-      drawer: const CommonDrawer(),
+      // drawer: const CommonDrawer(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

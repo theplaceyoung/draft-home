@@ -1,8 +1,5 @@
-import 'dart:ui';
-
-import 'package:draft_home/l10n/localization.dart';
-import 'package:draft_home/pages/canvas_page.dart';
 import 'package:draft_home/pages/contact_page.dart';
+import 'package:draft_home/pages/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
 import 'package:draft_home/pages/exotic_ordinary.dart';
 import 'package:draft_home/pages/the_exotic_boutique.dart';
@@ -11,43 +8,29 @@ import 'package:draft_home/widgets/common_drawer.dart';
 import 'package:draft_home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/localization.dart'; // 수정된 Localization 파일
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('en', 'US');
-
-  void setLocale(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'DRAFT',
-      locale: _locale,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('ko', ''),
-      ],
+      // locale: Locale('en', 'US'),
+      // localizationsDelegates: [
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+      // ],
+      // supportedLocales: [
+      //   Locale('en', 'US'),
+      //   Locale('ko', ''),
+      // ],
       home: MyHomePage(),
       routes: {
-        '/draft': (context) => CanvasPage(),
+        '/draft': (context) => DraftPage(),
         '/exotic-ordinary': (context) => ExoticOrdinaryPage(),
         '/the-exotic-boutique': (context) => TheExoticBoutiquePage(),
         '/dusty-draft': (context) => DustyDraftPage(),
@@ -63,12 +46,12 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(), // 수정된 CommonAppBar 사용
       drawer: CommonDrawer(),
+      appBar: CommonAppBar(),
+      // drawer: CommonDrawer(),
       body: Center(
-        child:
-            Text(Localization.of(context).homePage), //'Hello, Draft World!'),
-      ),
+          // child: Text(Localization.of(context).homePage),
+          ),
       bottomNavigationBar: buildFooter(context),
     );
   }
