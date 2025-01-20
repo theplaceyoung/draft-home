@@ -14,20 +14,22 @@ class PrivacyPolicyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('개인정보 보호 정책 | Privacy Policy')),
-      body: FutureBuilder<String>(
-        future: _loadPrivacyPolicy(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(snapshot.data!),
-            );
-          } else if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            return Center(child: Text('Error loading privacy policy.'));
-          }
-        },
+      body: SingleChildScrollView(
+        child: FutureBuilder<String>(
+          future: _loadPrivacyPolicy(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(snapshot.data!),
+              );
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              return Center(child: Text('Error loading privacy policy.'));
+            }
+          },
+        ),
       ),
     );
   }
