@@ -130,14 +130,12 @@ class CardButton extends StatelessWidget {
         onTap: onPressed,
         child: Stack(
           alignment: Alignment.center,
-          // Column(
-          //   mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
               tacticPath,
               fit: BoxFit.cover,
-              height: 150.0, // 카드 크기에 맞게 이미지 크기 조정
-              width: double.infinity,
+              height: 300, // 부모 크기에 맞춰 이미지 높이 확장
+              width: double.infinity, // 부모 크기에 맞춰 이미지 넓이 확장
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
