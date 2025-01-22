@@ -15,22 +15,20 @@ class TermsOfServicePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('이용 약관 | Terms of Service')),
-      body: SingleChildScrollView(
-        child: FutureBuilder<String>(
-          future: _loadTermsOfService(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(snapshot.data!),
-              );
-            } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            } else {
-              return Center(child: Text('Error loading terms of service.'));
-            }
-          },
-        ),
+      body: FutureBuilder<String>(
+        future: _loadTermsOfService(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(snapshot.data!),
+            );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            return Center(child: Text('Error loading terms of service.'));
+          }
+        },
       ),
     );
   }
