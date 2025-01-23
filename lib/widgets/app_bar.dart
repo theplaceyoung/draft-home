@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String logoPath; // 특정 페이지에 따라 이미지 경로
+  final Color backgroundColor; // AppBar 배경색
+  final Color iconColor; // 아이콘 색
 
   const CommonAppBar({
     super.key,
     required this.logoPath,
+    this.backgroundColor = Colors.transparent, // 기본값은 투명
+    this.iconColor = Colors.black, // 기본 아이콘 색은 검정색
   });
 
   @override
@@ -14,7 +18,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent, //transparent,
+      backgroundColor: backgroundColor, // 전달받은 배경색
       elevation: 1,
       title: Center(
         child: GestureDetector(
@@ -29,7 +33,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.language), // 다국어 버튼
+          icon: Icon(Icons.language, color: iconColor), // 아이콘 색상 설정
           tooltip: 'Change Language',
           onPressed: () {
             Locale currentLocale = Localizations.localeOf(context);

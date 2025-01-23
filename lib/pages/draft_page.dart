@@ -10,11 +10,17 @@ class DraftPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String logoPath = 'assets/logo_symbol_draft.png';
+    Color appBarBackgroundColor =
+        const Color.fromARGB(255, 4, 39, 69); // AppBar 배경색
+    Color appBarIconColor =
+        const Color.fromARGB(255, 209, 203, 203); // AppBar 아이콘 색상
 
     return Scaffold(
       drawer: CommonDrawer(),
       appBar: CommonAppBar(
         logoPath: logoPath,
+        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        iconColor: appBarIconColor,
       ),
       // drawer: const CommonDrawer(),
       body: Container(

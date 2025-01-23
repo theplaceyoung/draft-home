@@ -10,11 +10,16 @@ class TheExoticBoutiquePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String logoPath = 'assets/exotic-yellow.png';
+    Color appBarBackgroundColor =
+        Color.fromARGB(122, 164, 116, 67); // AppBar 배경색
+    Color appBarIconColor = Colors.white; // AppBar 아이콘 색상
 
     return Scaffold(
       drawer: CommonDrawer(),
       appBar: CommonAppBar(
         logoPath: logoPath,
+        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        iconColor: appBarIconColor,
       ),
       body: Container(
         decoration: BoxDecoration(

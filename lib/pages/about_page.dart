@@ -10,11 +10,18 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String logoPath = 'assets/logo_symbol_draft.png';
+    Color appBarBackgroundColor =
+        Color.fromARGB(255, 119, 61, 61); // AppBar 배경색
+    Color appBarIconColor = Colors.white; // AppBar 아이콘 색상
     double screenWidth = MediaQuery.of(context).size.width; // 화면너비
 
     return Scaffold(
       drawer: CommonDrawer(),
-      appBar: CommonAppBar(logoPath: logoPath),
+      appBar: CommonAppBar(
+        logoPath: logoPath,
+        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        iconColor: appBarIconColor,
+      ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -25,7 +32,7 @@ class AboutPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center, // 수평중앙정렬
               children: [
-                SizedBox(height: 100),
+                SizedBox(height: 20),
                 Text(
                   'Core mission of creating ordinary life-style with you.',
                   style: TextStyle(

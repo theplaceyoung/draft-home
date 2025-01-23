@@ -50,6 +50,8 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String logoPath;
+    Color appBarBackgroundColor = Colors.blue; // AppBar 배경색
+    Color appBarIconColor = Colors.white; // AppBar 아이콘 색상
 
     switch (ModalRoute.of(context)?.settings.name) {
       case '/draft':
@@ -73,7 +75,11 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       drawer: CommonDrawer(),
-      appBar: CommonAppBar(logoPath: logoPath),
+      appBar: CommonAppBar(
+        logoPath: logoPath,
+        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        iconColor: appBarIconColor,
+      ), // AppBar 아이콘 색),
       body: SingleChildScrollView(
         child: Column(
           children: [

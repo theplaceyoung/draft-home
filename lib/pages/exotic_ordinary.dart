@@ -10,11 +10,15 @@ class ExoticOrdinaryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String logoPath = 'assets/exotic-48x48.png';
+    Color appBarBackgroundColor = Colors.white.withOpacity(0.25); // AppBar 배경색
+    Color appBarIconColor = Colors.white; // AppBar 아이콘 색상
 
     return Scaffold(
       drawer: CommonDrawer(),
       appBar: CommonAppBar(
         logoPath: logoPath,
+        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        iconColor: appBarIconColor,
       ),
       // drawer: const CommonDrawer(),
       body: Center(

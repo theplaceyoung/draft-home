@@ -6,16 +6,22 @@ import 'package:flutter/material.dart';
 
 class DustyDraftPage extends StatelessWidget {
   const DustyDraftPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     String logoPath = 'assets/logo_symbol_draft_grey.png';
+    // 페이지에 맞는 컬러 설정
+    Color appBarBackgroundColor =
+        const Color.fromARGB(255, 15, 16, 18); // AppBar 배경색
+    Color appBarIconColor = Colors.white; // AppBar 아이콘 색상
 
     return Scaffold(
       drawer: CommonDrawer(),
       appBar: CommonAppBar(
         logoPath: logoPath,
+        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        iconColor: appBarIconColor, // AppBar 아이콘 색
       ),
-      // drawer: const CommonDrawer(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -38,7 +44,7 @@ class DustyDraftPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                    color: Colors.white),
               ),
               SizedBox(height: 60),
               ElevatedButton(
@@ -91,6 +97,11 @@ class DustyDraftPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: buildFooter(context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => launchURL('https://www.dustyagent.chat', context),
+        child: Image.asset('assets/dusty-agent-white.png'),
+        backgroundColor: appBarBackgroundColor, // 플로팅 버튼 배경색
+      ),
     );
   }
 
