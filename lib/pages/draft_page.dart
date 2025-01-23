@@ -29,6 +29,16 @@ class DraftPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 20),
+              Text(
+                '어떤 것이든 좋습니다. 마음껏 그려보세요!',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal,
+                  color: const Color.fromARGB(255, 61, 67, 119),
+                ),
+                textAlign: TextAlign.center, // 텍스트 중앙 정렬
+              ),
+              SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () => launchURL(
                     'https://theplaceyoung.github.io/my_creative_canvas/',
@@ -39,7 +49,23 @@ class DraftPage extends StatelessWidget {
                   backgroundColor: Colors.black, // 버튼 배경색
                   foregroundColor: Colors.white, // 텍스트 컬러
                 ),
-                child: Text('Draw your drafts!'),
+                child: Text('My Creative Canvas - 웹브라우저 버전'),
+              ),
+              // Text('Draw your drafts!', style: TextStyle(fontSize: 24)),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => launchURL(
+                    'https://theplaceyoung.github.io/pwa-webapp-canvas/',
+                    context),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor:
+                      const Color.fromARGB(255, 90, 88, 88), // 텍스트 컬러
+                ),
+                child: Text(
+                    'My Creative Canvas - touch pad version (comming soon)'),
               ),
               // Text('Draw your drafts!', style: TextStyle(fontSize: 24)),
               SizedBox(height: 20),
