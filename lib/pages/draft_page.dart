@@ -30,6 +30,14 @@ class DraftPage extends StatelessWidget {
             children: [
               SizedBox(height: 10),
               Text(
+                'Draw your drafts!',
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black),
+              ),
+              SizedBox(height: 10),
+              Text(
                 '어떤 것이든 좋습니다. 마음껏 그려보세요!',
                 style: TextStyle(
                   fontSize: 20,
@@ -39,65 +47,37 @@ class DraftPage extends StatelessWidget {
                 textAlign: TextAlign.center, // 텍스트 중앙 정렬
               ),
               SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () => launchURL(
+                    'https://theplaceyoung.github.io/my_creative_canvas/',
+                    context),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor: Colors.white, // 텍스트 컬러
+                ),
+                child: Text('My Creative Canvas - 웹브라우저 버전'),
+              ),
+              // Text('For touchpad (iPad, Galaxy Tab)', style: TextStyle(fontSize: 24)),
+              SizedBox(height: 10),
+              // SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => launchURL(
+                    'https://theplaceyoung.github.io/pwa-webapp-canvas/',
+                    context),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
+                  textStyle: TextStyle(fontSize: 18),
+                  backgroundColor: Colors.black, // 버튼 배경색
+                  foregroundColor:
+                      const Color.fromARGB(255, 90, 88, 88), // 텍스트 컬러
+                ),
+                child: Text(
+                    'My Creative Canvas - touch pad version (comming soon)'),
+              ),
+              SizedBox(height: 40),
               Image.asset('assets/logo_draft_transparentBG.png', height: 150),
-              SizedBox(height: 40),
-              Text(
-                'Draw your drafts!',
-                style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
-              SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => launchURL(
-                        'https://theplaceyoung.github.io/my_creative_canvas/',
-                        context),
-                    style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 40),
-                      textStyle: TextStyle(fontSize: 18),
-                      backgroundColor: Colors.black, // 버튼 배경색
-                      foregroundColor: Colors.white, // 텍스트 컬러
-                    ),
-                    child: Text('For web browser'),
-                  ),
-                  SizedBox(width: 5),
-                  ElevatedButton(
-                    onPressed: () => launchURL(
-                        'https://theplaceyoung.github.io/pwa-webapp-canvas/',
-                        context),
-                    style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 40),
-                      textStyle: TextStyle(fontSize: 18),
-                      backgroundColor: Colors.black, // 버튼 배경색
-                      foregroundColor: Colors.white, // 텍스트 컬러
-                    ),
-                    child: Text('My Creative Canvas - 웹브라우저 버전'),
-                  ),
-                  // Text('For touchpad (iPad, Galaxy Tab)', style: TextStyle(fontSize: 24)),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () => launchURL(
-                        'https://theplaceyoung.github.io/pwa-webapp-canvas/',
-                        context),
-                    style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 40),
-                      textStyle: TextStyle(fontSize: 18),
-                      backgroundColor: Colors.black, // 버튼 배경색
-                      foregroundColor:
-                          const Color.fromARGB(255, 90, 88, 88), // 텍스트 컬러
-                    ),
-                    child: Text(
-                        'My Creative Canvas - touch pad version (comming soon)'),
-                  ),
-                ],
-              ),
               // Text('Draw your drafts!', style: TextStyle(fontSize: 24)),
               SizedBox(height: 20),
             ],
