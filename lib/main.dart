@@ -1,5 +1,5 @@
 import 'package:draft_home/l10n/localization.dart';
-import 'package:draft_home/pages/contact_page.dart';
+import 'package:draft_home/pages/about_page.dart';
 import 'package:draft_home/pages/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
 import 'package:draft_home/pages/exotic_ordinary.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         '/exotic-ordinary': (context) => ExoticOrdinaryPage(),
         '/the-exotic-boutique': (context) => TheExoticBoutiquePage(),
         '/dusty-draft': (context) => DustyDraftPage(),
-        '/contact': (context) => ContactPage(),
+        '/about': (context) => AboutPage(),
       },
     );
   }
@@ -64,7 +64,7 @@ class MyHomePage extends StatelessWidget {
       case '/dusty-draft':
         logoPath = 'assets/logo_dusty_draft.png';
         break;
-      case '/contact':
+      case '/about':
         logoPath = 'assets/logo_contact.png';
         break;
       default:
@@ -101,7 +101,7 @@ class MyHomePage extends StatelessWidget {
             CardButton(
               title: 'Ordinary Life',
               tacticPath: 'assets/AdobeStock_712861746.jpeg',
-              onPressed: () => Navigator.pushNamed(context, '/contact'),
+              onPressed: () => Navigator.pushNamed(context, '/about'),
             ),
           ],
         ),

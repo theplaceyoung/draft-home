@@ -58,7 +58,7 @@ class CommonDrawer extends StatelessWidget {
             // leading: Icon(Icons.contact_page),
             title: Text('Ordinary Life'),
             onTap: () {
-              Navigator.pushNamed(context, '/contact');
+              Navigator.pushNamed(context, '/about');
             },
           ),
           const Divider(), // 구분선

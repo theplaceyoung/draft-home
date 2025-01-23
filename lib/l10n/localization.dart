@@ -14,14 +14,14 @@ class Localization {
     //   'exoticOrdinary': 'Exotic Ordinary',
     //   'theExoticBoutique': 'The Exotic Boutique',
     //   'dustyDraft': 'Dusty Draft',
-    //   'contact': 'Ordinary Life',
+    //   'about': 'Ordinary Life',
     // },
     'en': {
       'DRAFT Company': 'draft',
       'Exotic Ordinary': 'exoticOrdinary',
       'The Exotic Boutique': 'theExoticBoutique',
       'Dusty Draft': 'dustyDraft',
-      'Ordinary Life': 'contact',
+      'Ordinary Life': 'about us',
     },
     'ko': {
       'DRAFT Company': '드래프트 컴퍼니',
@@ -35,7 +35,7 @@ class Localization {
     //   'exoticOrdinary': '이그조틱 오디너리',
     //   'theExoticBoutique': '디 이그조틱 부띠끄',
     //   'dustyDraft': '더스티 드래프트',
-    //   'contact': '오디너리 라이프'
+    //   'about us': '오디너리 라이프'
     // },
   };
 
