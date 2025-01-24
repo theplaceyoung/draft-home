@@ -1,17 +1,25 @@
 import 'package:draft_home/l10n/localization.dart';
-import 'package:draft_home/pages/about_page.dart';
+import 'package:draft_home/pages/ordinary_page.dart';
 import 'package:draft_home/pages/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
 import 'package:draft_home/pages/exotic_ordinary.dart';
 import 'package:draft_home/pages/the_exotic_boutique.dart';
+import 'package:draft_home/utils/floating_action.dart';
+import 'package:draft_home/utils/font_map.dart';
+import 'package:draft_home/utils/url_utils.dart';
 import 'package:draft_home/widgets/app_bar.dart';
-import 'package:draft_home/widgets/drawer.dart';
+import 'package:draft_home/widgets/common_drawer.dart';
 import 'package:draft_home/widgets/footer.dart';
+import 'package:draft_home/utils/card_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    initialRoute: '/',
+    theme: ThemeData(fontFamily: 'NotoSans'),
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,13 +40,14 @@ class MyApp extends StatelessWidget {
         Locale('ko', ''), // 한국어
         // 추가 언어 설정 가능
       ],
-      home: MyHomePage(),
+      home: const MyHomePage(),
+      initialRoute: '/',
       routes: {
-        '/draft': (context) => DraftPage(),
-        '/exotic-ordinary': (context) => ExoticOrdinaryPage(),
-        '/the-exotic-boutique': (context) => TheExoticBoutiquePage(),
-        '/dusty-draft': (context) => DustyDraftPage(),
-        '/about': (context) => AboutPage(),
+        '/draft': (context) => const DraftPage(),
+        '/dusty': (context) => const DustyDraftPage(),
+        '/ordinary': (context) => const OrdinaryPage(),
+        '/exotic': (context) => const ExoticOrdinaryPage(),
+        '/boutique': (context) => const TheExoticBoutiquePage(),
       },
     );
   }
@@ -47,34 +56,42 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
+  Color get appBarBackgroundColor => Colors.black;
+  Color get appBarIconColor => Colors.white;
+
+  double getResponsiveFontSize(double screenWidth) {
+    return screenWidth > 600 ? 24.0 : 18.0;
+  }
+
   @override
   Widget build(BuildContext context) {
-    String logoPath;
-    Color appBarBackgroundColor = Colors.blue; // AppBar 배경색
-    Color appBarIconColor = Colors.white; // AppBar 아이콘 색상
+    final String currentRoute = ModalRoute.of(context)?.settings.name ?? '/';
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double fontSize = getResponsiveFontSize(screenWidth);
 
-    switch (ModalRoute.of(context)?.settings.name) {
+    String logoPath = 'assets/dusty/logo_symbol_draft_grey.png';
+    switch (currentRoute) {
       case '/draft':
-        logoPath = 'assets/logo_draft.png';
+        logoPath = 'assets/draft/logo_draft.png';
         break;
-      case '/exotic-ordinary':
-        logoPath = 'assets/logo_exotic_ordinary.png';
+      case '/dusty':
+        logoPath = 'assets/dusty/logo_dusty_draft.png';
         break;
-      case '/the-exotic-boutique':
-        logoPath = 'assets/logo_boutique.png';
+      case '/ordinary':
+        logoPath = 'assets/ordinary/logo_contact.png';
         break;
-      case '/dusty-draft':
-        logoPath = 'assets/logo_dusty_draft.png';
+      case '/exotic':
+        logoPath = 'assets/exotic/logo_exotic_ordinary.png';
         break;
-      case '/about':
-        logoPath = 'assets/logo_contact.png';
+      case '/boutique':
+        logoPath = 'assets/boutique/logo_boutique.png';
         break;
       default:
-        logoPath = 'assets/logo_symbol_draft.png';
+        logoPath = 'assets/draft/logo_symbol_draft.png';
     }
 
     return Scaffold(
-      drawer: CommonDrawer(),
+      drawer: CommonDrawer(pageKey: 'exotic'),
       appBar: CommonAppBar(
         logoPath: logoPath,
         backgroundColor: appBarBackgroundColor, // AppBar 배경색
@@ -85,74 +102,48 @@ class MyHomePage extends StatelessWidget {
           children: [
             CardButton(
               title: 'DRAFT Company',
-              tacticPath: 'assets/background_1.png',
+              tacticPath: 'assets/draft/crumpled_paper_1405.jpg',
               onPressed: () => Navigator.pushNamed(context, '/draft'),
-            ),
-            CardButton(
-              title: 'Exotic Ordinary',
-              tacticPath: 'assets/exoticordinary_background.jpg',
-              onPressed: () => Navigator.pushNamed(context, '/exotic-ordinary'),
-            ),
-            CardButton(
-              title: 'The Exotic Boutique',
-              tacticPath: 'assets/door_image.jpg',
-              onPressed: () =>
-                  Navigator.pushNamed(context, '/the-exotic-boutique'),
+              textStyle: draftFontSet['heading']!, // fontStyle을 전달
+              pageKey: 'draft',
             ),
             CardButton(
               title: 'Dusty Draft',
-              tacticPath: 'assets/AdobeStock_228406900.jpeg',
-              onPressed: () => Navigator.pushNamed(context, '/dusty-draft'),
+              tacticPath:
+                  'assets/dusty/brown-background-water-reflection-texture.jpg',
+              onPressed: () => Navigator.pushNamed(context, '/dusty'),
+              textStyle: dustyFontSet['heading']!, // fontStyle을 전달
+              pageKey: 'dusty',
             ),
             CardButton(
               title: 'Ordinary Life',
-              tacticPath: 'assets/AdobeStock_712861746.jpeg',
-              onPressed: () => Navigator.pushNamed(context, '/about'),
+              tacticPath: 'assets/ordinary/background_1.png',
+              onPressed: () => Navigator.pushNamed(context, '/ordinary'),
+              textStyle: ordinaryFontSet['heading']!, // fontStyle을 전달
+              pageKey: 'ordinary',
+            ),
+            CardButton(
+              title: 'Exotic Ordinary',
+              tacticPath: 'assets/exotic/exoticordinary_background.jpg',
+              onPressed: () => Navigator.pushNamed(context, '/exotic'),
+              textStyle: exoticFontSet['heading']!, // fontStyle을 전달
+              pageKey: 'exotic',
+            ),
+            CardButton(
+              title: 'The Exotic Boutique',
+              tacticPath: 'assets/boutique/door_image.jpg',
+              onPressed: () => Navigator.pushNamed(context, '/boutique'),
+              textStyle: boutiqueFontSet['heading']!, // fontStyle을 전달
+              pageKey: 'boutique',
             ),
           ],
         ),
       ),
       bottomNavigationBar: buildFooter(context),
-    );
-  }
-}
-
-class CardButton extends StatelessWidget {
-  final String title;
-  final String tacticPath;
-  final VoidCallback onPressed;
-
-  const CardButton({
-    required this.title,
-    required this.tacticPath,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      child: InkWell(
-        onTap: onPressed,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Image.asset(
-              tacticPath,
-              fit: BoxFit.cover,
-              height: 300, // 부모 크기에 맞춰 이미지 높이 확장
-              width: double.infinity, // 부모 크기에 맞춰 이미지 넓이 확장
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 18.0),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
+      floatingActionButton: FloatingAction(
+        imagePath: 'assets/dusty/dusty-agent-white.png', // 다른 이미지 경로
+        onPressed: () => launchURL('https://www.dustydraft.chat', context),
+        pageKey: 'boutique', // 페이지 키 전달
       ),
     );
   }

@@ -36,6 +36,7 @@ dependencies:
   intl: 0.19.0 # Internationalization
   # flutter_log: ^2.15.0
   webview_flutter: ^4.2.2
+  video_player: ^2.6.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -74,28 +75,30 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/logo_draft_transparentBG.png
-    - assets/logo_dustydraft.png
-    - assets/logo_exoticordinary.png
-    - assets/logo_the_boutique.png
-    - assets/logo_symbol_draft.png
-    - assets/logo_symbol_draft_grey.png
-    - assets/symbol_about_us.png
-    - assets/evotic.png
-    - assets/exotic-48x48.png
-    - assets/exotic-yellow.png
-    - assets/background_1.png
-    - assets/exoticordinary_background.jpg
-    - assets/door_image.jpg
+    - assets/draft/logo_draft_transparentBG.png
+    - assets/draft/crumpled_paper_1405.jpg
+    - assets/draft/logo_symbol_draft.png
+    - assets/dusty/logo_dustydraft.png
+    - assets/dusty/dusty-agent-white.png
+    - assets/dusty/logo_symbol_draft_grey.png
+    - assets/dusty/DRAFT_dustydraft_service-description_24.pdf
+    - assets/dusty/brown-background-water-reflection-texture.jpg
+    - assets/exotic/evotic.png
+    - assets/exotic/exotic-48x48.png
+    - assets/exotic/exoticordinary_background.jpg
+    - assets/exotic/logo_exoticordinary.png
+    - assets/boutique/door_image.jpg
+    - assets/boutique/logo_the_boutique.png
+    - assets/boutique/exotic-yellow.png
+    - assets/boutique/evotic-48x48.png
+    - assets/ordinary/symbol_about_us.png
+    - assets/ordinary/background_1.png
+    - assets/ordinary/AdobeStock_712861746.jpeg
+    - assets/ordinary/about_us.png
+    - assets/ordinary/OL_setup_detail_page.png
+    - assets/videos/7624037-uhd_2160_3840_30fps.mp4
     - assets/AdobeStock_228406900.jpeg
-    - assets/dusty-agent-white.png
-    - assets/AdobeStock_712861746.jpeg
-    - assets/about_us.png
     - assets/instagram_icon.png
-    - assets/OL_setup_detail_page.png
-    - assets/fonts/NotoSans-Regular.ttf
-    - assets/fonts/NotoSans-Bold.ttf
-    - assets/DRAFT_dustydraft_service-description_24.pdf
     - lib/contents/PrivacyPolicy.md
     - lib/contents/TermsOfService.md
     - lib/l10n/
@@ -116,6 +119,27 @@ flutter:
       fonts:
         - asset: assets/fonts/NotoSans-Regular.ttf # fonts/Schyler-Regular.ttf
         - asset: assets/fonts/NotoSans-Bold.ttf # fonts/Schyler-Italic.ttf
+          weight: 700
+    - family: DraftFont
+      fonts:
+        - asset: assets/fonts/draft/IBMPlexSerif-Regular.ttf
+        - asset: assets/fonts/draft/Barlow-Regular.ttf
+    - family: DustyFont
+      fonts:
+        - asset: assets/fonts/dusty/BarlowSemiCondensed-Regular.ttf
+        - asset: assets/fonts/dusty/RalewayDots-Regular.ttf
+    - family: ExoticFont
+      fonts:
+        - asset: assets/fonts/exotic/DancingScript-Regular.ttf
+        - asset: assets/fonts/exotic/Lora-Regular.ttf
+    - family: BoutiqueFont
+      fonts:
+        - asset: assets/fonts/boutique/CormorantGaramond-Regular.ttf
+        - asset: assets/fonts/boutique/Poppins-Regular.ttf
+    - family: OrdinaryFont
+      fonts:
+        - asset: assets/fonts/ordinary/Montserrat-Regular.ttf
+        - asset: assets/fonts/ordinary/Lato-Regular.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
