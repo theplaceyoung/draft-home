@@ -44,7 +44,8 @@ class ExoticOrdinaryPage extends StatelessWidget {
                   onPressed: () => launchURL(
                       'https://smartstore.naver.com/exoticordinary', context),
                   shape: CardShape.roundedRectangle,
-                  textStyle: boutiqueFontSet['body']!, // fontStyle을 전달
+                  textStyle: boutiqueFontSet['body']!.copyWith(
+                      color: exoticColorSet['textSecondary']), // fontStyle을 전달
                   pageKey: 'exotic',
                 ),
               ),
@@ -60,6 +61,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
                       colorSet: exoticColorSet,
                       fontFamily: 'exoticFont',
                       fontSize: FontSizeOptions.medium,
+                      textcolor: exoticColorSet['textPrimary'],
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -73,6 +75,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
                       colorSet: exoticColorSet,
                       fontFamily: 'exoticFont',
                       fontSize: FontSizeOptions.medium,
+                      textcolor: exoticColorSet['textPrimary'],
                     ),
                   ),
                 ],
@@ -92,6 +95,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
                     colorSet: exoticColorSet,
                     fontFamily: 'exoticFont',
                     fontSize: FontSizeOptions.medium,
+                    textcolor: exoticColorSet['textPrimary'],
                   ),
                 ),
               ),
@@ -104,7 +108,8 @@ class ExoticOrdinaryPage extends StatelessWidget {
                   onPressed: () => launchURL(
                       'https://smartstore.naver.com/exoticordinary', context),
                   shape: CardShape.roundedRectangle,
-                  textStyle: boutiqueFontSet['body']!, // fontStyle을 전달
+                  textStyle: boutiqueFontSet['body']!.copyWith(
+                      color: exoticColorSet['textSecondary']), // fontStyle을 전달
                   pageKey: 'exotic',
                 ),
               ),

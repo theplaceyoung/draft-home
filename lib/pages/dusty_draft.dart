@@ -59,7 +59,7 @@ class DustyDraftPage extends StatelessWidget {
                   Text(
                     '날려버리고 잃어버리기 전에, 당신의 초안을 현실로.', //컴퓨터 프로그래밍 및 AGI(인공일반지능) 서비스 컨설팅',
                     style: dustyFontSet['heading']!
-                        .copyWith(color: dustyColorSet['accent']),
+                        .copyWith(color: dustyColorSet['textSecondary']),
                     textAlign: TextAlign.center, // 텍스트 중앙 정렬
                   ),
                   //   style: TextStyle(
@@ -71,7 +71,7 @@ class DustyDraftPage extends StatelessWidget {
                   Text(
                     '창의력은 기회를 만들어 잡아내는 자의 것입니다. \n 모래처럼 흩어지기 전에, 당신의 아이디어를 현실로 만들어보세요.\n 우리의 도구와 플랫폼이 함께합니다.',
                     style: dustyFontSet['heading']!
-                        .copyWith(color: dustyColorSet['accent']),
+                        .copyWith(color: dustyColorSet['textPrimary']),
                     textAlign: TextAlign.center, // 텍스트 중앙 정렬
                   ),
                 ],
@@ -80,28 +80,30 @@ class DustyDraftPage extends StatelessWidget {
             SizedBox(height: 200),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: UrlButton(
-                label: '웹사이트 바로가기',
-                onPressed: () =>
-                    launchURL('https://www.dustydraft.com', context),
-                colorSet: dustyColorSet,
-                fontFamily: 'dustyFont',
-                fontSize: FontSizeOptions.medium,
+              child: Column(
+                children: [
+                  UrlButton(
+                    label: '웹사이트 바로가기',
+                    onPressed: () =>
+                        launchURL('https://www.dustydraft.com', context),
+                    colorSet: dustyColorSet,
+                    fontFamily: 'dustyFont',
+                    fontSize: FontSizeOptions.medium,
+                    textcolor: exoticColorSet['accent'],
+                  ),
+                  SizedBox(height: 100),
+                  Text(
+                    '더스티 드래프트와 함께, \n 아이디어가 모래처럼 흩어져버리기 전에 보배가 되도록 꿰어보세요.',
+                    style: dustyFontSet['heading']!
+                        .copyWith(color: dustyColorSet['textSecondary']),
+                    textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 200),
+            SizedBox(height: 150),
             Image.asset('assets/dusty/logo_dustydraft.png', height: 200),
-            SizedBox(height: 200),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                '당신의 오래된 초안을 꺼내세요. 지금이 바로 실현할 때입니다!',
-                style: dustyFontSet['heading']!
-                    .copyWith(color: dustyColorSet['accent']),
-                textAlign: TextAlign.center, // 텍스트 중앙 정렬
-              ),
-            ),
-            SizedBox(height: 100),
+            SizedBox(height: 150),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: UrlButton(
@@ -112,6 +114,7 @@ class DustyDraftPage extends StatelessWidget {
                 colorSet: dustyColorSet,
                 fontFamily: 'dustyFont',
                 fontSize: FontSizeOptions.medium,
+                textcolor: exoticColorSet['accent'],
               ),
             ),
             SizedBox(height: 30),
@@ -125,8 +128,20 @@ class DustyDraftPage extends StatelessWidget {
                 colorSet: dustyColorSet,
                 fontFamily: 'dustyFont',
                 fontSize: FontSizeOptions.medium,
+                textcolor: exoticColorSet['accent'],
               ),
             ),
+            SizedBox(height: 130),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                '당신의 오래된 초안을 꺼내세요. 지금이 바로 실현할 때입니다!',
+                style: dustyFontSet['heading']!
+                    .copyWith(color: dustyColorSet['textSecondary']),
+                textAlign: TextAlign.center, // 텍스트 중앙 정렬
+              ),
+            ),
+            SizedBox(height: 100),
             // padding: const EdgeInsets.symmetric(horizontal: 20.0),
             // child: PdfButton(
             //     label: '소개자료 다운받기',

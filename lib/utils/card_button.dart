@@ -35,7 +35,7 @@ class CardButton extends StatelessWidget {
         shape: _getShape(), // 모양 설정
         clipBehavior: Clip.antiAlias, // 모양 외부 클리핑
         elevation: 4, // 그림자 효과
-        color: colorSet['background'], // 카드 배경색
+        color: colorSet['primary'], // 카드 배경색
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

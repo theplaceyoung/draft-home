@@ -39,7 +39,7 @@ class DraftPage extends StatelessWidget {
             Text(
               '어떤 것이든 좋습니다. 마음껏 그려보세요!',
               style: draftFontSet['heading']!
-                  .copyWith(color: draftColorSet['accent']),
+                  .copyWith(color: draftColorSet['textSecondary']),
               textAlign: TextAlign.center, // 텍스트 중앙 정렬
             ),
             // textAlign: TextAlign.center,
@@ -49,7 +49,8 @@ class DraftPage extends StatelessWidget {
               tacticPath: 'assets/draft/logo_draft_transparentBG.png',
               onPressed: () => Navigator.pushNamed(context, '/dusty'),
               shape: CardShape.roundedRectangle,
-              textStyle: boutiqueFontSet['body']!, // fontStyle을 전달
+              textStyle: boutiqueFontSet['body']!.copyWith(
+                  color: ordinaryColorSet['textPrimary']), // fontStyle을 전달
               pageKey: 'draft',
             ),
             const SizedBox(height: 40),
@@ -62,6 +63,7 @@ class DraftPage extends StatelessWidget {
               colorSet: draftColorSet,
               fontFamily: 'draftFont',
               fontSize: FontSizeOptions.medium,
+              textcolor: exoticColorSet['accent'],
             ),
             const SizedBox(height: 40),
             UrlButton(
@@ -73,6 +75,7 @@ class DraftPage extends StatelessWidget {
               colorSet: draftColorSet,
               fontFamily: 'draftFont',
               fontSize: FontSizeOptions.medium,
+              textcolor: exoticColorSet['accent'],
             ),
           ],
         ),

@@ -6,6 +6,7 @@ class UrlButton extends StatelessWidget {
   final Map<String, Color> colorSet; // 전달받은 색상 세트
   final String fontFamily; // 전달받은 폰트 패밀리 이름
   final double fontSize; // 전달받은 폰트 크기
+  final Color? textcolor;
 
   const UrlButton({
     required this.label,
@@ -13,6 +14,7 @@ class UrlButton extends StatelessWidget {
     required this.colorSet,
     required this.fontFamily,
     required this.fontSize,
+    this.textcolor,
     super.key,
   });
 

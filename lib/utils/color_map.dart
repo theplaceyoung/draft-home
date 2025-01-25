@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 final Map<String, Color> draftColorSet = {
-  'primary': Color.fromARGB(255, 61, 63, 87),
+  'primary': Color.fromARGB(255, 88, 89, 107),
   'secondary': Color.fromARGB(255, 4, 39, 69),
   'accent': Color.fromARGB(255, 227, 155, 45),
   'background': Color.fromARGB(255, 174, 174, 183),
-  'textPrimary': Colors.black,
-  'textSecondary': Colors.white,
+  'textPrimary': Colors.white,
+  'textSecondary': Colors.black,
   // 'brightness': Brightness.light, // 밝기
 };
 
@@ -21,18 +21,18 @@ final Map<String, Color> dustyColorSet = {
 };
 
 const Map<String, Color> ordinaryColorSet = {
-  'primary': Color.fromARGB(255, 83, 51, 62),
+  'primary': Colors.grey,
   'secondary': Color.fromARGB(255, 212, 85, 170),
   'accent': Color.fromARGB(255, 238, 243, 243),
-  'background': Color.fromARGB(255, 22, 20, 22),
+  'background': Color.fromARGB(255, 7, 7, 7),
   'textPrimary': Colors.white,
   'textSecondary': Colors.grey,
   // 'brightness': Brightness.light,
 };
 
 final Map<String, Color> exoticColorSet = {
-  'primary': Color.fromARGB(255, 176, 110, 139),
-  'secondary': Color.fromARGB(255, 119, 61, 61),
+  'primary': Color.fromARGB(255, 167, 88, 122),
+  'secondary': Color.fromARGB(255, 141, 80, 80),
   'accent': Color.fromARGB(255, 246, 209, 74),
   'background': Colors.black,
   'textPrimary': Colors.white,
@@ -45,8 +45,8 @@ final Map<String, Color> boutiqueColorSet = {
   'secondary': Color.fromARGB(255, 161, 107, 102),
   'accent': Color.fromARGB(255, 151, 134, 132),
   'background': Color.fromARGB(255, 199, 176, 174),
-  'textPrimary': Color.fromARGB(255, 241, 227, 221),
-  'textSecondary': Color.fromARGB(255, 235, 219, 213),
+  'textPrimary': Color.fromARGB(255, 235, 219, 213),
+  'textSecondary': Color.fromARGB(255, 26, 9, 2),
   // 'brightness': Brightness.dark,
 };
 // final Map<String, Color> draftColorSet = {

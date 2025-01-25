@@ -4,6 +4,7 @@ import 'package:draft_home/pages/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
 import 'package:draft_home/pages/exotic_ordinary.dart';
 import 'package:draft_home/pages/the_exotic_boutique.dart';
+import 'package:draft_home/utils/color_map.dart';
 import 'package:draft_home/utils/floating_action.dart';
 import 'package:draft_home/utils/font_map.dart';
 import 'package:draft_home/utils/url_utils.dart';
@@ -104,7 +105,8 @@ class MyHomePage extends StatelessWidget {
               title: 'DRAFT Company',
               tacticPath: 'assets/draft/crumpled_paper_1405.jpg',
               onPressed: () => Navigator.pushNamed(context, '/draft'),
-              textStyle: draftFontSet['heading']!, // fontStyle을 전달
+              textStyle: draftFontSet['heading']!
+                  .copyWith(color: draftColorSet['accent']), // fontStyle을 전달
               pageKey: 'draft',
             ),
             CardButton(
@@ -112,28 +114,32 @@ class MyHomePage extends StatelessWidget {
               tacticPath:
                   'assets/dusty/brown-background-water-reflection-texture.jpg',
               onPressed: () => Navigator.pushNamed(context, '/dusty'),
-              textStyle: dustyFontSet['heading']!, // fontStyle을 전달
+              textStyle: dustyFontSet['heading']!
+                  .copyWith(color: dustyColorSet['accent']), // fontStyle을 전달
               pageKey: 'dusty',
             ),
             CardButton(
               title: 'Ordinary Life',
               tacticPath: 'assets/ordinary/background_1.png',
               onPressed: () => Navigator.pushNamed(context, '/ordinary'),
-              textStyle: ordinaryFontSet['heading']!, // fontStyle을 전달
+              textStyle: ordinaryFontSet['heading']!
+                  .copyWith(color: ordinaryColorSet['accent']), // fontStyle을 전달
               pageKey: 'ordinary',
             ),
             CardButton(
               title: 'Exotic Ordinary',
               tacticPath: 'assets/exotic/exoticordinary_background.jpg',
               onPressed: () => Navigator.pushNamed(context, '/exotic'),
-              textStyle: exoticFontSet['heading']!, // fontStyle을 전달
+              textStyle: exoticFontSet['heading']!
+                  .copyWith(color: exoticColorSet['accent']), // fontStyle을 전달
               pageKey: 'exotic',
             ),
             CardButton(
               title: 'The Exotic Boutique',
               tacticPath: 'assets/boutique/door_image.jpg',
               onPressed: () => Navigator.pushNamed(context, '/boutique'),
-              textStyle: boutiqueFontSet['heading']!, // fontStyle을 전달
+              textStyle: boutiqueFontSet['heading']!
+                  .copyWith(color: boutiqueColorSet['accent']), // fontStyle을 전달
               pageKey: 'boutique',
             ),
           ],
