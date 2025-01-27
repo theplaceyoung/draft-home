@@ -1,0 +1,20 @@
+{
+    "webUrlButton": {
+      "label": "Go to Website",
+      "url": "https://www.dustydraft.com"
+    },
+    "pdfButtons": [
+      {
+        "label": "Open Introduction PDF",
+        "url": "https://github.com/theplaceyoung/draft_co/blob/main/assets/DRAFT_dustydraft_service-description_24.pdf"
+      },
+      {
+        "label": "Download Introduction PDF",
+        "url": "https://raw.githubusercontent.com/theplaceyoung/draft_home/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf"
+      }
+    ],
+    "floatingAction": {
+      "url": "https://www.dustyagent.chat",
+      "imagePath": "assets/dusty/dusty-agent-white.png"
+    }
+  }

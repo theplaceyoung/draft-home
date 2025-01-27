@@ -1,4 +1,6 @@
-import 'package:draft_home/l10n/localization.dart';
+import 'package:draft_home/l10n/app_localization.dart';
+import 'package:draft_home/provider/localization_provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:draft_home/pages/ordinary_page.dart';
 import 'package:draft_home/pages/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
@@ -13,14 +15,15 @@ import 'package:draft_home/widgets/common_drawer.dart';
 import 'package:draft_home/widgets/footer.dart';
 import 'package:draft_home/utils/card_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MaterialApp(
-    initialRoute: '/',
-    theme: ThemeData(fontFamily: 'NotoSans'),
-    home: MyApp(),
-  ));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LocalizationProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -28,20 +31,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LocalizationProvider>(context);
+
     return MaterialApp(
-      locale: Locale('en', 'US'), // 기본 언어 설정 (영어)
-      localizationsDelegates: [
+      locale: provider.locale, // 여기서 locale을 설정
+      localizationsDelegates: const [
+        AppLocalization.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        Localization.delegate, // 추가된 로컬라이제이션 델리게이트
       ],
-      supportedLocales: [
-        Locale('en', 'US'), // 영어
-        Locale('ko', ''), // 한국어
-        // 추가 언어 설정 가능
-      ],
-      home: const MyHomePage(),
+      supportedLocales: AppLocalization.supportedLocales,
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale?.languageCode) {
+            return supportedLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
+      home: MyHomePage(),
       initialRoute: '/',
       routes: {
         '/draft': (context) => const DraftPage(),
@@ -54,9 +62,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   Color get appBarBackgroundColor => Colors.black;
   Color get appBarIconColor => Colors.white;
 
@@ -67,8 +80,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String currentRoute = ModalRoute.of(context)?.settings.name ?? '/';
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double fontSize = getResponsiveFontSize(screenWidth);
+    final provider = Provider.of<LocalizationProvider>(context);
 
     String logoPath = 'assets/dusty/logo_symbol_draft_grey.png';
     switch (currentRoute) {
@@ -95,51 +107,72 @@ class MyHomePage extends StatelessWidget {
       drawer: CommonDrawer(pageKey: 'exotic'),
       appBar: CommonAppBar(
         logoPath: logoPath,
-        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        backgroundColor: appBarBackgroundColor,
         iconColor: appBarIconColor,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.language),
+            onPressed: () {
+              provider.toggleLanguage();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('언어가 변경되었습니다!')),
+              );
+            },
+          ),
+        ],
       ), // AppBar 아이콘 색),
       body: SingleChildScrollView(
         child: Column(
           children: [
             CardButton(
-              title: 'DRAFT Company',
+              title: AppLocalization.of(context)?.homePageButton1 ??
+                  'Fallback message',
               tacticPath: 'assets/draft/crumpled_paper_1405.jpg',
               onPressed: () => Navigator.pushNamed(context, '/draft'),
-              textStyle: draftFontSet['heading']!
-                  .copyWith(color: draftColorSet['accent']), // fontStyle을 전달
+              textStyle:
+                  getFontStyle(fontSet: 'DraftFont', styleType: 'heading')
+                      .copyWith(color: draftColorSet['accent']),
               pageKey: 'draft',
             ),
             CardButton(
-              title: 'Dusty Draft',
+              title: AppLocalization.of(context)?.homePageButton2 ??
+                  'Fallback message',
               tacticPath:
                   'assets/dusty/brown-background-water-reflection-texture.jpg',
               onPressed: () => Navigator.pushNamed(context, '/dusty'),
-              textStyle: dustyFontSet['heading']!
-                  .copyWith(color: dustyColorSet['accent']), // fontStyle을 전달
+              textStyle:
+                  getFontStyle(fontSet: 'DustyFont', styleType: 'heading')
+                      .copyWith(color: dustyColorSet['accent']),
               pageKey: 'dusty',
             ),
             CardButton(
-              title: 'Ordinary Life',
+              title: AppLocalization.of(context)?.homePageButton3 ??
+                  'Fallback message',
               tacticPath: 'assets/ordinary/background_1.png',
               onPressed: () => Navigator.pushNamed(context, '/ordinary'),
-              textStyle: ordinaryFontSet['heading']!
-                  .copyWith(color: ordinaryColorSet['accent']), // fontStyle을 전달
+              textStyle:
+                  getFontStyle(fontSet: 'OrdinaryFont', styleType: 'heading')
+                      .copyWith(color: ordinaryColorSet['accent']),
               pageKey: 'ordinary',
             ),
             CardButton(
-              title: 'Exotic Ordinary',
+              title: AppLocalization.of(context)?.homePageButton4 ??
+                  'Fallback message',
               tacticPath: 'assets/exotic/exoticordinary_background.jpg',
               onPressed: () => Navigator.pushNamed(context, '/exotic'),
-              textStyle: exoticFontSet['heading']!
-                  .copyWith(color: exoticColorSet['accent']), // fontStyle을 전달
+              textStyle:
+                  getFontStyle(fontSet: 'ExoticFont', styleType: 'heading')
+                      .copyWith(color: exoticColorSet['accent']),
               pageKey: 'exotic',
             ),
             CardButton(
-              title: 'The Exotic Boutique',
+              title: AppLocalization.of(context)?.homePageButton5 ??
+                  'Fallback message',
               tacticPath: 'assets/boutique/door_image.jpg',
               onPressed: () => Navigator.pushNamed(context, '/boutique'),
-              textStyle: boutiqueFontSet['heading']!
-                  .copyWith(color: boutiqueColorSet['accent']), // fontStyle을 전달
+              textStyle:
+                  getFontStyle(fontSet: 'BoutiqueFont', styleType: 'heading')
+                      .copyWith(color: boutiqueColorSet['accent']),
               pageKey: 'boutique',
             ),
           ],
@@ -147,9 +180,9 @@ class MyHomePage extends StatelessWidget {
       ),
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
-        imagePath: 'assets/dusty/dusty-agent-white.png', // 다른 이미지 경로
+        imagePath: 'assets/dusty/dusty-agent-white.png',
         onPressed: () => launchURL('https://www.dustydraft.chat', context),
-        pageKey: 'boutique', // 페이지 키 전달
+        pageKey: 'dusty',
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'package:draft_home/l10n/app_localization.dart';
+import 'package:draft_home/provider/localization_provider.dart';
 import 'package:draft_home/url_launcher/url_launcher.dart';
 import 'package:draft_home/utils/card_button.dart';
 import 'package:draft_home/utils/color_map.dart';
@@ -10,16 +12,44 @@ import 'package:draft_home/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:draft_home/utils/url_utils.dart';
 import 'package:draft_home/utils/url_button.dart';
+import 'package:provider/provider.dart';
 
 class ExoticOrdinaryPage extends StatelessWidget {
   const ExoticOrdinaryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Localization instance
+    final appLocalizations = AppLocalization.of(context);
+
+    // Related to appbar
     String logoPath = 'assets/exotic/exotic-48x48.png';
-    Color? appBarBackgroundColor =
-        exoticColorSet['secondary']; // Color.fromARGB(255, 119, 61, 61);
+    Color? appBarBackgroundColor = exoticColorSet['secondary'];
     Color appBarIconColor = Colors.white;
+
+    // 화면 너비
+    // double screenWidth = MediaQuery.of(context).size.width;
+
+    // 현재 언어 가져오기
+    Locale currentLocale = Localizations.localeOf(context);
+
+    // 언어 전환 함수
+    void toggleLanguage(BuildContext context) {
+      Locale newLocale = currentLocale.languageCode == 'en'
+          ? const Locale('ko')
+          : const Locale('en');
+      // Flutter 앱의 언어를 변경하는 로직 추가 (예: Provider, ChangeNotifier 등으로 구현)
+      context.read<LocalizationProvider>().changeLocale(newLocale);
+      // LocalizationProvider.changeLocale(newLocale);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Language changed to ${newLocale.languageCode.toUpperCase()}!',
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: exoticColorSet['background'],
@@ -29,23 +59,40 @@ class ExoticOrdinaryPage extends StatelessWidget {
         backgroundColor: appBarBackgroundColor ??
             Color.fromARGB(255, 119, 61, 61), // AppBar 배경색
         iconColor: appBarIconColor,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.language,
+              color: appBarIconColor,
+            ),
+            onPressed: () => toggleLanguage(context), // 언어 전환 버튼
+          ),
+        ],
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 0),
         child: Padding(
           padding: const EdgeInsets.only(top: 50), // 상단 영역을 내려줌
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // 첫번째 버튼
               SizedBox(
                 width: double.infinity, // column 내 가로 확장
                 child: CardButton(
+                  title: AppLocalization.of(context)?.exoticPageMessage1 ??
+                      'Fallback message',
+                  //'See and Purchase at Exotic Ordinary',
                   tacticPath: 'assets/exotic/logo_exoticordinary.png',
-                  title: 'See and Purchase at Exotic Ordinary',
                   onPressed: () => launchURL(
                       'https://smartstore.naver.com/exoticordinary', context),
                   shape: CardShape.roundedRectangle,
-                  textStyle: boutiqueFontSet['body']!.copyWith(
-                      color: exoticColorSet['textSecondary']), // fontStyle을 전달
+                  textStyle: getFontStyle(
+                          fontSet: 'ExoticFont', styleType: 'body')
+                      .copyWith(
+                          color:
+                              exoticColorSet['textSecondary']), // fontStyle을 전달
                   pageKey: 'exotic',
                 ),
               ),
@@ -56,7 +103,9 @@ class ExoticOrdinaryPage extends StatelessWidget {
                 children: [
                   Flexible(
                     child: UrlButton(
-                      label: 'Visit our Instagram, Follow us.',
+                      label: AppLocalization.of(context)?.exoticPageMessage2 ??
+                          'Fallback message',
+                      //'Visit our Instagram, Follow us.',
                       onPressed: () => launchInstagram(),
                       colorSet: exoticColorSet,
                       fontFamily: 'exoticFont',
@@ -67,7 +116,9 @@ class ExoticOrdinaryPage extends StatelessWidget {
                   const SizedBox(width: 10),
                   Flexible(
                     child: UrlButton(
-                      label: 'Visit our smartstore, Follow us.',
+                      label: AppLocalization.of(context)?.exoticPageMessage3 ??
+                          'Fallback message',
+                      //'Visit our smartstore, Follow us.',
                       onPressed: () => launchURL(
                         'https://www.exoticordinary.com',
                         context,
@@ -87,7 +138,9 @@ class ExoticOrdinaryPage extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: UrlButton(
-                    label: 'Visit Exotic Webpage',
+                    label: AppLocalization.of(context)?.exoticPageMessage4 ??
+                        'Fallback message',
+                    //'Visit Exotic Webpage',
                     onPressed: () => launchURL(
                       'https://www.exoticordinary.com',
                       context,
@@ -103,21 +156,28 @@ class ExoticOrdinaryPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: CardButton(
+                  title: AppLocalization.of(context)?.exoticPageMessage5 ??
+                      'Fallback message',
+                  //'Meet us at the Exotic Shop',
                   tacticPath: 'assets/exotic/logo_exoticordinary.png',
-                  title: 'Meet us at the Exotic Shop',
                   onPressed: () => launchURL(
                       'https://smartstore.naver.com/exoticordinary', context),
                   shape: CardShape.roundedRectangle,
-                  textStyle: boutiqueFontSet['body']!.copyWith(
-                      color: exoticColorSet['textSecondary']), // fontStyle을 전달
+                  textStyle: getFontStyle(
+                          fontSet: 'ExoticFont', styleType: 'body')
+                      .copyWith(
+                          color:
+                              exoticColorSet['textSecondary']), // fontStyle을 전달
                   pageKey: 'exotic',
                 ),
               ),
               const SizedBox(height: 20),
 
               Text(
-                'Beauty in the mirror, Smiling back at you.',
-                style: exoticFontSet['heading']!
+                AppLocalization.of(context)?.exoticPageMessage6 ??
+                    'Fallback message',
+                //'Beauty in the mirror, Smiling back at you.',
+                style: getFontStyle(fontSet: 'ExoticFont', styleType: 'heading')
                     .copyWith(color: exoticColorSet['accent']),
                 textAlign: TextAlign.center, // 텍스트 중앙 정렬
               ),
