@@ -103,7 +103,7 @@ class DraftPage extends StatelessWidget {
                   AppLocalization.of(context)?.webVersion ?? 'Fallback message',
               //label: 'My Creative Canvas - 웹브라우저 버전',
               onPressed: () => launchURL(
-                'https://my-canvas-canvas.web.app/',
+                'https://my-creative-canvas.web.app/',
                 context,
               ),
               colorSet: draftColorSet,
