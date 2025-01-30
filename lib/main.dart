@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
-        onPressed: () => launchURL('https://www.dustydraft.chat', context),
+        onPressed: () => launchURL('https://dustyagent.chat', context),
         pageKey: 'dusty',
       ),
     );
