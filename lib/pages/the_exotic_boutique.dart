@@ -146,7 +146,7 @@ class TheExoticBoutiquePage extends StatelessWidget {
       // backgroundColor: const Color.fromARGB(255, 247, 239, 173),
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png', // 다른 이미지 경로
-        onPressed: () => launchURL('https://www.dustydraft.chat', context),
+        onPressed: () => launchURL('https://www.dustyagent.chat', context),
         pageKey: 'boutique', // 페이지 키 전달
       ),
     );

@@ -191,7 +191,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png', // 다른 이미지 경로
-        onPressed: () => launchURL('https://www.dustydraft.chat', context),
+        onPressed: () => launchURL('https://www.dustyagent.chat', context),
         pageKey: 'exotic', // 페이지 키 전달
       ),
     );
