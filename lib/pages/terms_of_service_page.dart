@@ -14,7 +14,17 @@ class TermsOfServicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('이용 약관 | Terms of Service')),
+      appBar: AppBar(
+        title: Text(
+          '이용 약관 | Terms of Service',
+          style: TextStyle(
+            color: Colors.black, // Change the title color here
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.black, // Change the back icon color here
+        ),
+      ),
       body: FutureBuilder<String>(
         future: _loadTermsOfService(),
         builder: (context, snapshot) {

@@ -1,5 +1,8 @@
 import 'package:draft_home/l10n/app_localization.dart';
-import 'package:draft_home/utils/color_map.dart';
+import 'package:draft_home/settings/settings_controller.dart';
+import 'package:draft_home/themes/color_set.dart';
+import 'package:draft_home/themes/dart_theme.dart';
+import 'package:draft_home/themes/light_theme.dart';
 import 'package:draft_home/utils/font_map.dart';
 import 'package:draft_home/utils/url_utils.dart';
 import 'package:draft_home/widgets/app_bar.dart';
@@ -13,34 +16,31 @@ import '../widgets/footer.dart';
 import '../utils/card_button.dart';
 
 class DraftPage extends StatelessWidget {
-  const DraftPage({super.key});
+  DraftPage({super.key});
+
+  final Map<String, Color> draftColorSet = lightModeDraftColorSet;
 
   @override
   Widget build(BuildContext context) {
-    // Localization instance
-    final appLocalization = AppLocalization.of(context);
+    // Ensure settingsController is available if it's from a provider
+    final settingsController = Provider.of<SettingsController>(context);
 
-    // Related to appbar
-    String logoPath = 'assets/draft/logo_symbol_draft.png';
-    Color appBarBackgroundColor = draftColorSet['primary'] ?? Colors.black;
-    // const Color.fromARGB(255, 4, 39, 69); // AppBar 배경색
-    Color appBarIconColor = draftColorSet['textSecondary'] ?? Colors.white;
-    // const Color.fromARGB(255, 209, 203, 203); // AppBar 아이콘 색상
+    final draftColorSet = settingsController.themeMode == ThemeMode.dark
+        ? darkModeDraftColorSet
+        : lightModeDraftColorSet;
 
-    // 화면 너비
-    // double screenWidth = MediaQuery.of(context).size.width;
+    Color appBarBackgroundColor = draftColorSet['primaryColor'] ?? Colors.black;
+    Color appBarIconColor = draftColorSet['textPrimaryColor'] ?? Colors.white;
 
-    // 현재 언어 가져오기
+    final appLocalizations = AppLocalization.of(context);
+
     Locale currentLocale = Localizations.localeOf(context);
 
-    // 언어 전환 함수
     void toggleLanguage(BuildContext context) {
       Locale newLocale = currentLocale.languageCode == 'en'
           ? const Locale('ko')
           : const Locale('en');
-      // Flutter 앱의 언어를 변경하는 로직 추가 (예: Provider, ChangeNotifier 등으로 구현)
       context.read<LocalizationProvider>().changeLocale(newLocale);
-      // LocalizationProvider.changeLocale(newLocale);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -52,21 +52,18 @@ class DraftPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: draftColorSet['background'],
+      backgroundColor: lightModeDraftColorSet['backgroundColor'],
       drawer: CommonDrawer(pageKey: 'draft'),
       appBar: CommonAppBar(
-        logoPath: logoPath,
-        backgroundColor: appBarBackgroundColor, // AppBar 배경색
+        backgroundColor: appBarBackgroundColor,
         iconColor: appBarIconColor,
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.language,
-              color: appBarIconColor,
-            ),
-            onPressed: () => toggleLanguage(context), // 언어 전환 버튼
+            icon: Icon(Icons.language, color: appBarIconColor),
+            onPressed: () => toggleLanguage(context),
           ),
         ],
+        pageKey: 'draft',
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 0),
@@ -76,63 +73,58 @@ class DraftPage extends StatelessWidget {
           children: [
             const SizedBox(height: 40),
             Text(
-              AppLocalization.of(context)?.draftPageMessage ??
-                  'Fallback message', // '어떤 것이든 좋습니다. 마음껏 그려보세요!',
+              appLocalizations?.draftPageMessage ?? 'Fallback message',
               style: getFontStyle(
-                fontSet: 'DraftFont',
+                fontSet: 'DraftFontMain',
                 styleType: 'body',
-              ).copyWith(color: draftColorSet['textSecondary']),
-              textAlign: TextAlign.center, // 텍스트 중앙 정렬
+              ).copyWith(color: lightModeDraftColorSet['textSecondaryColor']),
+              textAlign: TextAlign.center,
             ),
-            // textAlign: TextAlign.center,
             const SizedBox(height: 40),
             CardButton(
-              title: AppLocalization.of(context)?.draftSolutions ??
-                  'Fallback message', //  title: 'draft solutions and services',
+              title: appLocalizations?.draftSolutions ?? 'Fallback message',
               tacticPath: 'assets/draft/logo_draft_transparentBG.png',
               onPressed: () => Navigator.pushNamed(context, '/dusty'),
               shape: CardShape.roundedRectangle,
-              textStyle: getFontStyle(fontSet: 'DraftFont', styleType: 'body')
-                  .copyWith(
-                      color: draftColorSet['textPrimary']), // fontStyle을 전달
+              textStyle: getFontStyle(
+                      fontSet: 'DraftFontSub', styleType: 'body')
+                  .copyWith(color: lightModeDraftColorSet['textPrimaryColor']),
               pageKey: 'draft',
+              ratio: CardRatio.sixteenBySix,
             ),
             const SizedBox(height: 40),
             UrlButton(
-              label:
-                  AppLocalization.of(context)?.webVersion ?? 'Fallback message',
-              //label: 'My Creative Canvas - 웹브라우저 버전',
+              label: appLocalizations?.webVersion ?? 'Fallback message',
               onPressed: () => launchURL(
                 'https://my-creative-canvas-browser.web.app/',
                 context,
               ),
-              colorSet: draftColorSet,
+              colorSet: lightModeDraftColorSet,
               fontFamily: 'draftFont',
               fontSize: FontSizeOptions.medium,
-              textcolor: draftColorSet['accent'],
+              textcolor: lightModeDraftColorSet['accentColor'],
             ),
             const SizedBox(height: 40),
             UrlButton(
-              label: AppLocalization.of(context)?.touchPadVersion ??
-                  'Fallback message',
-              //label: 'Touch Pad Version (Coming Soon)',
+              label: appLocalizations?.touchPadVersion ?? 'Fallback message',
               onPressed: () => launchURL(
                 'https://theplaceyoung.github.io/pwa-webapp-canvas/',
                 context,
               ),
-              colorSet: draftColorSet,
+              colorSet: lightModeDraftColorSet,
               fontFamily: 'draftFont',
               fontSize: FontSizeOptions.medium,
-              textcolor: draftColorSet['accent'],
+              textcolor: lightModeDraftColorSet['accentColor'],
             ),
           ],
         ),
       ),
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
-        imagePath: 'assets/dusty/dusty-agent-white.png', // 다른 이미지 경로
-        onPressed: () => launchURL('https://www.dustydraft.chat', context),
-        pageKey: 'draft', // 페이지 키 전달
+        imagePath: 'assets/dusty/dusty-agent-white.png',
+        onPressed: () => launchURL('https://dustyagent.chat', context),
+        pageKey: 'draft',
+        themeMode: ThemeMode.light,
       ),
     );
   }

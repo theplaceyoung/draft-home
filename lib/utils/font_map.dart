@@ -7,17 +7,21 @@ class FontSizeOptions {
 }
 
 class FontStyles {
-  final String fontFamilyEn; // 영문 폰트
+  final String fontFamilyEnMain; // 영문 메인 폰트 (heading)
+  final String fontFamilyEnSub; // 영문 부폰트 (body 등)
   final String fontFamilyKo; // 한글 폰트
 
-  FontStyles({required this.fontFamilyEn, required this.fontFamilyKo});
+  FontStyles(
+      {required this.fontFamilyEnMain,
+      required this.fontFamilyEnSub,
+      required this.fontFamilyKo});
 
   Map<String, Map<String, TextStyle>> get styles => {
         'heading': {
           'en': TextStyle(
             fontSize: FontSizeOptions.large,
             fontWeight: FontWeight.bold,
-            fontFamily: fontFamilyEn,
+            fontFamily: fontFamilyEnMain,
           ),
           'ko': TextStyle(
             fontSize: FontSizeOptions.large,
@@ -28,10 +32,47 @@ class FontStyles {
         'body': {
           'en': TextStyle(
             fontSize: FontSizeOptions.medium,
-            fontFamily: fontFamilyEn,
+            fontFamily: fontFamilyEnSub,
           ),
           'ko': TextStyle(
             fontSize: FontSizeOptions.medium,
+            fontFamily: fontFamilyKo,
+          ),
+        },
+        // bodyText1, bodyText2, headline6 스타일 추가
+        'bodyLarge': {
+          'en': TextStyle(
+            fontSize: FontSizeOptions.large,
+            fontFamily: fontFamilyEnSub,
+            color: Colors.black, // 기본 텍스트 색상
+          ),
+          'ko': TextStyle(
+            fontSize: FontSizeOptions.large,
+            fontFamily: fontFamilyKo,
+            color: Colors.black, // 기본 텍스트 색상
+          ),
+        },
+        'bodyMedium': {
+          'en': TextStyle(
+            fontSize: FontSizeOptions.medium,
+            fontFamily: fontFamilyEnSub,
+            color: Colors.grey, // 보조 텍스트 색상
+          ),
+          'ko': TextStyle(
+            fontSize: FontSizeOptions.medium,
+            fontFamily: fontFamilyKo,
+            color: Colors.grey, // 보조 텍스트 색상
+          ),
+        },
+        'headlineSmall': {
+          'en': TextStyle(
+            fontSize: FontSizeOptions.small,
+            fontWeight: FontWeight.bold,
+            fontFamily: fontFamilyEnSub,
+          ),
+          'ko': TextStyle(
+            fontSize: FontSizeOptions.small,
+            fontWeight: FontWeight.bold,
             fontFamily: fontFamilyKo,
           ),
         },
@@ -40,11 +81,28 @@ class FontStyles {
 
 final Map<String, Map<String, Map<String, TextStyle>>> fontSets = {
   'DraftFont': FontStyles(
-    fontFamilyEn: 'DraftFont',
+    fontFamilyEnMain: 'DraftFontMain',
+    fontFamilyEnSub: 'DraftFontSub',
+    fontFamilyKo: 'PretendardVariable',
+  ).styles,
+  'DustyFont': FontStyles(
+    fontFamilyEnMain: 'DustyFontMain',
+    fontFamilyEnSub: 'DustyFontSub',
+    fontFamilyKo: 'PretendardVariable',
+  ).styles,
+  'OrdinaryFont': FontStyles(
+    fontFamilyEnMain: 'OrdinaryFontMain',
+    fontFamilyEnSub: 'OrdinaryFontSub',
     fontFamilyKo: 'PretendardVariable',
   ).styles,
   'ExoticFont': FontStyles(
-    fontFamilyEn: 'ExoticFont',
+    fontFamilyEnMain: 'ExoticFontMain',
+    fontFamilyEnSub: 'ExoticFontSub',
+    fontFamilyKo: 'PretendardVariable',
+  ).styles,
+  'BoutiqueFont': FontStyles(
+    fontFamilyEnMain: 'BoutiqueFontMain',
+    fontFamilyEnSub: 'BoutiqueFontSub',
     fontFamilyKo: 'PretendardVariable',
   ).styles,
 };
@@ -57,9 +115,9 @@ String getCurrentLanguage() {
 
 TextStyle getFontStyle({
   required String fontSet,
-  required String styleType, // 'heading' or 'body'
+  required String styleType,
 }) {
-  final currentLanguage = getCurrentLanguage(); // 현재 언어 가져오기
+  final currentLanguage = getCurrentLanguage();
   return fontSets[fontSet]?[styleType]?[currentLanguage] ??
-      const TextStyle(); // 기본값 반환
+      const TextStyle(fontSize: 16, fontFamily: 'Arial');
 }

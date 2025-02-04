@@ -13,7 +13,17 @@ class PrivacyPolicyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('개인정보 보호 정책 | Privacy Policy')),
+      appBar: AppBar(
+        title: Text(
+          '개인정보 보호 정책 | Privacy Policy',
+          style: TextStyle(
+            color: Colors.black, // Change the title color here
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.black, // Change the back icon color here
+        ),
+      ),
       body: FutureBuilder<String>(
         future: _loadPrivacyPolicy(),
         builder: (context, snapshot) {

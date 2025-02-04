@@ -30,8 +30,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/l10n/app_en.arb
-    - assets/l10n/app_ko.arb
+    - lib/l10n/app_en.arb
+    - lib/l10n/app_ko.arb
     - assets/draft/logo_draft_transparentBG.png
     - assets/draft/crumpled_paper_1405.jpg
     - assets/draft/logo_symbol_draft.png
@@ -58,32 +58,58 @@ flutter:
     - assets/instagram_icon.png
     - lib/contents/PrivacyPolicy.md
     - lib/contents/TermsOfService.md
+    - assets/fonts/
 
   fonts:
-    - family: DraftFont
+    # - family: HomeFont
+    #   fonts:
+    #     - asset: assets/fonts/draft/IBMPlexSerif-Regular.ttf
+    #     - asset: assets/fonts/draft/Barlow-Regular.ttf
+    #     - asset: assets/fonts/draft/PretendardVariable.ttf   
+    - family: DraftFontMain
       fonts:
         - asset: assets/fonts/draft/IBMPlexSerif-Regular.ttf
+    - family: DraftFontSub
+      fonts:
         - asset: assets/fonts/draft/Barlow-Regular.ttf
+    - family: DraftFont
+      fonts:
         - asset: assets/fonts/draft/PretendardVariable.ttf      
-    - family: DustyFont
+    - family: DustyFontMain
       fonts:
         - asset: assets/fonts/dusty/BarlowSemiCondensed-Regular.ttf
+    - family: DustyFontSub
+      fonts:
         - asset: assets/fonts/dusty/RalewayDots-Regular.ttf
+    - family: DustyFont
+      fonts:
         - asset: assets/fonts/dusty/PretendardVariable.ttf
-    - family: ExoticFont
+    - family: ExoticFontMain
       fonts:
         - asset: assets/fonts/exotic/DancingScript-Regular.ttf
+    - family: ExoticFontSub
+      fonts:
         - asset: assets/fonts/exotic/Lora-Regular.ttf
+    - family: ExoticFont
+      fonts:
         - asset: assets/fonts/exotic/PretendardVariable.ttf
-    - family: BoutiqueFont
+    - family: BoutiqueFontMain
       fonts:
         - asset: assets/fonts/boutique/CormorantGaramond-Regular.ttf
+    - family: BoutiqueFontSub
+      fonts:
         - asset: assets/fonts/boutique/Poppins-Regular.ttf
+    - family: BoutiqueFont
+      fonts:
         - asset: assets/fonts/boutique/PretendardVariable.ttf
-    - family: OrdinaryFont
+    - family: OrdinaryFontMain
       fonts:
         - asset: assets/fonts/ordinary/Montserrat-Regular.ttf
+    - family: OrdinaryFontSub
+      fonts:
         - asset: assets/fonts/ordinary/Lato-Regular.ttf
+    - family: OrdinaryFont
+      fonts:
         - asset: assets/fonts/ordinary/PretendardVariable.ttf
   
 flutter_localizations:

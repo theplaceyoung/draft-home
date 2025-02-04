@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 Widget buildFooter(BuildContext context) {
   return Container(
-    color: Colors.grey[200], // Footer background color
+    color: const Color.fromARGB(255, 238, 230, 230), // Footer background color
     padding: const EdgeInsets.symmetric(vertical: 12.0),
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -48,7 +48,8 @@ Widget _buildFooterLink(BuildContext context,
     onPressed: onTap,
     child: Text(
       label,
-      style: const TextStyle(fontSize: 14),
+      style: const TextStyle(
+          fontSize: 14, color: Color.fromARGB(255, 235, 191, 16)),
     ),
   );
 }

@@ -19,8 +19,8 @@ class AppLocalization {
   // 로컬화된 텍스트를 로드하는 함수
   Future<bool> load() async {
     // JSON 파일 읽기
-    String jsonString = await rootBundle
-        .loadString('assets/l10n/app_${locale.languageCode}.arb');
+    String jsonString =
+        await rootBundle.loadString('lib/l10n/app_${locale.languageCode}.arb');
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
     // 문자열만 필터링하여 저장

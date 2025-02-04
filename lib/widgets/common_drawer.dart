@@ -5,7 +5,7 @@ class CommonDrawer extends StatelessWidget {
   final String pageKey; // 페이지 키
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = Colors.grey; // 기본 색상 설정
+    final backgroundColor = Colors.white; // 기본 색상 설정
     return Drawer(
       child: Container(
         color: backgroundColor,

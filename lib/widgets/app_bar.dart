@@ -1,48 +1,62 @@
+import 'package:draft_home/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String logoPath; // 특정 페이지에 따라 이미지 경로
   final Color backgroundColor; // AppBar 배경색
-  final Color iconColor; // 아이콘 색
+  final Color iconColor; // 아이콘 색상
   final List<Widget> actions; // 추가 아이콘 버튼 리스트
+  final String pageKey; // 페이지 키
 
   const CommonAppBar({
     super.key,
-    required this.logoPath,
-    this.backgroundColor = Colors.transparent, // 기본값은 투명
+    required this.pageKey,
+    this.backgroundColor = Colors.transparent, // 기본값: 투명
     this.iconColor = Colors.black,
-    this.actions = const [], // 기본값: 빈 리스트, // 기본 아이콘 색은 검정색
+    this.actions = const [], // 기본값: 빈 리스트
   });
 
+  // 페이지별 로고 매핑
+  String get _logoPath {
+    const Map<String, String> logoMap = {
+      'home': 'assets/dusty/logo_symbol_draft_grey.png',
+      'draft': 'assets/draft/logo_symbol_draft.png',
+      'dusty': 'assets/dusty/logo_symbol_draft_grey.png',
+      'ordinary': 'assets/dusty/logo_symbol_draft_grey.png',
+      'exotic': 'assets/exotic/evotic.png',
+      'boutique': 'assets/boutique/exotic-yellow.png',
+    };
+    return logoMap[pageKey] ?? 'assets/dusty/logo_symbol_draft_grey.png';
+  }
+
   @override
-  Size get preferredSize => Size.fromHeight(60.0); // AppBar 높이
+  Size get preferredSize => const Size.fromHeight(60.0); // AppBar 높이
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: backgroundColor, // 전달받은 배경색
+      backgroundColor: backgroundColor,
       elevation: 1,
+      leading: IconButton(
+        icon: Icon(Icons.menu, color: iconColor),
+        onPressed: () {
+          Scaffold.of(context).openDrawer(); // 기존 showDialog 대신 사용
+        },
+      ),
       title: Center(
         child: GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, '/');
-          },
+          onTap: () => Navigator.pushNamed(context, '/'),
           child: Tooltip(
-            message: 'Go to Home', // 툴팁 추가
+            message: 'Go to Home',
             child: Image.asset(
-              logoPath, // 이미지 경로
+              _logoPath, // 자동 매핑된 로고 사용
               height: 32,
             ),
           ),
-          // child: Image.asset(
-          //   logoPath, // 이미지 경로
-          //   height: 32,
-          // ),
         ),
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.language, color: iconColor), // 아이콘 색상 설정
+          icon: Icon(Icons.language, color: iconColor),
           tooltip: 'Change Language',
           onPressed: () {
             Locale currentLocale = Localizations.localeOf(context);
@@ -59,6 +73,13 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               );
             }
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.settings),
+          tooltip: 'Settings',
+          onPressed: () {
+            Navigator.restorablePushNamed(context, SettingsView.routeName);
           },
         ),
       ],
