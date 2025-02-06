@@ -151,7 +151,7 @@ class MyHomePage extends StatelessWidget {
                 Shadow(
                   blurRadius: 5.0,
                   color: Colors.black
-                      .withOpacity(0.6), // Black shadow with opacity
+                      .withOpacity(0.3), // Black shadow with opacity
                   offset: Offset(3.0, 3.0), // Shadow offset
                 ),
               ],
@@ -171,7 +171,7 @@ class MyHomePage extends StatelessWidget {
                 Shadow(
                   blurRadius: 5.0,
                   color: Colors.black
-                      .withOpacity(0.6), // Black shadow with opacity
+                      .withOpacity(0.3), // Black shadow with opacity
                   offset: Offset(3.0, 3.0), // Shadow offset
                 ),
               ],
@@ -191,7 +191,7 @@ class MyHomePage extends StatelessWidget {
                 Shadow(
                   blurRadius: 5.0,
                   color: Colors.black
-                      .withOpacity(0.6), // Black shadow with opacity
+                      .withOpacity(0.3), // Black shadow with opacity
                   offset: Offset(3.0, 3.0), // Shadow offset
                 ),
               ],
@@ -210,7 +210,7 @@ class MyHomePage extends StatelessWidget {
                 Shadow(
                   blurRadius: 5.0,
                   color: Colors.black
-                      .withOpacity(0.6), // Black shadow with opacity
+                      .withOpacity(0.3), // Black shadow with opacity
                   offset: Offset(3.0, 3.0), // Shadow offset
                 ),
               ],
@@ -230,7 +230,7 @@ class MyHomePage extends StatelessWidget {
                 Shadow(
                   blurRadius: 5.0,
                   color: Colors.black
-                      .withOpacity(0.6), // Black shadow with opacity
+                      .withOpacity(0.3), // Black shadow with opacity
                   offset: Offset(3.0, 3.0), // Shadow offset
                 ),
               ],

@@ -35,6 +35,9 @@ flutter:
     - assets/draft/logo_draft_transparentBG.png
     - assets/draft/crumpled_paper_1405.jpg
     - assets/draft/logo_symbol_draft.png
+    - assets/draft/draft_ecosystem.png
+    - assets/draft/my_creative_canvas_description.png
+    - assets/draft/goals_and_missions.png
     - assets/dusty/logo_dustydraft.png
     - assets/dusty/dusty-agent-white.png
     - assets/dusty/logo_symbol_draft_grey.png

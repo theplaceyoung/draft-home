@@ -56,19 +56,19 @@
     "type": "text"
   },
 
-  "draftSolutions": "드래프트의 솔루션과 서비스",
+  "draftSolutions": "New Era, Growing Value: Here to Support You.",
   "@draftSolutions": {
     "description": "드래프트 솔루션 및 서비스 제목",
     "type": "text"
   },
 
-  "webVersion": "크리에이티브 캔버스 - 웹 브라우저 버전",
+  "webVersion": "크리에이티브 캔버스 - 웹 브라우저 버전(alpha)",
   "@webVersion": {
     "description": "웹 버전 설명",
     "type": "text"
   },
 
-  "touchPadVersion": "크리에이티브 캔버스 - 터치패드 버전(Coming Soon)",
+  "touchPadVersion": "크리에이티브 캔버스 - 터치패드 버전(alpha)",
   "@touchPadVersion": {
     "description": "터치 패드 버전 설명",
     "type": "text"

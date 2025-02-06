@@ -4,6 +4,8 @@ import 'package:draft_home/themes/color_set.dart';
 import 'package:draft_home/themes/dart_theme.dart';
 import 'package:draft_home/themes/light_theme.dart';
 import 'package:draft_home/utils/font_map.dart';
+import 'package:draft_home/utils/image_card_with_text.dart' as image_card;
+import 'package:draft_home/utils/image_card_without_text.dart';
 import 'package:draft_home/utils/url_utils.dart';
 import 'package:draft_home/widgets/app_bar.dart';
 import 'package:draft_home/utils/floating_action.dart';
@@ -81,16 +83,9 @@ class DraftPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
-            CardButton(
-              title: appLocalizations?.draftSolutions ?? 'Fallback message',
-              tacticPath: 'assets/draft/logo_draft_transparentBG.png',
-              onPressed: () => Navigator.pushNamed(context, '/dusty'),
-              shape: CardShape.roundedRectangle,
-              textStyle: getFontStyle(
-                      fontSet: 'DraftFontSub', styleType: 'body')
-                  .copyWith(color: lightModeDraftColorSet['textPrimaryColor']),
+            ImageCardWithoutText(
+              imageCardPath: 'assets/draft/my_creative_canvas_description.png',
               pageKey: 'draft',
-              ratio: CardRatio.sixteenBySix,
             ),
             const SizedBox(height: 40),
             UrlButton(
@@ -116,6 +111,26 @@ class DraftPage extends StatelessWidget {
               fontSize: FontSizeOptions.medium,
               textcolor: lightModeDraftColorSet['accentColor'],
             ),
+            const SizedBox(height: 90),
+            ImageCardWithoutText(
+                imageCardPath: 'assets/draft/goals_and_missions.png',
+                pageKey: 'draft'),
+            ImageCardWithoutText(
+              imageCardPath: 'assets/draft/draft_ecosystem.png',
+              pageKey: 'draft',
+            ),
+            const SizedBox(height: 150),
+            Text(
+              appLocalizations?.draftSolutions ?? 'Fallback message',
+              style: getFontStyle(
+                fontSet: 'DraftFontMain',
+                styleType: 'body',
+              ).copyWith(color: lightModeDraftColorSet['textSecondaryColor']),
+              textAlign: TextAlign.center,
+            ),
+            Image.asset('assets/draft/logo_draft_transparentBG.png',
+                height: 100),
+            const SizedBox(height: 40),
           ],
         ),
       ),
@@ -124,7 +139,7 @@ class DraftPage extends StatelessWidget {
         imagePath: 'assets/dusty/dusty-agent-white.png',
         onPressed: () => launchURL('https://dustyagent.chat', context),
         pageKey: 'draft',
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.dark,
       ),
     );
   }
