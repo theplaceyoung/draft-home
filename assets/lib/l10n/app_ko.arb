@@ -1,0 +1,232 @@
+{
+  "@@locale": "ko",
+  "appTitle": "Draft",
+  "@appTitle": {
+    "description": "앱 제목",
+    "type": "text"
+  },
+
+  "homeTitle": "Let's create with Draft!",
+  "@homeTitle": {
+    "description": "홈 화면 제목",
+    "type": "text"
+  },
+  
+  "homePage": "Home",
+  "@homePage": {
+    "description": "홈 페이지 텍스트",
+    "type": "text"
+  },
+
+  "@homePageButton1": {
+    "description": "Home page navigation button text.",
+    "type": "text"
+  },
+  "homePageButton1": "드래프트(draft)",
+  "@homePageButton2": {
+    "description": "Home page navigation button text.",
+    "type": "text"
+  },
+  "homePageButton2": "더스티드래프트(dusty draft)",
+  "@homePageButton3": {
+    "description": "Home page navigation button text.",
+    "type": "text"
+  },
+  "homePageButton3": "오디너리라이프(Ordinary Life)",
+  "@homePageButton4": {
+    "description": "Home page navigation button text.",
+    "type": "text"
+  },
+  "homePageButton4": "이그조틱오디너리(Exotic Ordinary)",
+  "@homePageButton5": {
+    "description": "Home page navigation button text.",
+    "type": "text"
+  },
+  "homePageButton5": "디 이그조틱 부띠끄(The Exotic Boutique)",
+  
+  "draft": "Draft (드래프트)",
+  "@draft": {
+    "description": "드래프트 페이지 제목",
+    "type": "text"
+  },
+
+  "draftPageMessage": "무엇이든 좋습니다. 자유롭게 그려보세요!",
+  "@draftPageMessage": {
+    "description": "드래프트 페이지 설명",
+    "type": "text"
+  },
+
+  "draftSolutions": "New Era, Growing Value: Here to Support You.",
+  "@draftSolutions": {
+    "description": "드래프트 솔루션 및 서비스 제목",
+    "type": "text"
+  },
+
+  "webVersion": "크리에이티브 캔버스 - 웹 브라우저 버전(alpha)",
+  "@webVersion": {
+    "description": "웹 버전 설명",
+    "type": "text"
+  },
+
+  "touchPadVersion": "크리에이티브 캔버스 - 터치패드 버전(alpha)",
+  "@touchPadVersion": {
+    "description": "터치 패드 버전 설명",
+    "type": "text"
+  },
+  
+  "dustyDraft": "Dusty Draft",
+  "@dustyDraft": {
+    "description": "더스티 드래프트 제목",
+    "type": "text"
+  },
+  
+  "dustyDraftPage": "먼지 쌓이기 전에, 당신의 아이디어 초안을 꺼내보세요.",
+  "@dustyDraftPage": {
+    "description": "더스티 드래프트 페이지 제목",
+    "type": "text"
+  },
+  
+  "dustyPageMessage1": "아이디어에 생명을 불어넣고, 세상 밖으로 꺼내봅시다.",
+  "@dustyPageMessage1": {
+    "description": "더스티 페이지 첫 번째 메시지",
+    "type": "text"
+  },
+  
+  "dustyPageMessage2": "창의적인 생각이 세상을 바꿀 기회를 만듭니다.\n 모래알처럼 흩어지기 전에, 현실화 합시다.\n 다양한 도구와 플랫폼을 가지고 적극적으로 돕고 싶습니다.",
+  "@dustyPageMessage2": {
+    "description": "더스티 페이지 두 번째 메시지",
+    "type": "text"
+  },
+
+  "dustyButtonMessage1": "웹사이트 구경하기",
+  "@dustyButtonMessage1": {
+    "description": "더스티 페이지 첫 번째 버튼 메시지",
+    "type": "text"
+  },
+
+  "dustyPageMessage3": "구슬이 서말이어도 꿰어야 보배가 됩니다. \n 보물로 만들어 봅시다.",
+  "@dustyPageMessage3": {
+    "description": "더스티 페이지 세 번째 메시지",
+    "type": "text"
+  },
+
+  "dustyButtonMessage2": "소개자료 열어보기",
+  "@dustyButtonMessage2": {
+    "description": "더스티 페이지 두 번째 버튼 메시지",
+    "type": "text"
+  },
+
+  "dustyButtonMessage3": "소개자료 다운받기",
+  "@dustyButtonMessage3": {
+    "description": "더스티 페이지 세 번째 버튼 메시지",
+    "type": "text"
+  },
+
+  "dustyPageMessage4": "이제는 오래된 고민을 놓아보내세요. 현실로 만들어볼 시간이 다가왔습니다!",
+  "@dustyPageMessage4": {
+    "description": "더스티 페이지 네 번째 메시지",
+    "type": "text"
+  },
+ 
+  "ordinaryPage": "업데이트와 공지사항들.",
+  "@ordinaryPage": {
+    "description": "오디너리 페이지 제목",
+    "type": "text"
+  },
+ 
+  "ordinaryLife": "평범하고도 찬란한 인생, 영원하라!",
+  "@ordinaryLife": {
+    "description": "오디너리 라이프 제목",
+    "type": "text"
+  },
+ 
+  "ordinaryPageMessage1": "소중하고도 평범한 일상의 방식들을 소중한 당신과 함께 만들어 가고자 합니다.",
+  "@ordinaryPageMessage1": {
+    "description": "오디너리 페이지 첫 번째 메시지",
+    "type": "text"
+  },
+ 
+  "ordinaryPageMessage2": "```평범하나 위대한 변화```",
+  "@ordinaryPageMessage2": {
+    "description": "오디너리 페이지 두 번째 메시지",
+    "type": "text"
+  },
+ 
+  "ordinaryPageMessage3": "공식 인스타그램 계정을 팔로우 해주세요. | @exoticordinary_official",
+  "@ordinaryPageMessage3": {
+    "description": "오디너리 페이지 세 번째 메시지",
+    "type": "text"
+  },
+ 
+  "ordinaryPageMessage4": "#오디너리라이프 #오디너리라이프스타일공유 #나를위한시간",
+  "@ordinaryPageMessage4": {
+    "description": "오디너리 페이지 네 번째 메시지",
+    "type": "text"
+  },
+ 
+  "exoticOrdinary": "이그조틱 오디너리",
+  "@exoticOrdinary": {
+    "description": "이그조틱 오디너리 제목",
+    "type": "text"
+  },
+ 
+  "exoticPageMessage1": "구경하고 구매하기",
+  "@exoticPageMessage1": {
+    "description": "이그조틱 페이지 첫 번째 메시지",
+    "type": "text"
+  },
+ 
+  "exoticPageMessage2": "인스타그램 구경하고 팔로우하기",
+  "@exoticPageMessage2": {
+    "description": "이그조틱 페이지 두 번째 메시지",
+    "type": "text"
+  },
+ 
+  "exoticPageMessage3": "유튜브 채널 구경하고 구독하기",
+  "@exoticPageMessage3": {
+    "description": "이그조틱 페이지 세 번째 메시지",
+    "type": "text"
+  },
+ 
+  "exoticPageMessage4": "웹페이지 구경하기",
+  "@exoticPageMessage4": {
+    "description": "이그조틱 페이지 네 번째 메시지",
+    "type": "text"
+  },
+ 
+  "exoticPageMessage5": "스마트스토어 구매링크",
+  "@exoticPageMessage5": {
+    "description": "이그조틱 페이지 다섯 번째 메시지",
+    "type": "text"
+  },
+ 
+  "exoticPageMessage6": "거울 속 당신만의 아름다움을 향해 미소지어요.",
+  "@exoticPageMessage6": {
+    "description": "이그조틱 페이지 여섯 번째 메시지",
+    "type": "text"
+  },
+ 
+  "boutiquePageMessage1": "온라인 부띠끄에 오신 여러분을 환영합니다!",
+  "@boutiquePageMessage1": {
+    "description": "부띠끄 페이지 첫 번째 메시지",
+    "type": "text"
+  },
+ 
+  "boutiquePageMessage2": "서울 오프라인 매장, 디 이그조틱 부띠끄를 방문해보세요.",
+  "@boutiquePageMessage2": {
+    "description": "부띠끄 페이지 두 번째 메시지",
+    "type": "text"
+  },
+  
+  "exoticBoutiquePage": "디 이그조틱 부띠끄(지도)",
+  "@exoticBoutiquePage": {
+    "description": "디 이그조틱 부띠끄 페이지 제목",
+    "type": "text"
+  },
+
+  "theExoticBoutique": "디 이그조틱 부띠끄(지도)",
+  "@theExoticBoutique": {
+    "description": "디 이그조틱 부띠끄 이름",
+    "type": "text"
+  }
+}
