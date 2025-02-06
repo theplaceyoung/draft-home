@@ -60,19 +60,19 @@
     "description": "Text for Draft Solutions and Services section.",
     "type": "text"
   },
-  "draftSolutions": "Draft Solutions and Services",
+  "draftSolutions": "New Era, Growing Value: Here to Support You.",
   
   "@webVersion": {
     "description": "Description for the web version of the app.",
     "type": "text"
   },
-  "webVersion": "My Creative Canvas - Web Browser Version",
+  "webVersion": "My Creative Canvas - Web Browser Version (alpha)",
   
   "@touchPadVersion": {
     "description": "Text for the upcoming touch pad version.",
     "type": "text"
   },
-  "touchPadVersion": "Touch Pad Version (Coming Soon)",
+  "touchPadVersion": "My Creative Canvas - Touch Pad Version (alpha)",
   
   "@dustyDraft": {
     "description": "Title or heading for Dusty Draft page.",
@@ -180,8 +180,8 @@
     "description": "Call to action for following on Instagram.",
     "type": "text"
   },
-  "exoticPageMessage2": "Visit our Instagram, Follow us.",
-  "exoticPageMessage3": "Visit our smartstore, Follow us.",
+  "exoticPageMessage2": "Visit and follow our Instagram.",
+  "exoticPageMessage3": "Visit and follow our YouTube channel.",
   "@exoticPageMessage3": {},
   "exoticPageMessage4": "Visit Exotic Webpage",
   "@exoticPageMessage4": {},
@@ -189,8 +189,8 @@
   "@exoticPageMessage5": {},
   "exoticPageMessage6": "Beauty in the mirror, Smiling back at you.",
   "@exoticPageMessage6": {},
-  "boutiquecPageMessage1": "Welcome to the Exotic Boutique!",
-  "@boutiquecPageMessage1": {},
+  "boutiquePageMessage1": "Welcome to the Exotic Boutique!",
+  "@boutiquePageMessage1": {},
   "boutiquePageMessage2": "Visit Offline Shop in Seoul, The Exotic Boutique.",
   "@boutiquePageMessage2": {},
   "exoticBoutiquePage": "The Exotic Boutique",

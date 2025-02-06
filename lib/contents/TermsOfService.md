@@ -37,4 +37,4 @@
    - Compliance with legal requirements: data protection laws, intellectual property laws, etc.
 
 업무 제안 및 제휴 문의 | Business Proposals and Partnership Inquiries
-- 장 소 영(Amanda Jang, theplaceyoung@gmail.com)
+- 장 소 영(Amanda Jang, soyoung@dustydraft.com)

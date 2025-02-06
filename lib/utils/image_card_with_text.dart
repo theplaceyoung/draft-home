@@ -13,23 +13,21 @@ enum CardRatio {
   sixteenBySix, // 16:6
 }
 
-class CardButton extends StatelessWidget {
+class ImageCardWithText extends StatelessWidget {
   final String title;
-  final String tacticPath;
-  final VoidCallback onPressed;
+  final String imageCardPath;
   final CardShape shape;
   final TextStyle textStyle; // TextStyle을 직접 받음
-  final String pageKey; // 색상 및 폰트를 가져오기 위한 키
-  final CardRatio ratio; // 카드 비율 추가
+  final String pageKey;
+  final CardRatio ratio; // 색상 및 폰트를 가져오기 위한 키
 
-  const CardButton({
+  const ImageCardWithText({
     required this.title,
-    required this.tacticPath,
-    required this.onPressed,
-    this.shape = CardShape.rectangle,
+    required this.imageCardPath,
     required this.textStyle, // textStyle을 직접 받음
     required this.pageKey,
-    this.ratio = CardRatio.square, // 기본값은 정사각형
+    this.shape = CardShape.rectangle,
+    this.ratio = CardRatio.sixteenByNine,
     super.key,
   });
 
@@ -37,38 +35,38 @@ class CardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorSet = _getColorSet(pageKey); // 색상 세트 가져오기
 
-    return GestureDetector(
-      onTap: onPressed,
-      child: Card(
-        shape: _getShape(), // 모양 설정
-        clipBehavior: Clip.antiAlias, // 모양 외부 클리핑
-        elevation: 4, // 그림자 효과
-        color: colorSet['primaryColor'], // 카드 배경색
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // 이미지
-            AspectRatio(
-              aspectRatio: _getAspectRatio(ratio), // 비율 설정
-              child: Image.asset(
-                tacticPath,
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+    return Card(
+      shape: _getShape(), // 모양 설정
+      clipBehavior: Clip.antiAlias, // 모양 외부 클리핑
+      elevation: 0, // 그림자 없애기
+      color: colorSet['primary'], // 카드 배경색
+      child: Stack(
+        children: [
+          // 이미지
+          AspectRatio(
+            aspectRatio: _getAspectRatio(ratio),
+            child: Image.asset(
+              imageCardPath,
+              fit: BoxFit.cover,
+              height: shape == CardShape.circle ? 300 : 300, // 높이 설정
+              width: double.infinity,
             ),
-            // 텍스트
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+          ),
+          // 텍스트 위에 올려놓기
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.center,
               child: Text(
                 title,
                 style: textStyle.copyWith(
-                    color:
-                        colorSet['textPrimaryColor']), // 전달받은 textStyle에 색상 추가
+                  color: colorSet['textPrimary'], // 전달받은 textStyle에 색상 추가
+                  backgroundColor: Colors.black.withOpacity(0), // 텍스트 배경 반투명
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,7 +1,10 @@
 import 'package:draft_home/l10n/app_localization.dart';
 import 'package:draft_home/provider/localization_provider.dart';
+import 'package:draft_home/settings/settings_controller.dart';
+import 'package:draft_home/themes/dart_theme.dart';
+import 'package:draft_home/themes/light_theme.dart';
 import 'package:draft_home/url_launcher/url_launcher.dart';
-import 'package:draft_home/utils/color_map.dart';
+import 'package:draft_home/themes/color_set.dart';
 import 'package:draft_home/utils/floating_action.dart';
 import 'package:draft_home/utils/font_map.dart';
 import 'package:draft_home/utils/url_utils.dart';
@@ -15,29 +18,33 @@ import 'package:provider/provider.dart';
 class OrdinaryPage extends StatelessWidget {
   const OrdinaryPage({super.key});
 
+  final Map<String, Color> ordinaryColorSet = lightModeOrdinaryColorSet;
+
   @override
   Widget build(BuildContext context) {
-    // Localization instance
+    String pageKey = 'ordinary';
+
+    // Ensure settingsController is available if it's from a provider
+    final settingsController = Provider.of<SettingsController>(context);
+
+    final ordinaryColorSet = settingsController.themeMode == ThemeMode.dark
+        ? darkModeOrdinaryColorSet
+        : lightModeOrdinaryColorSet;
+
+    Color appBarBackgroundColor =
+        ordinaryColorSet['primaryColor'] ?? Colors.black;
+    Color appBarIconColor =
+        ordinaryColorSet['textSecondaryColor'] ?? Colors.white;
+
     final appLocalizations = AppLocalization.of(context);
 
-    //related to appbar
-    String logoPath = 'assets/draft/logo_symbol_draft.png';
-    Color? appBarBackgroundColor = ordinaryColorSet['primary'];
-    Color appBarIconColor = Colors.white; // AppBar 아이콘 색상
-
-    double screenWidth = MediaQuery.of(context).size.width; // 화면너비
-
-    // 현재 언어 가져오기
     Locale currentLocale = Localizations.localeOf(context);
 
-    // 언어 전환 함수
     void toggleLanguage(BuildContext context) {
       Locale newLocale = currentLocale.languageCode == 'en'
           ? const Locale('ko')
           : const Locale('en');
-      // Flutter 앱의 언어를 변경하는 로직 추가 (예: Provider, ChangeNotifier 등으로 구현)
       context.read<LocalizationProvider>().changeLocale(newLocale);
-      // LocalizationProvider.changeLocale(newLocale);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -48,13 +55,14 @@ class OrdinaryPage extends StatelessWidget {
       );
     }
 
+    // Get the screen width
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      backgroundColor: ordinaryColorSet['background'],
+      backgroundColor: ordinaryColorSet['backgroundColor'],
       drawer: CommonDrawer(pageKey: 'ordinary'),
       appBar: CommonAppBar(
-        logoPath: logoPath,
-        backgroundColor: appBarBackgroundColor ??
-            Color.fromARGB(255, 119, 61, 61), // AppBar 배경색
+        backgroundColor: appBarBackgroundColor,
         iconColor: appBarIconColor,
         actions: [
           IconButton(
@@ -62,70 +70,61 @@ class OrdinaryPage extends StatelessWidget {
               Icons.language,
               color: appBarIconColor,
             ),
-            onPressed: () => toggleLanguage(context), // 언어 전환 버튼
+            onPressed: () => toggleLanguage(context),
           ),
         ],
+        pageKey: 'ordinary',
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 0), // 상단 영역을 내려줌
+        padding: const EdgeInsets.only(top: 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center, // 수평중앙정렬
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
-                AppLocalization.of(context)?.ordinaryPageMessage1 ??
-                    'Fallback message',
-                // 'Core mission of creating ordinary life-style with you.',
-                style:
-                    getFontStyle(fontSet: 'OrdinaryFont', styleType: 'heading')
-                        .copyWith(color: ordinaryColorSet['accent']),
-                textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                appLocalizations?.ordinaryPageMessage1 ?? 'Fallback message',
+                style: getFontStyle(
+                        fontSet: 'OrdinaryFont', styleType: 'heading')
+                    .copyWith(color: lightModeOrdinaryColorSet['accentColor']),
+                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: 60),
             Image.asset('assets/ordinary/symbol_about_us.png',
                 width: screenWidth * 0.5),
-            // Image.asset('assets/symbol_about_us.png',
-            //     width: screenWidth * 0.5),
             SizedBox(height: 100),
             Text(
-              AppLocalization.of(context)?.ordinaryPageMessage2 ??
-                  'Fallback message',
-              //'```Changing an Ordinary life.```',
+              appLocalizations?.ordinaryPageMessage2 ?? 'Fallback message',
               style: getFontStyle(fontSet: 'OrdinaryFont', styleType: 'heading')
-                  .copyWith(color: ordinaryColorSet['accent']),
-              textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                  .copyWith(color: ordinaryColorSet['accentColor']),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 40),
             Text(
-              AppLocalization.of(context)?.ordinaryPageMessage3 ??
-                  'Fallback message',
-              //'@exoticordinary_official 계정의 팔로워가 되어주세요.',
+              appLocalizations?.ordinaryPageMessage3 ?? 'Fallback message',
               style: getFontStyle(fontSet: 'OrdinaryFont', styleType: 'heading')
-                  .copyWith(color: ordinaryColorSet['accent']),
-              textAlign: TextAlign.center, // 텍스트 중앙 정렬
+                  .copyWith(color: ordinaryColorSet['accentColor']),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 60),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center, // Row 내 요소 중앙 정렬
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {
-                    // URL 열기
                     launchInstagram();
                   },
                   child: Image.asset(
-                    'assets/instagram_icon.png', // 인스타그램 아이콘 경로
-                    width: 40, // 아이콘 크기
+                    'assets/instagram_icon.png',
+                    width: 40,
                   ),
                 ),
-                SizedBox(width: 10), // 아이콘과 텍스트 사이 간격
+                SizedBox(width: 10),
                 GestureDetector(
                   onTap: () {
-                    // URL 열기
                     launchInstagram();
                   },
                   child: Text(
@@ -133,9 +132,8 @@ class OrdinaryPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: ordinaryColorSet['textSecondary'],
-                    ), // URL 텍스트 색상
-                    // decoration: TextDecoration.underline, // 밑줄 추가
+                      color: lightModeOrdinaryColorSet['textSecondaryColor'],
+                    ),
                   ),
                 ),
               ],
@@ -151,25 +149,19 @@ class OrdinaryPage extends StatelessWidget {
                 fontWeight: FontWeight.normal,
                 color: const Color.fromARGB(255, 145, 79, 79),
               ),
-              textAlign: TextAlign.center, // 텍스트 중앙 정렬
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
             Text(
-              AppLocalization.of(context)?.ordinaryPageMessage4 ??
-                  'Fallback message',
-              //'#오디너리라이프 #오디너리라이프스타일공유 #나를위한시간',
+              appLocalizations?.ordinaryPageMessage4 ?? 'Fallback message',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.normal,
                 color: const Color.fromARGB(255, 119, 61, 61),
               ),
-              textAlign: TextAlign.center, // 텍스트 중앙 정렬
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 80),
-            // Image.asset(
-            //   'assets/symbol_about_us.png',
-            //   width: ScreenWidth * 1,
-            // ),
             SizedBox(height: 60),
             Card(
               elevation: 0,
@@ -188,9 +180,10 @@ class OrdinaryPage extends StatelessWidget {
       ),
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
-        imagePath: 'assets/dusty/dusty-agent-white.png', // 다른 이미지 경로
-        onPressed: () => launchURL('https://www.dustydraft.chat', context),
-        pageKey: 'boutique', // 페이지 키 전달
+        imagePath: 'assets/dusty/dusty-agent-white.png',
+        onPressed: () => launchURL('https://dustyagent.chat', context),
+        pageKey: 'boutique',
+        themeMode: ThemeMode.light,
       ),
     );
   }

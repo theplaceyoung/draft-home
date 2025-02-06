@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:draft_home/utils/color_map.dart';
+import 'package:draft_home/themes/color_set.dart';
 
 class FloatingAction extends StatelessWidget {
   final String imagePath;
@@ -7,10 +7,11 @@ class FloatingAction extends StatelessWidget {
   final String pageKey; // 페이지 키로 색상 가져오기
 
   const FloatingAction({
+    Key? key,
     required this.imagePath,
     required this.onPressed,
     required this.pageKey, // pageKey 추가
-    Key? key,
+    required ThemeMode themeMode,
   }) : super(key: key);
 
   @override
@@ -32,18 +33,20 @@ class FloatingAction extends StatelessWidget {
   /// 페이지 키를 기반으로 색상 세트 반환
   Map<String, Color> _getColorSet(String key) {
     switch (key) {
+      case 'home':
+        return lightModeHomeColorSet;
       case 'draft':
-        return draftColorSet;
+        return lightModeDraftColorSet;
       case 'dusty':
-        return dustyColorSet;
+        return lightModeDustyColorSet;
       case 'ordinary':
-        return ordinaryColorSet;
+        return lightModeOrdinaryColorSet;
       case 'exotic':
-        return exoticColorSet;
+        return lightModeExoticColorSet;
       case 'boutique':
-        return boutiqueColorSet;
+        return lightModeBoutiqueColorSet;
       default:
-        return ordinaryColorSet; // 기본 색상 세트
+        return lightModeDustyColorSet; // 기본 색상 세트
     }
   }
 }

@@ -1,6 +1,9 @@
 import 'package:draft_home/l10n/app_localization.dart';
 import 'package:draft_home/provider/localization_provider.dart';
-import 'package:draft_home/utils/color_map.dart';
+import 'package:draft_home/settings/settings_controller.dart';
+import 'package:draft_home/themes/color_set.dart';
+import 'package:draft_home/themes/dart_theme.dart';
+import 'package:draft_home/themes/light_theme.dart';
 import 'package:draft_home/utils/floating_action.dart';
 import 'package:draft_home/utils/font_map.dart';
 import 'package:draft_home/utils/url_button.dart';
@@ -18,233 +21,216 @@ class DustyDraftPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Localization instance
-    final appLocalizations = AppLocalization.of(context);
+    final pageKey = 'dusty';
+    final localizationProvider = Provider.of<LocalizationProvider>(context);
 
-    // Related to appbar
-    String logoPath = 'assets/dusty/logo_symbol_draft_grey.png';
-    Color? appBarBackgroundColor = dustyColorSet['primary'];
-    Color appBarIconColor = Colors.white;
+    // 테마 설정
+    final settingsController = Provider.of<SettingsController>(context);
+    final dustyColorSet = settingsController.themeMode == ThemeMode.dark
+        ? darkModeDustyColorSet
+        : lightModeDustyColorSet;
 
-    // 화면 너비
-    // double screenWidth = MediaQuery.of(context).size.width;
-
-    // 현재 언어 가져오기
-    Locale currentLocale = Localizations.localeOf(context);
-
-    // 언어 전환 함수
-    void toggleLanguage(BuildContext context) {
-      Locale newLocale = currentLocale.languageCode == 'en'
-          ? const Locale('ko')
-          : const Locale('en');
-      // Flutter 앱의 언어를 변경하는 로직 추가 (예: Provider, ChangeNotifier 등으로 구현)
-      context.read<LocalizationProvider>().changeLocale(newLocale);
-      // LocalizationProvider.changeLocale(newLocale);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Language changed to ${newLocale.languageCode.toUpperCase()}!',
-          ),
-        ),
-      );
-    }
+    _getTheme(pageKey, settingsController);
+    Localizations.localeOf(context);
 
     return Scaffold(
-      backgroundColor: dustyColorSet['background'],
-      drawer: CommonDrawer(pageKey: 'dusty'),
-      appBar: CommonAppBar(
-        logoPath: logoPath,
-        backgroundColor:
-            appBarBackgroundColor ?? Color.fromARGB(255, 161, 136, 127),
-        iconColor: appBarIconColor,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.language,
-              color: appBarIconColor,
-            ),
-            onPressed: () => toggleLanguage(context), // 언어 전환 버튼
-          ),
-        ],
-      ),
+      backgroundColor: dustyColorSet['backgroundColor'],
+      drawer: CommonDrawer(pageKey: pageKey),
+      appBar: _buildAppBar(context, dustyColorSet),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 20),
-            FutureBuilder<void>(
-              future: _initializeVideoPlayer(), // 비디오 초기화 작업을 위한 Future
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator()); // 로딩 표시
-                }
-                if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                }
-                return VideoPlayerWidget(
-                  videoUrl: 'assets/videos/7624037-uhd_2160_3840_30fps.mp4',
-                  isLooping: true,
-                  autoPlay: true,
-                );
-              },
-            ),
-            SizedBox(height: 100),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  Text(
-                    AppLocalization.of(context)?.dustyPageMessage1 ??
-                        'Fallback message',
-                    style:
-                        getFontStyle(fontSet: 'DustyFont', styleType: 'heading')
-                            .copyWith(color: dustyColorSet['textSecondary']),
-                    textAlign: TextAlign.center, // 텍스트 중앙 정렬
-                  ),
-                  //   style: TextStyle(
-                  //       fontSize: 24,
-                  //       fontWeight: FontWeight.bold,
-                  //       color: Colors.black),
-                  // ),
-                  SizedBox(height: 100),
-                  Text(
-                    AppLocalization.of(context)?.dustyPageMessage2 ??
-                        'Fallback message',
-                    //'창의력은 기회를 만들어 잡아내는 자의 것입니다. \n 모래처럼 흩어지기 전에, 당신의 아이디어를 현실로 만들어보세요.\n 우리의 도구와 플랫폼이 함께합니다.',
-                    style:
-                        getFontStyle(fontSet: 'DustyFont', styleType: 'heading')
-                            .copyWith(color: dustyColorSet['textPrimary']),
-                    textAlign: TextAlign.center, // 텍스트 중앙 정렬
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 200),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                children: [
-                  UrlButton(
-                    label: AppLocalization.of(context)?.dustyButtonMessage1 ??
-                        'Fallback message', //'웹사이트 바로가기',
-                    onPressed: () =>
-                        launchURL('https://www.dustydraft.com', context),
-                    colorSet: dustyColorSet,
-                    fontFamily: 'dustyFont',
-                    fontSize: FontSizeOptions.medium,
-                    textcolor: exoticColorSet['accent'],
-                  ),
-                  SizedBox(height: 100),
-                  Text(
-                    AppLocalization.of(context)?.dustyPageMessage3 ??
-                        'Fallback message',
-                    //'더스티 드래프트와 함께, \n 아이디어가 모래처럼 흩어져버리기 전에 보배가 되도록 꿰어보세요.',
-                    style:
-                        getFontStyle(fontSet: 'DustyFont', styleType: 'heading')
-                            .copyWith(color: dustyColorSet['textSecondary']),
-                    textAlign: TextAlign.center, // 텍스트 중앙 정렬
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 150),
+            _buildVideoPlayer(),
+            const SizedBox(height: 100),
+            _buildTextSection(context, localizationProvider, dustyColorSet),
+            const SizedBox(height: 200),
+            _buildUrlButton(context, localizationProvider, dustyColorSet),
+            const SizedBox(height: 150),
             Image.asset('assets/dusty/logo_dustydraft.png', height: 200),
-            SizedBox(height: 150),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: UrlButton(
-                label: AppLocalization.of(context)?.dustyButtonMessage2 ??
-                    'Fallback message', //'소개자료 열어보기',
-                onPressed: () => launchURL(
-                    'https://github.com/theplaceyoung/draft_co/blob/main/assets/DRAFT_dustydraft_service-description_24.pdf',
-                    context),
-                colorSet: dustyColorSet,
-                fontFamily: 'dustyFont',
-                fontSize: FontSizeOptions.medium,
-                textcolor: exoticColorSet['accent'],
-              ),
-            ),
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: UrlButton(
-                label: AppLocalization.of(context)?.dustyButtonMessage3 ??
-                    'Fallback message', //'소개자료 다운로드',
-                onPressed: () => launchURL(
-                    'https://raw.githubusercontent.com/theplaceyoung/draft_home/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf',
-                    context),
-                colorSet: dustyColorSet,
-                fontFamily: 'dustyFont',
-                fontSize: FontSizeOptions.medium,
-                textcolor: exoticColorSet['accent'],
-              ),
-            ),
-            SizedBox(height: 130),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                AppLocalization.of(context)?.dustyPageMessage4 ??
-                    'Fallback message',
-                //'당신의 오래된 초안을 꺼내세요. 지금이 바로 실현할 때입니다!',
-                style: getFontStyle(fontSet: 'DustyFont', styleType: 'heading')
-                    .copyWith(color: dustyColorSet['textSecondary']),
-                textAlign: TextAlign.center, // 텍스트 중앙 정렬
-              ),
-            ),
-            SizedBox(height: 100),
-            // padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            // child: PdfButton(
-            //     label: '소개자료 다운받기',
-            //     pdfUrl:
-            //         'https://raw.githubusercontent.com/theplaceyoung/draft_home/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf',
-            //     colorSet: dustyColorSet)
-            // child: ElevatedButton(
-            //   onPressed: () async {
-            //     try {
-            //       const pdfPath =
-            //           'https://raw.githubusercontent.com/theplaceyoung/draft_home/gh-pages/assets/assets/DRAFT_dustydraft_service-description_24.pdf';
-            //       await openPDF(pdfPath);
-            //     } catch (e) {
-            //       _showError(context, 'PDF 열기 실패: $e');
-            //     }
-            //   },
-            //   style: ElevatedButton.styleFrom(
-            //     padding: EdgeInsets.symmetric(vertical: 16, horizontal: 40),
-            //     textStyle: TextStyle(fontSize: 18),
-            //     backgroundColor: Colors.black,
-            //     foregroundColor: Colors.white,
-            //   ),
-            //   child: Text('소개자료 다운받기'),
-            // ),
-            SizedBox(height: 100),
-            EmailInputWidget(
-              colorSet: dustyColorSet,
-            ),
+            const SizedBox(height: 150),
+            _buildFooterButton(context, localizationProvider, dustyColorSet),
+            const SizedBox(height: 130),
+            _buildFooterMessage(context, localizationProvider, dustyColorSet),
+            const SizedBox(height: 100),
+            EmailInputWidget(colorSet: dustyColorSet),
             const SizedBox(height: 50),
           ],
         ),
       ),
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
-        imagePath: 'assets/dusty/dusty-agent-white.png', // 다른 이미지 경로
-        onPressed: () => launchURL('https://www.dustydraft.chat', context),
-        pageKey: 'dusty', // 페이지 키 전달
+        imagePath: 'assets/dusty/dusty-agent-white.png',
+        onPressed: () => launchURL('https://dustyagent.chat', context),
+        pageKey: pageKey,
+        themeMode: settingsController.themeMode,
       ),
     );
   }
 
-  // 비디오 초기화 작업
-  Future<void> _initializeVideoPlayer() async {
-    // 비디오 초기화 작업 (예: 비디오 로드, 준비 등)
-    await Future.delayed(Duration(seconds: 1)); // 더미 대기 시간
+  // AppBar을 동적으로 생성하는 메서드
+  CommonAppBar _buildAppBar(
+      BuildContext context, Map<String, Color> dustyColorSet) {
+    return CommonAppBar(
+      backgroundColor: dustyColorSet['primaryColor']!,
+      iconColor: dustyColorSet['textPrimaryColor']!,
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.language),
+          onPressed: () => _toggleLanguage(context),
+        ),
+      ],
+      pageKey: 'dusty',
+    );
   }
 
-  Future<void> _showError(BuildContext context, String message) async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
+  // 비디오를 로딩하는 FutureBuilder
+  Widget _buildVideoPlayer() {
+    return FutureBuilder<void>(
+      future: _initializeVideoPlayer(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        return const VideoPlayerWidget(
+          videoUrl: 'assets/videos/7624037-uhd_2160_3840_30fps.mp4',
+          isLooping: true,
+          autoPlay: true,
+        );
+      },
     );
+  }
+
+  // 언어 전환 로직
+  void _toggleLanguage(BuildContext context) {
+    final currentLocale = Localizations.localeOf(context);
+    final newLocale = currentLocale.languageCode == 'en'
+        ? const Locale('ko')
+        : const Locale('en');
+    context.read<LocalizationProvider>().changeLocale(newLocale);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+            'Language changed to ${newLocale.languageCode.toUpperCase()}!'),
+      ),
+    );
+  }
+
+  // 테마를 동적으로 반환하는 메서드
+  ThemeData _getTheme(String pageKey, SettingsController settingsController) {
+    return settingsController.themeMode == ThemeMode.dark
+        ? getDarkModeThemeWithColors(pageKey)
+        : getLightModeThemeWithColors(pageKey);
+  }
+
+  // 텍스트 섹션
+  Widget _buildTextSection(
+      BuildContext context,
+      LocalizationProvider localizationProvider,
+      Map<String, Color> dustyColorSet) {
+    final appLocalizations = AppLocalization.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          _buildLocalizedText(
+              appLocalizations?.dustyPageMessage1 ?? 'Fallback message',
+              'DustyFontMain',
+              dustyColorSet),
+          const SizedBox(height: 100),
+          _buildLocalizedText(
+              appLocalizations?.dustyPageMessage2 ?? 'Fallback message',
+              'DustyFontSub',
+              dustyColorSet),
+        ],
+      ),
+    );
+  }
+
+  // 버튼을 포함하는 URL 섹션
+  Widget _buildUrlButton(
+      BuildContext context,
+      LocalizationProvider localizationProvider,
+      Map<String, Color> dustyColorSet) {
+    final appLocalizations = AppLocalization.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: [
+          UrlButton(
+            label: appLocalizations?.dustyButtonMessage1 ?? 'Fallback message',
+            onPressed: () => launchURL('https://www.dustydraft.com', context),
+            colorSet: dustyColorSet,
+            fontFamily: 'DustyFontMain',
+            fontSize: FontSizeOptions.medium,
+            textcolor: dustyColorSet['accentColor']!,
+          ),
+          const SizedBox(height: 100),
+          _buildLocalizedText(
+              appLocalizations?.dustyPageMessage3 ?? 'Fallback message',
+              'DustyFontSub',
+              dustyColorSet),
+        ],
+      ),
+    );
+  }
+
+  // PDF 버튼 추가
+  Widget _buildFooterButton(
+      BuildContext context,
+      LocalizationProvider localizationProvider,
+      Map<String, Color> dustyColorSet) {
+    final appLocalizations = AppLocalization.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: UrlButton(
+        label: appLocalizations?.dustyButtonMessage2 ?? 'Fallback message',
+        onPressed: () => launchURL(
+            'https://github.com/theplaceyoung/draft_co/blob/main/assets/DRAFT_dustydraft_service-description_24.pdf',
+            context),
+        colorSet: dustyColorSet,
+        fontFamily: 'DustyFontMain',
+        fontSize: FontSizeOptions.medium,
+        textcolor: dustyColorSet['accentColor']!,
+      ),
+    );
+  }
+
+  // 텍스트를 로컬라이징하여 반환
+  Widget _buildLocalizedText(
+      String message, String font, Map<String, Color> dustyColorSet) {
+    return Text(
+      message,
+      style: getFontStyle(fontSet: font, styleType: 'heading')
+          .copyWith(color: dustyColorSet['textSecondaryColor']),
+      textAlign: TextAlign.center,
+    );
+  }
+
+  // 마지막 메시지 섹션
+  Widget _buildFooterMessage(
+      BuildContext context,
+      LocalizationProvider localizationProvider,
+      Map<String, Color> dustyColorSet) {
+    final appLocalizations = AppLocalization.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Text(
+        appLocalizations?.dustyPageMessage4 ?? 'Fallback message',
+        style: getFontStyle(fontSet: 'DustyFontMain', styleType: 'heading')
+            .copyWith(color: dustyColorSet['textSecondaryColor']),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  // 비디오 초기화 함수
+  Future<void> _initializeVideoPlayer() async {
+    await Future.delayed(const Duration(seconds: 1)); // 더미 대기 시간
   }
 }
