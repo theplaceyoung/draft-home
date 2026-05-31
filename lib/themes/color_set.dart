@@ -54,55 +54,159 @@ final Map<String, Color> darkModeDustyColorSet = {
   'textSecondaryColor': Color.fromARGB(255, 220, 220, 220) //밝은 회색
 };
 
+// const Map<String, Color> lightModeOrdinaryColorSet = {
+//   'primaryColor': Color(0xFFF8F5F1),
+//   'secondaryColor': Color(0xFFD89CB0),
+//   'accentColor': Color(0xFFE6C46E),
+//   'backgroundColor': Color(0xFFFFFBF7),
+//   'textPrimaryColor': Color(0xFF1A1A1A),
+//   'textSecondaryColor': Color(0xFF6A6A6A),
+// };
 const Map<String, Color> lightModeOrdinaryColorSet = {
-  'primaryColor': Color.fromARGB(255, 200, 200, 200), //밝은 회색, 기본적인 라이트모드용 기본색
-  'secondaryColor': Color.fromARGB(255, 250, 100, 160), //밝고 따뜻한 분홍색
-  'accentColor': Color.fromARGB(255, 230, 240, 240), //부드러운 회색
-  'backgroundColor': Color.fromARGB(255, 12, 12, 12), //배경은 흰색
-  'textPrimaryColor': Colors.black, //검은색 텍스트
-  'textSecondaryColor': Color.fromARGB(255, 153, 141, 141), //밝은 회색 텍스트
+  'primaryColor': Color(0xFFFFF8F2),
+  'secondaryColor': Color(0xFFD89CB0),
+  'accentColor': Color(0xFFE6C46E),
+  'backgroundColor': Color(0xFFFFFBF7),
+  'textPrimaryColor': Color(0xFF1A1A1A),
+  'textSecondaryColor': Color(0xFF6A6A6A),
 };
 
 const Map<String, Color> darkModeOrdinaryColorSet = {
-  'primaryColor': Colors.grey,
-  'secondaryColor': Color.fromARGB(255, 212, 85, 170),
-  'accentColor': Color.fromARGB(255, 238, 243, 243),
-  'backgroundColor': Color.fromARGB(255, 7, 7, 7),
+  'primaryColor': Color(0xFFE7C3CF),
+  'secondaryColor': Color(0xFFD89CB0),
+  'accentColor': Color(0xFFE6C46E),
+  'backgroundColor': Color(0xFF090909),
   'textPrimaryColor': Colors.white,
-  'textSecondaryColor': Colors.grey,
+  'textSecondaryColor': Color(0xFFB7B7B7),
 };
+// const Map<String, Color> darkModeOrdinaryColorSet = {
+//   'primaryColor': Color(0xFFE7C3CF),
+//   'secondaryColor': Color(0xFFD89CB0),
+//   'accentColor': Color(0xFFE6C46E),
+//   'backgroundColor': Color(0xFF090909),
+//   'textPrimaryColor': Colors.white,
+//   'textSecondaryColor': Color(0xFFB7B7B7),
+// };
 
 final Map<String, Color> lightModeExoticColorSet = {
-  'primaryColor': Color.fromARGB(255, 160, 80, 110), //밝은 자주색
-  'secondaryColor': Color.fromARGB(255, 140, 70, 70), //붉은 갈색
-  'accentColor': Color.fromARGB(255, 240, 210, 80), //밝은 노란색
-  'backgroundColor': Colors.black, //흰색 배경
-  'textPrimaryColor': Colors.white, //검은색 텍스트
-  'textSecondaryColor': Color.fromARGB(255, 150, 78, 78), //회색 텍스트
+  'primaryColor': Color(0xFFD8C2BC),
+  'secondaryColor': Color(0xFFEDE7E2),
+  'accentColor': Color(0xFFDDBB6A),
+  'backgroundColor': Color(0xFFF9F8F6),
+  'textPrimaryColor': Color(0xFF222222),
+  'textSecondaryColor': Color(0xFF8D857F),
 };
+
 final Map<String, Color> darkModeExoticColorSet = {
-  'primaryColor': Color.fromARGB(255, 167, 88, 122),
-  'secondaryColor': Color.fromARGB(255, 141, 80, 80),
-  'accentColor': Color.fromARGB(255, 246, 209, 74),
-  'backgroundColor': Colors.white,
-  'textPrimaryColor': Colors.black,
-  'textSecondaryColor': const Color.fromARGB(255, 161, 90, 90),
+  'primaryColor': Color(0xFF4A3D3A),
+  'secondaryColor': Color(0xFF2F2A28),
+  'accentColor': Color(0xFFDDBB6A),
+  'backgroundColor': Color(0xFF181716),
+  'textPrimaryColor': Color(0xFFF5F1EC),
+  'textSecondaryColor': Color(0xFFB7AEA7),
 };
 
 final Map<String, Color> lightModeBoutiqueColorSet = {
-  'primaryColor': Color.fromARGB(255, 118, 67, 62),
-  'secondaryColor': Color.fromARGB(255, 161, 107, 102),
-  'accentColor': Color.fromARGB(255, 151, 134, 132),
-  'backgroundColor': Color.fromARGB(255, 199, 176, 174),
-  'textPrimaryColor': Color.fromARGB(255, 235, 219, 213),
-  'textSecondaryColor': Color.fromARGB(255, 241, 184, 159),
+  'primaryColor': Color(0xFFB18E84),
+  'secondaryColor': Color(0xFFD8C2BC),
+  'accentColor': Color(0xFFDDBB6A),
+  'backgroundColor': Color(0xFFF5F0EC),
+  'textPrimaryColor': Colors.white,
+  'textSecondaryColor': Color(0xFFE7DDD7),
 };
 
 final Map<String, Color> darkModeBoutiqueColorSet = {
-  'primaryColor': Color.fromARGB(255, 100, 50, 40), //어두운 갈색
-  'secondaryColor': Color.fromARGB(255, 140, 85, 75), //중간 톤의 갈색
-  'accentColor': Color.fromARGB(255, 150, 120, 110), //붉은 갈색
-  'backgroundColor': Color.fromARGB(255, 65, 62, 62), //어두운 회색
-  'textPrimaryColor': Colors.white, //흰색 텍스트
-  'textSecondaryColor': Color.fromARGB(255, 180, 180, 180), //밝은 회색 텍스트
+  'primaryColor': Color(0xFF6B514B),
+  'secondaryColor': Color(0xFF403532),
+  'accentColor': Color(0xFFDDBB6A),
+  'backgroundColor': Color(0xFF141313),
+  'textPrimaryColor': Color(0xFFF5F1EC),
+  'textSecondaryColor': Color(0xFFC3B5AE),
 };
+
+// //old2
+// final Map<String, Color> lightModeExoticColorSet = {
+//   'primaryColor': Color(0xFFA87478), // Dusty Rose
+//   'secondaryColor': Color(0xFFDCCAC3), // Rose Beige
+//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+
+//   'backgroundColor': Color(0xFFF9F8F6), // Warm Ivory
+
+//   'textPrimaryColor': Color(0xFF222222),
+//   'textSecondaryColor': Color(0xFF8D857F)
+// };
+
+// final Map<String, Color> darkModeExoticColorSet = {
+//   'primaryColor': Color(0xFF7D5A5D), // Dried Rose
+//   'secondaryColor': Color(0xFF5A4547), // Deep Rose Brown
+//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+
+//   'backgroundColor': Color(0xFF1B1A1A), // Soft Black
+
+//   'textPrimaryColor': Color(0xFFF6F1EC),
+//   'textSecondaryColor': Color(0xFFC8BBB4),
+// };
+
+// final Map<String, Color> lightModeBoutiqueColorSet = {
+//   'primaryColor': Color(0xFF7C5D53),      // Bronze Brown
+//   'secondaryColor': Color(0xFFB59C90),    // Stone Beige
+//   'accentColor': Color(0xFFDDBB6A),       // Champagne Gold
+
+//   'backgroundColor': Color(0xFFF6F2ED),
+
+//   'textPrimaryColor': Colors.white,
+//   'textSecondaryColor': Color(0xFFE7D8CF),
+// };
+
+// final Map<String, Color> darkModeBoutiqueColorSet = {
+//   'primaryColor': Color(0xFF4D3C37),      // Deep Bronze
+//   'secondaryColor': Color(0xFF312926),    // Dark Stone
+
+//   'accentColor': Color(0xFFDDBB6A),
+
+//   'backgroundColor': Color(0xFF151414),
+
+//   'textPrimaryColor': Color(0xFFF3ECE6),
+//   'textSecondaryColor': Color(0xFFC4B6AE),
+// };
+
+// old
+
+// final Map<String, Color> lightModeExoticColorSet = {
+//   'primaryColor': Color(0xFFD8C2BC), // Soft Rose Beige
+//   'secondaryColor': Color(0xFFEDE7E2), // Warm Ivory
+//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+
+//   'backgroundColor': Color(0xFFF9F8F6),
+
+//   'textPrimaryColor': Color(0xFF222222),
+//   'textSecondaryColor': Color(0xFF8D857F),
+// };
+// final Map<String, Color> darkModeExoticColorSet = {
+//   'primaryColor': Color(0xFF4A3D3A), // Deep Rose Brown
+//   'secondaryColor': Color(0xFF2F2A28), // Charcoal Ivory
+//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+
+//   'backgroundColor': Color(0xFF181716), // Soft Black
+
+//   'textPrimaryColor': Color(0xFFF5F1EC), // Warm White
+//   'textSecondaryColor': Color(0xFFB7AEA7),
+// };
+
+// final Map<String, Color> lightModeBoutiqueColorSet = {
+//   'primaryColor': Color(0xFFA87478), // Dusty Rose
+//   'secondaryColor': Color(0xFFD6B7AE), // Rose Beige
+//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+//   'backgroundColor': Color(0xFFF7F2EE),
+//   'textPrimaryColor': Colors.white,
+//   'textSecondaryColor': Color(0xFFF2E5DF),
+// };
+
+// final Map<String, Color> darkModeBoutiqueColorSet = {
+//   'primaryColor': Color(0xFF7D5A5D), // Dusty Rose Night
+//   'secondaryColor': Color(0xFF5A4547), // Deep Rose Brown
+//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+//   'backgroundColor': Color(0xFF1C1A1B), // Warm Black
+//   'textPrimaryColor': Color(0xFFF6F1EC),
+//   'textSecondaryColor': Color(0xFFC8BBB4),
+// };

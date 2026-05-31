@@ -1,6 +1,10 @@
+import 'package:draft_home/constants/urls.dart';
 import 'package:draft_home/pages/about_page.dart';
 import 'package:draft_home/pages/asset_lab_page.dart';
 import 'package:draft_home/pages/asset_picker_page.dart';
+import 'package:draft_home/pages/company_page.dart';
+import 'package:draft_home/pages/ordinary_life.dart';
+import 'package:draft_home/pages/virtual_boutique_page.dart';
 import 'package:draft_home/settings/settings_view.dart';
 import 'package:draft_home/themes/dart_theme.dart';
 import 'package:draft_home/themes/light_theme.dart';
@@ -20,9 +24,8 @@ import 'package:draft_home/utils/url_utils.dart';
 import 'package:draft_home/widgets/common_drawer.dart';
 import 'package:draft_home/widgets/app_bar.dart';
 import 'package:draft_home/widgets/footer.dart';
-import 'package:draft_home/pages/draft_page.dart';
+import 'package:draft_home/pages/old/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
-import 'package:draft_home/pages/ordinary_page.dart';
 import 'package:draft_home/pages/exotic_ordinary.dart';
 import 'package:draft_home/pages/the_exotic_boutique.dart';
 
@@ -83,14 +86,16 @@ class MyApp extends StatelessWidget {
   Map<String, WidgetBuilder> _getRoutes() {
     return {
       '/': (context) => const MyHomePage(),
+      '/company': (context) => CompanyPage(),
       '/draft': (context) => DraftPage(),
       '/about': (context) => AboutPage(),
       '/dusty': (context) => DustyDraftPage(),
-      '/ordinary': (context) => const OrdinaryPage(),
+      '/ordinary': (context) => OrdinaryLifePage(),
       '/exotic': (context) => ExoticOrdinaryPage(),
       '/boutique': (context) => TheExoticBoutiquePage(),
       '/assetpicker': (context) => AssetPickerPage(),
       '/assetlab': (context) => AssetLabPage(),
+      '/virtualBoutique': (context) => VirtualBoutiquePage(),
       '/settings': (context) {
         final settingsController = Provider.of<SettingsController>(context);
         return SettingsView(
@@ -170,7 +175,7 @@ class MyHomePage extends StatelessWidget {
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
-          _buildDustySection(context),
+          _buildAssetPickerSection(context),
           const Divider(
             height: 1,
             thickness: 0.8,
@@ -182,7 +187,7 @@ class MyHomePage extends StatelessWidget {
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
-          _buildAssetPickerSection(context),
+          _buildDustySection(context),
           const Divider(
             height: 1,
             thickness: 0.8,
@@ -240,9 +245,10 @@ class MyHomePage extends StatelessWidget {
           context,
           'Dusty Draft',
           'Ongoing Projects & Archive',
+          'IDEAS IN PROGRESS',
         ),
         SizedBox(
-          height: 340,
+          height: 300,
           child: ListView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(
@@ -250,15 +256,14 @@ class MyHomePage extends StatelessWidget {
             ),
             children: [
               CardButtonWithTextOverImage(
-                title: 'Dusty Draft',
-                tacticPath:
-                    'assets/dusty/brown-background-water-reflection-texture.jpg',
+                title: '',
+                tacticPath: 'assets/dusty/logo_dustydraft+bg.png',
                 pageKey: 'dusty',
-                width: 360,
+                width: 300,
                 height: 300,
                 textStyle: getFontStyle(
                   fontSet: 'DustyFont',
-                  styleType: 'heading',
+                  styleType: 'cardTitle',
                 ),
                 onPressed: () {
                   Navigator.pushNamed(
@@ -269,40 +274,45 @@ class MyHomePage extends StatelessWidget {
               ),
               const SizedBox(width: 24),
               CardButtonWithTextOverImage(
-                title: 'Dustie',
-                tacticPath: 'assets/dusty/dusty-agent-white.png',
+                title: '"Dustie"',
+                tacticPath: 'assets/dusty/dusty-agent-white+bg+gd.png',
                 pageKey: 'dusty',
-                width: 360,
+                width: 300,
                 height: 300,
                 textStyle: getFontStyle(
                   fontSet: 'DustyFont',
-                  styleType: 'heading',
+                  styleType: 'cardTitle',
                 ),
                 onPressed: () {},
               ),
               const SizedBox(width: 24),
               CardButtonWithTextOverImage(
-                title: 'painter',
-                tacticPath: 'assets/dusty/dusty-agent-white.png',
-                pageKey: 'dusty',
-                width: 360,
+                title: '',
+                tacticPath: 'assets/dusty/dusty_painter.png',
+                pageKey: '',
+                width: 300,
                 height: 300,
                 textStyle: getFontStyle(
                   fontSet: 'DustyFont',
-                  styleType: 'heading',
+                  styleType: 'cardTitle',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  launchURL(
+                    DraftUrls.painter,
+                    context,
+                  );
+                },
               ),
               const SizedBox(width: 24),
               CardButtonWithTextOverImage(
-                title: 'diary',
+                title: '...',
                 tacticPath: 'assets/dusty/dusty-agent-white.png',
                 pageKey: 'dusty',
-                width: 360,
+                width: 300,
                 height: 300,
                 textStyle: getFontStyle(
                   fontSet: 'DustyFont',
-                  styleType: 'heading',
+                  styleType: 'cardTitle',
                 ),
                 onPressed: () {},
               ),
@@ -322,6 +332,7 @@ class MyHomePage extends StatelessWidget {
           context,
           'Exotic Ordinary',
           'Official, Boutique & Contents',
+          'BEAUTY IN THE MIRROR',
         ),
         SizedBox(
           height: 280,
@@ -332,15 +343,15 @@ class MyHomePage extends StatelessWidget {
             ),
             children: [
               SizedBox(
-                width: 300,
+                width: 240,
                 child: CardButton(
                   title: 'Official',
-                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
+                  tacticPath: 'assets/exotic/exoticordinary_background.jpg',
                   pageKey: 'exotic',
                   ratio: CardRatio.sixteenByNine,
                   textStyle: getFontStyle(
                     fontSet: 'ExoticFont',
-                    styleType: 'heading',
+                    styleType: 'cardTitle',
                   ),
                   onPressed: () {
                     Navigator.pushNamed(
@@ -352,22 +363,27 @@ class MyHomePage extends StatelessWidget {
               ),
               const SizedBox(width: 20),
               SizedBox(
-                width: 300,
+                width: 240,
                 child: CardButton(
-                  title: 'Youtube',
-                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
+                  title: 'YouTube',
+                  tacticPath: 'assets/exotic/exotic-instagram.jpg',
                   pageKey: 'exotic',
                   ratio: CardRatio.sixteenByNine,
                   textStyle: getFontStyle(
                     fontSet: 'ExoticFont',
-                    styleType: 'heading',
+                    styleType: 'cardTitle',
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    launchURL(
+                      DraftUrls.exoticArchive,
+                      context,
+                    );
+                  },
                 ),
               ),
               const SizedBox(width: 20),
               SizedBox(
-                width: 300,
+                width: 240,
                 child: CardButton(
                   title: 'Instagram',
                   tacticPath: 'assets/AdobeStock_228406900.jpeg',
@@ -375,29 +391,39 @@ class MyHomePage extends StatelessWidget {
                   ratio: CardRatio.sixteenByNine,
                   textStyle: getFontStyle(
                     fontSet: 'ExoticFont',
-                    styleType: 'heading',
+                    styleType: 'cardTitle',
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    launchURL(
+                      DraftUrls.exoticInstagram,
+                      context,
+                    );
+                  },
                 ),
               ),
               const SizedBox(width: 20),
               SizedBox(
-                width: 300,
+                width: 240,
                 child: CardButton(
-                  title: 'Virtual Boutique',
-                  tacticPath: 'assets/boutique/door_image.jpg',
+                  title: 'Virtual Boutique (준비중)',
+                  tacticPath: 'assets/exotic/exoticVoutique.png',
                   pageKey: 'boutique',
                   ratio: CardRatio.sixteenByNine,
                   textStyle: getFontStyle(
                     fontSet: 'BoutiqueFont',
-                    styleType: 'heading',
+                    styleType: 'cardTitle',
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/virtualBoutique',
+                    );
+                  },
                 ),
               ),
               const SizedBox(width: 20),
               SizedBox(
-                width: 300,
+                width: 240,
                 child: CardButton(
                   title: 'The Exotic Boutique',
                   tacticPath: 'assets/boutique/door_image.jpg',
@@ -405,12 +431,12 @@ class MyHomePage extends StatelessWidget {
                   ratio: CardRatio.sixteenByNine,
                   textStyle: getFontStyle(
                     fontSet: 'BoutiqueFont',
-                    styleType: 'heading',
+                    styleType: 'cardTitle',
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(
+                    launchURL(
+                      DraftUrls.theExoticBoutique,
                       context,
-                      '/boutique',
                     );
                   },
                 ),
@@ -432,60 +458,32 @@ class MyHomePage extends StatelessWidget {
         _buildSectionTitle(
           context,
           'ASSETPICKER',
-          'Asset Research & Information',
+          'Research & Investing',
+          'INVEST BEYOND THE NOISE',
         ),
-        SizedBox(
-          height: 260,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 24,
+          ),
+          child: CardButtonWithTextOverImage(
+            title: 'ASSETPICKER\nResearch & Investing',
+            tacticPath: 'assets/assetpicker/assetpicker-hero.jpg',
+            pageKey: 'assetpicker',
+            width: 1060, //double.infinity,
+            height: 300,
+            textStyle: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
             ),
-            children: [
-              SizedBox(
-                width: 280,
-                child: CardButton(
-                  title: 'ASSET Lab',
-                  tacticPath:
-                      'assets/dusty/brown-background-water-reflection-texture.jpg',
-                  pageKey: 'assetpicker',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/assetlab',
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(width: 16),
-              SizedBox(
-                width: 280,
-                child: CardButton(
-                  title: 'ASSET Picker',
-                  tacticPath: 'assets/dusty/dusty-agent-white.png',
-                  pageKey: 'assetpicker',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/assetpicker',
-                    );
-                  },
-                ),
-              ),
-            ],
+            onPressed: () {
+              launchURL(
+                DraftUrls.assetPicker,
+                context,
+              );
+            },
           ),
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -494,6 +492,7 @@ class MyHomePage extends StatelessWidget {
     BuildContext context,
     String title,
     String subtitle,
+    String tagline,
   ) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -502,7 +501,7 @@ class MyHomePage extends StatelessWidget {
         24,
         32,
         24,
-        24,
+        6,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -523,7 +522,16 @@ class MyHomePage extends StatelessWidget {
               color: isDark ? Colors.white60 : Colors.black54,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 4),
+          Text(
+            tagline,
+            style: TextStyle(
+              fontSize: 13,
+              fontStyle: FontStyle.italic,
+              color: isDark ? Colors.white60 : Colors.black54,
+            ),
+          ),
+          const SizedBox(height: 5),
         ],
       ),
     );

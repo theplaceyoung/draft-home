@@ -14,8 +14,8 @@ import 'package:draft_home/widgets/common_drawer.dart';
 import 'package:draft_home/provider/localization_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../widgets/footer.dart';
-import '../utils/card_button.dart';
+import '../../widgets/footer.dart';
+import '../../utils/card_button.dart';
 
 class DraftPage extends StatelessWidget {
   DraftPage({super.key});

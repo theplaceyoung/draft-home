@@ -7,6 +7,8 @@ class DraftUrls {
 
   static const assetPicker = 'https://blog.naver.com/assetpicker';
 
+  static const fairyRala = 'https://blog.naver.com/ralalife';
+
   // website
   static const draft = 'https://draft.best';
 
@@ -17,4 +19,14 @@ class DraftUrls {
 
 // others
   static const dustyAgent = 'https://dustyagent.chat';
+
+  static const painter = 'https://my-creative-canvas-browser.web.app';
+
+  static const exoticInstagram =
+      'https://www.instagram.com/exoticordinary_official';
+
+  static const theExoticBoutique =
+      'https://map.naver.com/p/entry/place/1568375372?placePath=%2Fhome';
+
+  static String ordinaryLifePdf = "";
 }

@@ -69,7 +69,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/draft');
+              Navigator.pushNamed(context, '/company');
             },
             child: Text(
               'Company',

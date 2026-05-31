@@ -39,7 +39,10 @@ flutter:
     - assets/draft/my_creative_canvas_description.png
     - assets/draft/goals_and_missions.png
     - assets/dusty/logo_dustydraft.png
+    - assets/dusty/logo_dustydraft+bg.png
     - assets/dusty/dusty-agent-white.png
+    - assets/dusty/dusty-agent-white+bg.png
+    - assets/dusty/dusty-agent-white+bg+gd.png
     - assets/dusty/logo_symbol_draft_grey.png
     - assets/dusty/DRAFT_dustydraft_service-description_24.pdf
     - assets/dusty/brown-background-water-reflection-texture.jpg
@@ -47,6 +50,8 @@ flutter:
     - assets/exotic/exotic-48x48.png
     - assets/exotic/exoticordinary_background.jpg
     - assets/exotic/logo_exoticordinary.png
+    - assets/exotic/exotic-instagram.jpg
+    - assets/exotic/exoticVoutique.png
     - assets/boutique/door_image.jpg
     - assets/boutique/logo_the_boutique.png
     - assets/boutique/exotic-yellow.png
@@ -62,6 +67,9 @@ flutter:
     - lib/contents/PrivacyPolicy.md
     - lib/contents/TermsOfService.md
     - assets/fonts/
+    - assets/assetpicker/assetpicker-hero.jpg
+    - assets/dusty/painter.png
+    - assets/dusty/dusty_painter.png
 
   fonts:
     # - family: HomeFont

@@ -1,76 +1,189 @@
-/* lib\widgets\common_drawer.dart */
+/* lib/widgets/common_drawer.dart */
 
+import 'package:draft_home/constants/urls.dart';
+import 'package:draft_home/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 
 class CommonDrawer extends StatelessWidget {
-  const CommonDrawer({required this.pageKey, super.key});
-  final String pageKey; // 페이지 키
+  const CommonDrawer({
+    required this.pageKey,
+    super.key,
+  });
+
+  final String pageKey;
+
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = Colors.white; // 기본 색상 설정
     return Drawer(
-      child: Container(
-        color: backgroundColor,
-        child: ListView(
-          padding: EdgeInsets.zero,
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DrawerHeader(
-              child: Text(
-                'Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(
+                24,
+                24,
+                24,
+                32,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'DRAFT Co.',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Independent Brands · Contents · Tools',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
             ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.pushNamed(context, '/');
-              },
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24,
+              ),
+              child: Text(
+                'Brands & Ventures',
+                style: TextStyle(
+                  fontSize: 11,
+                  letterSpacing: 2,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
-            const Divider(), // 구분선
-            ListTile(
-              title: Text('DRAFT Company'),
-              onTap: () {
-                Navigator.pushNamed(context, '/draft');
-              },
+            const SizedBox(height: 12),
+            _drawerItem(
+              context,
+              'Company',
+              '/company',
             ),
-            ListTile(
-              title: Text('Dusty Draft'),
-              onTap: () {
-                Navigator.pushNamed(context, '/dusty');
-              },
+            _drawerItem(
+              context,
+              'Ordinary Life',
+              '/ordinary',
             ),
-            ListTile(
-              title: Text('Ordinary Life'),
-              onTap: () {
-                Navigator.pushNamed(context, '/ordinary');
-              },
+            _drawerItem(
+              context,
+              'Exotic Ordinary',
+              '/exotic',
             ),
-            ListTile(
-              title: Text('Exotic Ordinary'),
-              onTap: () {
-                Navigator.pushNamed(context, '/exotic');
-              },
+            _drawerItem(
+              context,
+              'Dusty Draft',
+              '/dusty',
             ),
-            ListTile(
-              title: Text('The Exotic Boutique'),
-              onTap: () {
-                Navigator.pushNamed(context, '/boutique');
-              },
+            // _drawerItem(
+            //   context,
+            //   'The Exotic Boutique',
+            //   '/boutique',
+            // ),
+            const SizedBox(height: 24),
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24,
+              ),
+              child: Text(
+                'Tools',
+                style: TextStyle(
+                  fontSize: 11,
+                  letterSpacing: 2,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
-            ListTile(
-              title: Text('ASSET PICKER'),
-              onTap: () {
-                Navigator.pushNamed(context, '/assetpicker');
-              },
+            const SizedBox(height: 12),
+            _urlItem(
+              context,
+              'ASSETPICKER',
+              DraftUrls.assetPicker,
             ),
-            ListTile(
-              title: Text('ASSET Lab'),
-              onTap: () {
-                Navigator.pushNamed(context, '/assetlab');
-              },
+            // _drawerItem(
+            //   context,
+            //   'ASSET Lab',
+            //   '/assetlab',
+            // ),
+            const Spacer(),
+            const Padding(
+              padding: EdgeInsets.all(24),
+              child: Text(
+                'draft.best',
+                style: TextStyle(
+                  color: Colors.grey,
+                  letterSpacing: 2,
+                ),
+              ),
             ),
-            const Divider(), // 구분선
           ],
+        ),
+      ),
+    );
+  }
+
+  static Widget _drawerItem(
+    BuildContext context,
+    String title,
+    String route,
+  ) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(
+          context,
+          route,
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 14,
+        ),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+
+  static Widget _urlItem(
+    BuildContext context,
+    String title,
+    String url,
+  ) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+
+        launchURL(
+          url,
+          context,
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 14,
+        ),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );

@@ -35,35 +35,38 @@ class CardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorSet = _getColorSet(pageKey); // 색상 세트 가져오기
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final colorSet = _getColorSet(
+      pageKey,
+      isDark,
+    );
 
     return GestureDetector(
       onTap: onPressed,
       child: Card(
-        shape: _getShape(), // 모양 설정
-        clipBehavior: Clip.antiAlias, // 모양 외부 클리핑
-        elevation: 4, // 그림자 효과
-        color: colorSet['primaryColor'], // 카드 배경색
+        shape: _getShape(),
+        clipBehavior: Clip.antiAlias,
+        elevation: 4,
+        color: colorSet['primaryColor'],
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // 이미지
             AspectRatio(
-              aspectRatio: _getAspectRatio(ratio), // 비율 설정
+              aspectRatio: _getAspectRatio(ratio),
               child: Image.asset(
                 tacticPath,
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),
             ),
-            // 텍스트
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(vertical: 28),
               child: Text(
                 title,
                 style: textStyle.copyWith(
-                    color:
-                        colorSet['textPrimaryColor']), // 전달받은 textStyle에 색상 추가
+                  color: colorSet['textPrimaryColor'],
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -104,20 +107,28 @@ class CardButton extends StatelessWidget {
   }
 
   /// 페이지 키를 기반으로 색상 세트 반환
-  Map<String, Color> _getColorSet(String key) {
+  Map<String, Color> _getColorSet(
+    String key,
+    bool isDark,
+  ) {
     switch (key) {
       case 'draft':
-        return lightModeDraftColorSet; // lightModeDraftColorSet 반환
+        return isDark ? darkModeDraftColorSet : lightModeDraftColorSet;
+
       case 'dusty':
-        return lightModeDustyColorSet; // lightModeDustyColorSet 반환
+        return isDark ? darkModeDustyColorSet : lightModeDustyColorSet;
+
       case 'ordinary':
-        return lightModeOrdinaryColorSet; // lightModeOrdinaryColorSet 반환
+        return isDark ? darkModeOrdinaryColorSet : lightModeOrdinaryColorSet;
+
       case 'exotic':
-        return lightModeExoticColorSet; // lightModeExoticColorSet 반환
+        return isDark ? darkModeExoticColorSet : lightModeExoticColorSet;
+
       case 'boutique':
-        return lightModeBoutiqueColorSet; // lightModeBoutiqueColorSet 반환
+        return isDark ? darkModeBoutiqueColorSet : lightModeBoutiqueColorSet;
+
       default:
-        return lightModeOrdinaryColorSet; // 기본 색상 세트
+        return isDark ? darkModeDraftColorSet : lightModeDraftColorSet;
     }
   }
 }

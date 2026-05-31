@@ -83,13 +83,6 @@ class AboutPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 24),
-                      Expanded(
-                        child: _brandBlock(
-                          'ASSETPICKER',
-                          'Research, investing and asset tools.\n'
-                              'Built for long-term thinking.',
-                        ),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 56),
@@ -102,24 +95,26 @@ class AboutPage extends StatelessWidget {
                         child: _websiteBlock(
                           context,
                           'Dusty Studio',
-                          DraftUrls.dustyStudio,
+                          DraftUrls.fairyRala,
                           'Consulting & Development',
                         ),
                       ),
+                      const SizedBox(width: 24),
                       Expanded(
                         child: _websiteBlock(
                           context,
-                          'Youtube',
+                          'Exotic Archive',
                           DraftUrls.exoticArchive,
-                          '@exoticordinary',
+                          'YouTube Channel',
                         ),
                       ),
+                      const SizedBox(width: 24),
                       Expanded(
                         child: _websiteBlock(
                           context,
-                          'Blog',
-                          DraftUrls.assetPicker,
                           'ASSETPICKER',
+                          DraftUrls.assetPicker,
+                          'Research Blog',
                         ),
                       ),
                     ],
@@ -220,8 +215,9 @@ class AboutPage extends StatelessWidget {
           title,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w600,
+            letterSpacing: -0.3,
           ),
         ),
         const SizedBox(height: 8),
@@ -230,8 +226,8 @@ class AboutPage extends StatelessWidget {
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 13,
-            height: 1.6,
-            color: Colors.black87,
+            color: Colors.grey,
+            height: 1.5,
           ),
         ),
       ],

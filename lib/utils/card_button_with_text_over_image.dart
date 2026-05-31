@@ -17,6 +17,7 @@ class CardButtonWithTextOverImage extends StatelessWidget {
 
   final double width;
   final double height;
+
   const CardButtonWithTextOverImage({
     required this.title,
     required this.tacticPath,
@@ -25,17 +26,24 @@ class CardButtonWithTextOverImage extends StatelessWidget {
     required this.pageKey,
     this.width = 360,
     this.height = 300,
-    this.shape = CardShape.rectangle,
+    this.shape = CardShape.roundedRectangle,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final colorSet = _getColorSet(pageKey); // 색상 세트 가져오기
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final colorSet = _getColorSet(
+      pageKey,
+      isDark,
+    );
+
     return GestureDetector(
       onTap: onPressed,
       child: SizedBox(
         width: width,
+        height: height,
         child: Card(
           shape: _getShape(),
           clipBehavior: Clip.antiAlias,
@@ -43,11 +51,11 @@ class CardButtonWithTextOverImage extends StatelessWidget {
           color: colorSet['primary'],
           child: Stack(
             children: [
-              Image.asset(
-                tacticPath,
-                fit: BoxFit.cover,
-                height: height,
-                width: width,
+              Positioned.fill(
+                child: Image.asset(
+                  tacticPath,
+                  fit: BoxFit.cover,
+                ),
               ),
               Positioned.fill(
                 child: Align(
@@ -88,18 +96,21 @@ class CardButtonWithTextOverImage extends StatelessWidget {
   }
 
   /// 페이지 키를 기반으로 색상 세트 반환
-  Map<String, Color> _getColorSet(String key) {
+  Map<String, Color> _getColorSet(
+    String key,
+    bool isDark,
+  ) {
     switch (key) {
       case 'draft':
-        return lightModeDraftColorSet; // lightModeDraftColorSet 반환
+        return isDark ? darkModeDraftColorSet : lightModeDraftColorSet;
       case 'dusty':
-        return lightModeDustyColorSet; // lightModeDustyColorSet 반환
+        return isDark ? darkModeDustyColorSet : lightModeDustyColorSet;
       case 'ordinary':
-        return lightModeOrdinaryColorSet; // lightModeOrdinaryColorSet 반환
+        return isDark ? darkModeOrdinaryColorSet : lightModeOrdinaryColorSet;
       case 'exotic':
-        return lightModeExoticColorSet; // lightModeExoticColorSet 반환
+        return isDark ? darkModeExoticColorSet : lightModeExoticColorSet;
       case 'boutique':
-        return lightModeBoutiqueColorSet; // lightModeBoutiqueColorSet 반환
+        return isDark ? darkModeBoutiqueColorSet : lightModeBoutiqueColorSet;
       default:
         return lightModeOrdinaryColorSet; // 기본 색상 세트
     }

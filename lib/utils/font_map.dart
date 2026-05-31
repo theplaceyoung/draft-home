@@ -29,6 +29,22 @@ class FontStyles {
             fontFamily: fontFamilyKo,
           ),
         },
+
+        'cardTitle': {
+          'en': TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontFamilyEnMain,
+            letterSpacing: 0.5,
+          ),
+          'ko': TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            fontFamily: fontFamilyKo,
+            letterSpacing: 0.5,
+          ),
+        },
+
         'body': {
           'en': TextStyle(
             fontSize: FontSizeOptions.medium,
