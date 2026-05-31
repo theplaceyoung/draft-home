@@ -11,6 +11,8 @@ const Map<String, String> pageLogos = {
   'ordinary': 'assets/dusty/logo_symbol_draft_grey.png',
   'exotic': 'assets/dusty/logo_symbol_draft_grey.png',
   'boutique': 'assets/dusty/logo_symbol_draft_grey.png',
+  'assetpicker': 'assets/dusty/logo_symbol_draft_grey.png',
+  'assetlab': 'assets/dusty/logo_symbol_draft_grey.png',
 };
 
 // 페이지별 색상 설정 (라이트 모드, 다크 모드)
@@ -21,6 +23,8 @@ Map<String, Map<String, Color>> pageColors = {
   'ordinary': lightModeDustyColorSet,
   'exotic': lightModeDustyColorSet,
   'boutique': lightModeDustyColorSet,
+  'assetpicker': lightModeDustyColorSet, //lightModeAssetColorSet,
+  'assetlab': lightModeDustyColorSet, //lightModeAssetColorSet,
 };
 
 /// 페이지에 맞는 로고 경로를 가져오는 함수

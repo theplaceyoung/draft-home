@@ -1,3 +1,5 @@
+/* lib\widgets\common_drawer.dart */
+
 import 'package:flutter/material.dart';
 
 class CommonDrawer extends StatelessWidget {
@@ -53,6 +55,18 @@ class CommonDrawer extends StatelessWidget {
               title: Text('The Exotic Boutique'),
               onTap: () {
                 Navigator.pushNamed(context, '/boutique');
+              },
+            ),
+            ListTile(
+              title: Text('ASSET PICKER'),
+              onTap: () {
+                Navigator.pushNamed(context, '/assetpicker');
+              },
+            ),
+            ListTile(
+              title: Text('ASSET Lab'),
+              onTap: () {
+                Navigator.pushNamed(context, '/assetlab');
               },
             ),
             const Divider(), // 구분선

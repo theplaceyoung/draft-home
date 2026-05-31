@@ -1,6 +1,11 @@
+import 'package:draft_home/pages/about_page.dart';
+import 'package:draft_home/pages/asset_lab_page.dart';
+import 'package:draft_home/pages/asset_picker_page.dart';
 import 'package:draft_home/settings/settings_view.dart';
+import 'package:draft_home/themes/dart_theme.dart';
 import 'package:draft_home/themes/light_theme.dart';
 import 'package:draft_home/themes/color_set.dart';
+import 'package:draft_home/utils/card_button.dart';
 import 'package:draft_home/utils/card_button_with_text_over_image.dart';
 import 'package:draft_home/utils/floating_action.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +28,15 @@ import 'package:draft_home/pages/the_exotic_boutique.dart';
 
 const String homePageKey = 'home';
 const String draftPageKey = 'draft';
+
 const String dustyPageKey = 'dusty';
 const String ordinaryPageKey = 'ordinary';
+
 const String exoticPageKey = 'exotic';
 const String boutiquePageKey = 'boutique';
 
+const String assetPickerPageKey = 'assetpicker';
+const String assetLabPageKey = 'assetlab';
 void main() {
   runApp(
     MultiProvider(
@@ -53,11 +62,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final settingsController = Provider.of<SettingsController>(context);
     final localizationProvider = Provider.of<LocalizationProvider>(context);
-    final pageKey = ModalRoute.of(context)?.settings.name ?? homePageKey;
-
+    // final pageKey = ModalRoute.of(context)?.settings.name ?? homePageKey;
+    const pageKey = homePageKey;
     return MaterialApp(
       themeMode: settingsController.themeMode,
       theme: getLightModeThemeWithColors(pageKey),
+      darkTheme: getDarkModeThemeWithColors(pageKey),
       locale: localizationProvider.locale,
       localizationsDelegates: const [
         AppLocalization.delegate,
@@ -65,23 +75,27 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: AppLocalization.supportedLocales,
-      home: const MyHomePage(),
-      initialRoute: '/',
+      // home: const MyHomePage(),
       routes: _getRoutes(),
     );
   }
 
   Map<String, WidgetBuilder> _getRoutes() {
     return {
-      // '/': (context) => const MyHomePage(),
+      '/': (context) => const MyHomePage(),
       '/draft': (context) => DraftPage(),
+      '/about': (context) => AboutPage(),
       '/dusty': (context) => DustyDraftPage(),
       '/ordinary': (context) => const OrdinaryPage(),
       '/exotic': (context) => ExoticOrdinaryPage(),
       '/boutique': (context) => TheExoticBoutiquePage(),
+      '/assetpicker': (context) => AssetPickerPage(),
+      '/assetlab': (context) => AssetLabPage(),
       '/settings': (context) {
         final settingsController = Provider.of<SettingsController>(context);
-        return SettingsView(controller: settingsController);
+        return SettingsView(
+          controller: settingsController,
+        );
       },
     };
   }
@@ -93,20 +107,19 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pageKey = _getPageKey(context);
+
     final localizationProvider = Provider.of<LocalizationProvider>(context);
 
     return Scaffold(
-      drawer: CommonDrawer(pageKey: pageKey),
+      endDrawer: CommonDrawer(pageKey: pageKey),
       appBar: CommonAppBar(
         backgroundColor: Colors.white,
-        iconColor: Colors.black,
         actions: [
           _buildLanguageSwitchButton(localizationProvider, context),
         ],
         pageKey: pageKey,
       ),
       body: _buildBody(context),
-      bottomNavigationBar: buildFooter(context),
       floatingActionButton: _buildFloatingActionButton(pageKey, context),
     );
   }
@@ -135,120 +148,397 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
+  // Widget _buildBody(BuildContext context) {
+  //   return const Center(
+  //     child: Text(
+  //       'BODY TEST',
+  //       style: TextStyle(
+  //         fontSize: 40,
+  //         color: Colors.red,
+  //       ),
+  //     ),
+  //   );
+  // }
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CardButtonWithTextOverImage(
-            title: AppLocalization.of(context)?.homePageButton1 ??
-                'Fallback message',
-            tacticPath: 'assets/draft/crumpled_paper_1405.jpg',
-            onPressed: () => Navigator.pushNamed(context, '/draft'),
-            textStyle: getFontStyle(fontSet: 'DraftFont', styleType: 'heading')
-                .copyWith(
-              color: lightModeDraftColorSet['textPrimaryColor'],
-              shadows: [
-                Shadow(
-                  blurRadius: 5.0,
-                  color: Colors.black
-                      .withOpacity(0.3), // Black shadow with opacity
-                  offset: Offset(3.0, 3.0), // Shadow offset
-                ),
-              ],
-            ),
-            pageKey: 'draft',
+          _buildHero(context),
+          const Divider(
+            height: 1,
+            thickness: 0.8,
+            color: const Color(0xFFC8C8C8),
           ),
-          CardButtonWithTextOverImage(
-            title: AppLocalization.of(context)?.homePageButton2 ??
-                'Fallback message',
-            tacticPath:
-                'assets/dusty/brown-background-water-reflection-texture.jpg',
-            onPressed: () => Navigator.pushNamed(context, '/dusty'),
-            textStyle: getFontStyle(fontSet: 'DustyFont', styleType: 'heading')
-                .copyWith(
-              color: lightModeDustyColorSet['textPrimaryColor'],
-              shadows: [
-                Shadow(
-                  blurRadius: 5.0,
-                  color: Colors.black
-                      .withOpacity(0.3), // Black shadow with opacity
-                  offset: Offset(3.0, 3.0), // Shadow offset
-                ),
-              ],
-            ),
-            pageKey: 'dusty',
+          _buildDustySection(context),
+          const Divider(
+            height: 1,
+            thickness: 0.8,
+            color: const Color(0xFFC8C8C8),
           ),
-          CardButtonWithTextOverImage(
-            title: AppLocalization.of(context)?.homePageButton3 ??
-                'Fallback message',
-            tacticPath: 'assets/ordinary/background_1.png',
-            onPressed: () => Navigator.pushNamed(context, '/ordinary'),
-            textStyle:
-                getFontStyle(fontSet: 'OrdinaryFont', styleType: 'heading')
-                    .copyWith(
-              color: lightModeOrdinaryColorSet['textPrimaryColor'],
-              shadows: [
-                Shadow(
-                  blurRadius: 5.0,
-                  color: Colors.black
-                      .withOpacity(0.3), // Black shadow with opacity
-                  offset: Offset(3.0, 3.0), // Shadow offset
-                ),
-              ],
-            ),
-            pageKey: 'ordinary',
+          _buildExoticSection(context),
+          const Divider(
+            height: 1,
+            thickness: 0.8,
+            color: const Color(0xFFC8C8C8),
           ),
-          CardButtonWithTextOverImage(
-            title: AppLocalization.of(context)?.homePageButton4 ??
-                'Fallback message',
-            tacticPath: 'assets/AdobeStock_228406900.jpeg',
-            onPressed: () => Navigator.pushNamed(context, '/exotic'),
-            textStyle: getFontStyle(fontSet: 'ExoticFont', styleType: 'heading')
-                .copyWith(
-              color: lightModeExoticColorSet['textPrimaryColor'],
-              shadows: [
-                Shadow(
-                  blurRadius: 5.0,
-                  color: Colors.black
-                      .withOpacity(0.3), // Black shadow with opacity
-                  offset: Offset(3.0, 3.0), // Shadow offset
-                ),
-              ],
-            ),
-            pageKey: 'exotic',
+          _buildAssetPickerSection(context),
+          const Divider(
+            height: 1,
+            thickness: 0.8,
+            color: const Color(0xFFC8C8C8),
           ),
-          CardButtonWithTextOverImage(
-            title: AppLocalization.of(context)?.homePageButton5 ??
-                'Fallback message',
-            tacticPath: 'assets/boutique/door_image.jpg',
-            onPressed: () => Navigator.pushNamed(context, '/boutique'),
-            textStyle:
-                getFontStyle(fontSet: 'BoutiqueFont', styleType: 'heading')
-                    .copyWith(
-              color: lightModeBoutiqueColorSet['textPrimaryColor'],
-              shadows: [
-                Shadow(
-                  blurRadius: 5.0,
-                  color: Colors.black
-                      .withOpacity(0.3), // Black shadow with opacity
-                  offset: Offset(3.0, 3.0), // Shadow offset
-                ),
-              ],
+          buildFooter(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHero(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        24,
+        32,
+        24,
+        24,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'DRAFT Co.',
+            style: theme.textTheme.headlineMedium?.copyWith(
+              fontWeight: FontWeight.bold,
             ),
-            pageKey: 'boutique',
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Independent Brands · Contents · Tools',
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: theme.colorScheme.onSurface.withOpacity(0.8),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Founded in Seoul, 2019',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurface.withOpacity(0.6),
+            ),
           ),
         ],
       ),
     );
   }
 
+  Widget _buildDustySection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle(
+          context,
+          'Dusty Draft',
+          'Ongoing Projects & Archive',
+        ),
+        SizedBox(
+          height: 340,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+            ),
+            children: [
+              CardButtonWithTextOverImage(
+                title: 'Dusty Draft',
+                tacticPath:
+                    'assets/dusty/brown-background-water-reflection-texture.jpg',
+                pageKey: 'dusty',
+                width: 360,
+                height: 300,
+                textStyle: getFontStyle(
+                  fontSet: 'DustyFont',
+                  styleType: 'heading',
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/dusty',
+                  );
+                },
+              ),
+              const SizedBox(width: 24),
+              CardButtonWithTextOverImage(
+                title: 'Dustie',
+                tacticPath: 'assets/dusty/dusty-agent-white.png',
+                pageKey: 'dusty',
+                width: 360,
+                height: 300,
+                textStyle: getFontStyle(
+                  fontSet: 'DustyFont',
+                  styleType: 'heading',
+                ),
+                onPressed: () {},
+              ),
+              const SizedBox(width: 24),
+              CardButtonWithTextOverImage(
+                title: 'painter',
+                tacticPath: 'assets/dusty/dusty-agent-white.png',
+                pageKey: 'dusty',
+                width: 360,
+                height: 300,
+                textStyle: getFontStyle(
+                  fontSet: 'DustyFont',
+                  styleType: 'heading',
+                ),
+                onPressed: () {},
+              ),
+              const SizedBox(width: 24),
+              CardButtonWithTextOverImage(
+                title: 'diary',
+                tacticPath: 'assets/dusty/dusty-agent-white.png',
+                pageKey: 'dusty',
+                width: 360,
+                height: 300,
+                textStyle: getFontStyle(
+                  fontSet: 'DustyFont',
+                  styleType: 'heading',
+                ),
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 32),
+      ],
+    );
+  }
+
+  Widget _buildExoticSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle(
+          context,
+          'Exotic Ordinary',
+          'Official, Boutique & Contents',
+        ),
+        SizedBox(
+          height: 280,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+            ),
+            children: [
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'Official',
+                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
+                  pageKey: 'exotic',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'ExoticFont',
+                    styleType: 'heading',
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/exotic',
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(width: 20),
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'Youtube',
+                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
+                  pageKey: 'exotic',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'ExoticFont',
+                    styleType: 'heading',
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              const SizedBox(width: 20),
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'Instagram',
+                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
+                  pageKey: 'exotic',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'ExoticFont',
+                    styleType: 'heading',
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              const SizedBox(width: 20),
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'Virtual Boutique',
+                  tacticPath: 'assets/boutique/door_image.jpg',
+                  pageKey: 'boutique',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'BoutiqueFont',
+                    styleType: 'heading',
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              const SizedBox(width: 20),
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'The Exotic Boutique',
+                  tacticPath: 'assets/boutique/door_image.jpg',
+                  pageKey: 'boutique',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'BoutiqueFont',
+                    styleType: 'heading',
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/boutique',
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 40),
+      ],
+    );
+  }
+
+  Widget _buildAssetPickerSection(
+    BuildContext context,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle(
+          context,
+          'ASSETPICKER',
+          'Asset Research & Information',
+        ),
+        SizedBox(
+          height: 260,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+            ),
+            children: [
+              SizedBox(
+                width: 280,
+                child: CardButton(
+                  title: 'ASSET Lab',
+                  tacticPath:
+                      'assets/dusty/brown-background-water-reflection-texture.jpg',
+                  pageKey: 'assetpicker',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/assetlab',
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(width: 16),
+              SizedBox(
+                width: 280,
+                child: CardButton(
+                  title: 'ASSET Picker',
+                  tacticPath: 'assets/dusty/dusty-agent-white.png',
+                  pageKey: 'assetpicker',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/assetpicker',
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 32),
+      ],
+    );
+  }
+
+  Widget _buildSectionTitle(
+    BuildContext context,
+    String title,
+    String subtitle,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        24,
+        32,
+        24,
+        24,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w700,
+              color: isDark ? Colors.white : Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            subtitle,
+            style: TextStyle(
+              fontSize: 14,
+              color: isDark ? Colors.white60 : Colors.black54,
+            ),
+          ),
+          const SizedBox(height: 24),
+        ],
+      ),
+    );
+  }
+
   FloatingAction _buildFloatingActionButton(
-      String pageKey, BuildContext context) {
+    String pageKey,
+    BuildContext context,
+  ) {
+    final themeMode = Provider.of<SettingsController>(context).themeMode;
+
     return FloatingAction(
       imagePath: 'assets/dusty/dusty-agent-white.png',
       onPressed: () => launchURL('https://dustyagent.chat', context),
-      pageKey: pageKey,
-      themeMode: ThemeMode.light,
+      themeMode: themeMode,
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor; // AppBar 배경색
-  final Color iconColor; // 아이콘 색상
   final List<Widget> actions; // 추가 아이콘 버튼 리스트
   final String pageKey; // 페이지 키
 
@@ -11,7 +10,6 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.pageKey,
     this.backgroundColor = Colors.transparent, // 기본값: 투명
-    this.iconColor = Colors.black,
     this.actions = const [], // 기본값: 빈 리스트
   });
 
@@ -33,28 +31,112 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final iconColor = isDark ? Colors.white : Colors.black;
     return AppBar(
-      backgroundColor: backgroundColor,
-      elevation: 1,
-      leading: IconButton(
-        icon: Icon(Icons.menu, color: iconColor),
-        onPressed: () {
-          Scaffold.of(context).openDrawer(); // 기존 showDialog 대신 사용
-        },
-      ),
-      title: Center(
-        child: GestureDetector(
-          onTap: () => Navigator.pushNamed(context, '/'),
-          child: Tooltip(
-            message: 'Go to Home',
+      automaticallyImplyLeading: false,
+      backgroundColor: isDark ? Colors.black : Colors.white,
+      foregroundColor: isDark ? Colors.white : Colors.black,
+      elevation: 0,
+      title: Row(
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/about');
+            },
             child: Image.asset(
-              _logoPath, // 자동 매핑된 로고 사용
+              _logoPath,
               height: 32,
             ),
           ),
-        ),
+          const SizedBox(width: 6),
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/');
+            },
+            child: Text(
+              'Home',
+              style: TextStyle(
+                color: isDark ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+          Text(
+            '|',
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/draft');
+            },
+            child: Text(
+              'Company',
+              style: TextStyle(
+                color: isDark ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+          Text(
+            '|',
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/ordinary');
+            },
+            child: Text(
+              'Ordinary Life',
+              style: TextStyle(
+                color: isDark ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: SizedBox(
+              height: 38,
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: ' Search Draft...',
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.grey.shade600,
+                    ),
+                    contentPadding: EdgeInsets.zero,
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.grey.shade400,
+                      width: 1,
+                    )),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey.shade600,
+                        width: 1,
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.grey.shade400,
+                      width: 1,
+                    ))),
+              ),
+            ),
+          ),
+        ],
       ),
       actions: [
+        Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu, color: iconColor),
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
+          ),
+        ),
         IconButton(
           icon: Icon(Icons.language, color: iconColor),
           tooltip: 'Change Language',

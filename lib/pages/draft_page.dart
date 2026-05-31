@@ -55,10 +55,9 @@ class DraftPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: lightModeDraftColorSet['backgroundColor'],
-      drawer: CommonDrawer(pageKey: 'draft'),
+      endDrawer: CommonDrawer(pageKey: 'draft'),
       appBar: CommonAppBar(
         backgroundColor: appBarBackgroundColor,
-        iconColor: appBarIconColor,
         actions: [
           IconButton(
             icon: Icon(Icons.language, color: appBarIconColor),
@@ -138,7 +137,6 @@ class DraftPage extends StatelessWidget {
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
         onPressed: () => launchURL('https://dustyagent.chat', context),
-        pageKey: 'draft',
         themeMode: ThemeMode.dark,
       ),
     );

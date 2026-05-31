@@ -35,7 +35,7 @@ class DustyDraftPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: dustyColorSet['backgroundColor'],
-      drawer: CommonDrawer(pageKey: pageKey),
+      endDrawer: CommonDrawer(pageKey: pageKey),
       appBar: _buildAppBar(context, dustyColorSet),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 0),
@@ -64,7 +64,6 @@ class DustyDraftPage extends StatelessWidget {
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
         onPressed: () => launchURL('https://dustyagent.chat', context),
-        pageKey: pageKey,
         themeMode: settingsController.themeMode,
       ),
     );
@@ -75,7 +74,6 @@ class DustyDraftPage extends StatelessWidget {
       BuildContext context, Map<String, Color> dustyColorSet) {
     return CommonAppBar(
       backgroundColor: dustyColorSet['primaryColor']!,
-      iconColor: dustyColorSet['textPrimaryColor']!,
       actions: [
         IconButton(
           icon: const Icon(Icons.language),

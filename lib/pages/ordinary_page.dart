@@ -60,10 +60,9 @@ class OrdinaryPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: ordinaryColorSet['backgroundColor'],
-      drawer: CommonDrawer(pageKey: 'ordinary'),
+      endDrawer: CommonDrawer(pageKey: 'ordinary'),
       appBar: CommonAppBar(
         backgroundColor: appBarBackgroundColor,
-        iconColor: appBarIconColor,
         actions: [
           IconButton(
             icon: Icon(
@@ -182,7 +181,6 @@ class OrdinaryPage extends StatelessWidget {
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
         onPressed: () => launchURL('https://dustyagent.chat', context),
-        pageKey: 'boutique',
         themeMode: ThemeMode.light,
       ),
     );

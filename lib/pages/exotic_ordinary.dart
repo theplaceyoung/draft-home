@@ -69,10 +69,9 @@ class ExoticOrdinaryPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: exoticColorSet['backgroundColor'],
-      drawer: CommonDrawer(pageKey: 'exotic'),
+      endDrawer: CommonDrawer(pageKey: 'exotic'),
       appBar: CommonAppBar(
         backgroundColor: exoticColorSet['primaryColor'] ?? Colors.black,
-        iconColor: exoticColorSet['textSecondaryColor'] ?? Colors.white,
         actions: [
           IconButton(
             icon: Icon(Icons.language,
@@ -185,7 +184,6 @@ class ExoticOrdinaryPage extends StatelessWidget {
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
         onPressed: () => launchURL('https://dustyagent.chat', context),
-        pageKey: 'exotic',
         themeMode: ThemeMode.light,
       ),
     );

@@ -15,51 +15,56 @@ class CardButtonWithTextOverImage extends StatelessWidget {
   final TextStyle textStyle; // TextStyle을 직접 받음
   final String pageKey; // 색상 및 폰트를 가져오기 위한 키
 
+  final double width;
+  final double height;
   const CardButtonWithTextOverImage({
     required this.title,
     required this.tacticPath,
     required this.onPressed,
-    this.shape = CardShape.rectangle,
-    required this.textStyle, // textStyle을 직접 받음
+    required this.textStyle,
     required this.pageKey,
+    this.width = 360,
+    this.height = 300,
+    this.shape = CardShape.rectangle,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final colorSet = _getColorSet(pageKey); // 색상 세트 가져오기
-
     return GestureDetector(
       onTap: onPressed,
-      child: Card(
-        shape: _getShape(), // 모양 설정
-        clipBehavior: Clip.antiAlias, // 모양 외부 클리핑
-        elevation: 4, // 그림자 효과
-        color: colorSet['primary'], // 카드 배경색
-        child: Stack(
-          children: [
-            // 이미지
-            Image.asset(
-              tacticPath,
-              fit: BoxFit.cover,
-              height: shape == CardShape.circle ? 300 : 300, // 높이 설정
-              width: double.infinity,
-            ),
-            // 텍스트 위에 올려놓기
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  title,
-                  style: textStyle.copyWith(
-                    color: colorSet['textPrimary'], // 전달받은 textStyle에 색상 추가
-                    backgroundColor: Colors.black.withOpacity(0), // 텍스트 배경 반투명
+      child: SizedBox(
+        width: width,
+        child: Card(
+          shape: _getShape(),
+          clipBehavior: Clip.antiAlias,
+          elevation: 4,
+          color: colorSet['primary'],
+          child: Stack(
+            children: [
+              Image.asset(
+                tacticPath,
+                fit: BoxFit.cover,
+                height: height,
+                width: width,
+              ),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    title,
+                    style: textStyle.copyWith(
+                      color: colorSet['textPrimary'], // 전달받은 textStyle에 색상 추가
+                      backgroundColor:
+                          Colors.black.withOpacity(0), // 텍스트 배경 반투명
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
