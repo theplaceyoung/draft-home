@@ -272,7 +272,9 @@ class MyHomePage extends StatelessWidget {
                   fontSet: 'DustyFont',
                   styleType: 'cardTitle',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  launchURL(DraftUrls.dustyAgent, context);
+                },
               ),
               const SizedBox(width: 24),
               CardButtonWithTextOverImage(
@@ -502,8 +504,8 @@ class MyHomePage extends StatelessWidget {
 
     return FloatingAction(
       imagePath: 'assets/dusty/dusty-agent-white.png',
-      onPressed:
-          () => launchURL('https://dusty-agent.github.io/dustie/', context),
+      onPressed: () =>
+          launchURL('https://dusty-agent.github.io/dustie/', context),
       themeMode: themeMode,
     );
   }
