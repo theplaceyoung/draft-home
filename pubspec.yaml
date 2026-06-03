@@ -30,13 +30,19 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/l10n/app_en.arb
-    - assets/l10n/app_ko.arb
+    - lib/l10n/app_en.arb
+    - lib/l10n/app_ko.arb
     - assets/draft/logo_draft_transparentBG.png
     - assets/draft/crumpled_paper_1405.jpg
     - assets/draft/logo_symbol_draft.png
+    - assets/draft/draft_ecosystem.png
+    - assets/draft/my_creative_canvas_description.png
+    - assets/draft/goals_and_missions.png
     - assets/dusty/logo_dustydraft.png
+    - assets/dusty/logo_dustydraft+bg.png
     - assets/dusty/dusty-agent-white.png
+    - assets/dusty/dusty-agent-white+bg.png
+    - assets/dusty/dusty-agent-white+bg+gd.png
     - assets/dusty/logo_symbol_draft_grey.png
     - assets/dusty/DRAFT_dustydraft_service-description_24.pdf
     - assets/dusty/brown-background-water-reflection-texture.jpg
@@ -44,6 +50,8 @@ flutter:
     - assets/exotic/exotic-48x48.png
     - assets/exotic/exoticordinary_background.jpg
     - assets/exotic/logo_exoticordinary.png
+    - assets/exotic/exotic-instagram.jpg
+    - assets/exotic/exoticVoutique.png
     - assets/boutique/door_image.jpg
     - assets/boutique/logo_the_boutique.png
     - assets/boutique/exotic-yellow.png
@@ -58,32 +66,61 @@ flutter:
     - assets/instagram_icon.png
     - lib/contents/PrivacyPolicy.md
     - lib/contents/TermsOfService.md
+    - assets/fonts/
+    - assets/assetpicker/assetpicker-hero.jpg
+    - assets/dusty/painter.png
+    - assets/dusty/dusty_painter.png
 
   fonts:
-    - family: DraftFont
+    # - family: HomeFont
+    #   fonts:
+    #     - asset: assets/fonts/draft/IBMPlexSerif-Regular.ttf
+    #     - asset: assets/fonts/draft/Barlow-Regular.ttf
+    #     - asset: assets/fonts/draft/PretendardVariable.ttf   
+    - family: DraftFontMain
       fonts:
         - asset: assets/fonts/draft/IBMPlexSerif-Regular.ttf
+    - family: DraftFontSub
+      fonts:
         - asset: assets/fonts/draft/Barlow-Regular.ttf
+    - family: DraftFont
+      fonts:
         - asset: assets/fonts/draft/PretendardVariable.ttf      
-    - family: DustyFont
+    - family: DustyFontMain
       fonts:
         - asset: assets/fonts/dusty/BarlowSemiCondensed-Regular.ttf
+    - family: DustyFontSub
+      fonts:
         - asset: assets/fonts/dusty/RalewayDots-Regular.ttf
+    - family: DustyFont
+      fonts:
         - asset: assets/fonts/dusty/PretendardVariable.ttf
-    - family: ExoticFont
+    - family: ExoticFontMain
       fonts:
         - asset: assets/fonts/exotic/DancingScript-Regular.ttf
+    - family: ExoticFontSub
+      fonts:
         - asset: assets/fonts/exotic/Lora-Regular.ttf
+    - family: ExoticFont
+      fonts:
         - asset: assets/fonts/exotic/PretendardVariable.ttf
-    - family: BoutiqueFont
+    - family: BoutiqueFontMain
       fonts:
         - asset: assets/fonts/boutique/CormorantGaramond-Regular.ttf
+    - family: BoutiqueFontSub
+      fonts:
         - asset: assets/fonts/boutique/Poppins-Regular.ttf
+    - family: BoutiqueFont
+      fonts:
         - asset: assets/fonts/boutique/PretendardVariable.ttf
-    - family: OrdinaryFont
+    - family: OrdinaryFontMain
       fonts:
         - asset: assets/fonts/ordinary/Montserrat-Regular.ttf
+    - family: OrdinaryFontSub
+      fonts:
         - asset: assets/fonts/ordinary/Lato-Regular.ttf
+    - family: OrdinaryFont
+      fonts:
         - asset: assets/fonts/ordinary/PretendardVariable.ttf
   
 flutter_localizations:

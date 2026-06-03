@@ -1,20 +1,39 @@
+import 'package:draft_home/pages/about_page.dart';
 import 'package:draft_home/pages/private_policy_page.dart';
 import 'package:draft_home/pages/terms_of_service_page.dart';
 import 'package:flutter/material.dart';
 
 Widget buildFooter(BuildContext context) {
   return Container(
-    color: Colors.grey[200], // Footer background color
-    padding: const EdgeInsets.symmetric(vertical: 12.0),
+    color: const Color(0xFF111111),
+    padding: const EdgeInsets.all(16),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const AboutPage(),
+              ),
+            );
+          },
+          child: const Text(
+            'About',
+            style: TextStyle(
+              color: Color(0xFFE6B800),
+            ),
+          ),
+        ),
         _buildFooterLinks(context),
         const SizedBox(height: 8),
-        const Text(
-          '© 2025 Draft Co. All rights reserved.',
-          style: TextStyle(fontSize: 14, color: Colors.black54),
-          textAlign: TextAlign.center,
+        Text(
+          '© 2019-${DateTime.now().year} DRAFT Co.',
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.white54,
+          ),
         ),
       ],
     ),
@@ -25,31 +44,45 @@ Widget _buildFooterLinks(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      _buildFooterLink(
-        context,
-        label: 'Privacy Policy',
-        onTap: () => _navigateTo(context, const PrivacyPolicyPage()),
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const PrivacyPolicyPage(),
+            ),
+          );
+        },
+        child: const Text(
+          'Privacy Policy',
+          style: TextStyle(
+            color: Color(0xFFE6B800),
+          ),
+        ),
       ),
-      const SizedBox(width: 8),
-      const Text('|', style: TextStyle(fontSize: 14, color: Colors.black54)),
-      const SizedBox(width: 8),
-      _buildFooterLink(
-        context,
-        label: 'Terms of Service',
-        onTap: () => _navigateTo(context, const TermsOfServicePage()),
+      const Text(
+        '|',
+        style: TextStyle(
+          color: Colors.white38,
+        ),
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const TermsOfServicePage(),
+            ),
+          );
+        },
+        child: const Text(
+          'Terms of Service',
+          style: TextStyle(
+            color: Color(0xFFE6B800),
+          ),
+        ),
       ),
     ],
-  );
-}
-
-Widget _buildFooterLink(BuildContext context,
-    {required String label, required VoidCallback onTap}) {
-  return TextButton(
-    onPressed: onTap,
-    child: Text(
-      label,
-      style: const TextStyle(fontSize: 14),
-    ),
   );
 }
 

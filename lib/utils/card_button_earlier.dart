@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:draft_home/utils/color_map.dart';
+import 'package:draft_home/themes/color_set.dart';
 
 enum CardShape {
   rectangle,
@@ -76,7 +76,6 @@ class CardButton extends StatelessWidget {
       case CardShape.circle:
         return const CircleBorder();
       case CardShape.rectangle:
-      default:
         return const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         );
@@ -87,17 +86,17 @@ class CardButton extends StatelessWidget {
   Map<String, Color> _getColorSet(String key) {
     switch (key) {
       case 'draft':
-        return draftColorSet;
+        return lightModeDraftColorSet; // lightModeDraftColorSet 반환
       case 'dusty':
-        return dustyColorSet;
+        return lightModeDustyColorSet; // lightModeDustyColorSet 반환
       case 'ordinary':
-        return ordinaryColorSet;
+        return lightModeOrdinaryColorSet; // lightModeOrdinaryColorSet 반환
       case 'exotic':
-        return exoticColorSet;
+        return lightModeExoticColorSet; // lightModeExoticColorSet 반환
       case 'boutique':
-        return boutiqueColorSet;
+        return lightModeBoutiqueColorSet; // lightModeBoutiqueColorSet 반환
       default:
-        return ordinaryColorSet; // 기본 색상 세트
+        return lightModeOrdinaryColorSet; // 기본 색상 세트
     }
   }
 

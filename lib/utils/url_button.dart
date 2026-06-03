@@ -23,9 +23,9 @@ class UrlButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: colorSet['accent'], // secondary 색상
-        foregroundColor: colorSet['primary'], // 텍스트 색상
-        shadowColor: colorSet['primary']?.withOpacity(0.5), // 그림자 색상
+        backgroundColor: colorSet['primaryColor'], // secondary 색상
+        foregroundColor: colorSet['textPrimaryColor'], // 텍스트 색상
+        shadowColor: colorSet['accentColor']?.withOpacity(0.5), // 그림자 색상
         elevation: 6, // 그림자 효과 높이
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
         shape: RoundedRectangleBorder(
@@ -37,7 +37,7 @@ class UrlButton extends StatelessWidget {
         style: TextStyle(
           fontSize: fontSize, // 폰트 크기
           fontFamily: fontFamily, // 폰트 패밀리 이름
-          color: colorSet['textPrimary'], // 텍스트 색상
+          color: colorSet['textPrimaryColor'], // 텍스트 색상
         ),
       ),
     );

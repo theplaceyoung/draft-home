@@ -37,5 +37,5 @@
    - Any changes to the privacy policy will be communicated to users.
 
 개인정보보호 책임자 | Privacy Office
-- 장 소 영(Amanda Jang, theplaceyoung@gmail.com)
+- 장 소 영(Amanda Jang, soyoung@dustydraft.com)
 
