@@ -98,9 +98,7 @@ class MyApp extends StatelessWidget {
       '/virtualBoutique': (context) => VirtualBoutiquePage(),
       '/settings': (context) {
         final settingsController = Provider.of<SettingsController>(context);
-        return SettingsView(
-          controller: settingsController,
-        );
+        return SettingsView(controller: settingsController);
       },
     };
   }
@@ -119,9 +117,7 @@ class MyHomePage extends StatelessWidget {
       endDrawer: CommonDrawer(pageKey: pageKey),
       appBar: CommonAppBar(
         backgroundColor: Colors.white,
-        actions: [
-          _buildLanguageSwitchButton(localizationProvider, context),
-        ],
+        actions: [_buildLanguageSwitchButton(localizationProvider, context)],
         pageKey: pageKey,
       ),
       body: _buildBody(context),
@@ -145,9 +141,12 @@ class MyHomePage extends StatelessWidget {
         debugPrint("현재 언어: ${provider.locale.languageCode}");
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text(provider.locale.languageCode == 'en'
+            content: Text(
+              provider.locale.languageCode == 'en'
                   ? 'Language changed to English!'
-                  : '언어가 변경되었습니다!')),
+                  : '언어가 변경되었습니다!',
+            ),
+          ),
         );
       },
     );
@@ -203,12 +202,7 @@ class MyHomePage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        24,
-        32,
-        24,
-        24,
-      ),
+      padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -251,9 +245,7 @@ class MyHomePage extends StatelessWidget {
           height: 300,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             children: [
               CardButtonWithTextOverImage(
                 title: '',
@@ -266,10 +258,7 @@ class MyHomePage extends StatelessWidget {
                   styleType: 'cardTitle',
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/dusty',
-                  );
+                  Navigator.pushNamed(context, '/dusty');
                 },
               ),
               const SizedBox(width: 24),
@@ -297,10 +286,7 @@ class MyHomePage extends StatelessWidget {
                   styleType: 'cardTitle',
                 ),
                 onPressed: () {
-                  launchURL(
-                    DraftUrls.painter,
-                    context,
-                  );
+                  launchURL(DraftUrls.painter, context);
                 },
               ),
               const SizedBox(width: 24),
@@ -338,9 +324,7 @@ class MyHomePage extends StatelessWidget {
           height: 280,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             children: [
               SizedBox(
                 width: 240,
@@ -354,10 +338,7 @@ class MyHomePage extends StatelessWidget {
                     styleType: 'cardTitle',
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/exotic',
-                    );
+                    Navigator.pushNamed(context, '/exotic');
                   },
                 ),
               ),
@@ -374,10 +355,7 @@ class MyHomePage extends StatelessWidget {
                     styleType: 'cardTitle',
                   ),
                   onPressed: () {
-                    launchURL(
-                      DraftUrls.exoticArchive,
-                      context,
-                    );
+                    launchURL(DraftUrls.exoticArchive, context);
                   },
                 ),
               ),
@@ -394,10 +372,7 @@ class MyHomePage extends StatelessWidget {
                     styleType: 'cardTitle',
                   ),
                   onPressed: () {
-                    launchURL(
-                      DraftUrls.exoticInstagram,
-                      context,
-                    );
+                    launchURL(DraftUrls.exoticInstagram, context);
                   },
                 ),
               ),
@@ -414,10 +389,7 @@ class MyHomePage extends StatelessWidget {
                     styleType: 'cardTitle',
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/virtualBoutique',
-                    );
+                    Navigator.pushNamed(context, '/virtualBoutique');
                   },
                 ),
               ),
@@ -434,10 +406,7 @@ class MyHomePage extends StatelessWidget {
                     styleType: 'cardTitle',
                   ),
                   onPressed: () {
-                    launchURL(
-                      DraftUrls.theExoticBoutique,
-                      context,
-                    );
+                    launchURL(DraftUrls.theExoticBoutique, context);
                   },
                 ),
               ),
@@ -449,9 +418,7 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildAssetPickerSection(
-    BuildContext context,
-  ) {
+  Widget _buildAssetPickerSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -462,9 +429,7 @@ class MyHomePage extends StatelessWidget {
           'INVEST BEYOND THE NOISE',
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: CardButtonWithTextOverImage(
             title: 'ASSETPICKER\nResearch & Investing',
             tacticPath: 'assets/assetpicker/assetpicker-hero.jpg',
@@ -476,10 +441,7 @@ class MyHomePage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             onPressed: () {
-              launchURL(
-                DraftUrls.assetPicker,
-                context,
-              );
+              launchURL(DraftUrls.assetPicker, context);
             },
           ),
         ),
@@ -497,12 +459,7 @@ class MyHomePage extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        24,
-        32,
-        24,
-        6,
-      ),
+      padding: const EdgeInsets.fromLTRB(24, 32, 24, 6),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -545,7 +502,8 @@ class MyHomePage extends StatelessWidget {
 
     return FloatingAction(
       imagePath: 'assets/dusty/dusty-agent-white.png',
-      onPressed: () => launchURL('https://dustyagent.chat', context),
+      onPressed:
+          () => launchURL('https://dusty-agent.github.io/dustie/', context),
       themeMode: themeMode,
     );
   }

@@ -26,9 +26,10 @@ class DustyDraftPage extends StatelessWidget {
 
     // 테마 설정
     final settingsController = Provider.of<SettingsController>(context);
-    final dustyColorSet = settingsController.themeMode == ThemeMode.dark
-        ? darkModeDustyColorSet
-        : lightModeDustyColorSet;
+    final dustyColorSet =
+        settingsController.themeMode == ThemeMode.dark
+            ? darkModeDustyColorSet
+            : lightModeDustyColorSet;
 
     _getTheme(pageKey, settingsController);
     Localizations.localeOf(context);
@@ -63,7 +64,8 @@ class DustyDraftPage extends StatelessWidget {
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
-        onPressed: () => launchURL('https://dustyagent.chat', context),
+        onPressed:
+            () => launchURL('https://dusty-agent.github.io/dustie/', context),
         themeMode: settingsController.themeMode,
       ),
     );
@@ -71,7 +73,9 @@ class DustyDraftPage extends StatelessWidget {
 
   // AppBar을 동적으로 생성하는 메서드
   CommonAppBar _buildAppBar(
-      BuildContext context, Map<String, Color> dustyColorSet) {
+    BuildContext context,
+    Map<String, Color> dustyColorSet,
+  ) {
     return CommonAppBar(
       backgroundColor: dustyColorSet['primaryColor']!,
       actions: [
@@ -107,14 +111,16 @@ class DustyDraftPage extends StatelessWidget {
   // 언어 전환 로직
   void _toggleLanguage(BuildContext context) {
     final currentLocale = Localizations.localeOf(context);
-    final newLocale = currentLocale.languageCode == 'en'
-        ? const Locale('ko')
-        : const Locale('en');
+    final newLocale =
+        currentLocale.languageCode == 'en'
+            ? const Locale('ko')
+            : const Locale('en');
     context.read<LocalizationProvider>().changeLocale(newLocale);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-            'Language changed to ${newLocale.languageCode.toUpperCase()}!'),
+          'Language changed to ${newLocale.languageCode.toUpperCase()}!',
+        ),
       ),
     );
   }
@@ -128,23 +134,26 @@ class DustyDraftPage extends StatelessWidget {
 
   // 텍스트 섹션
   Widget _buildTextSection(
-      BuildContext context,
-      LocalizationProvider localizationProvider,
-      Map<String, Color> dustyColorSet) {
+    BuildContext context,
+    LocalizationProvider localizationProvider,
+    Map<String, Color> dustyColorSet,
+  ) {
     final appLocalizations = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           _buildLocalizedText(
-              appLocalizations?.dustyPageMessage1 ?? 'Fallback message',
-              'DustyFontMain',
-              dustyColorSet),
+            appLocalizations?.dustyPageMessage1 ?? 'Fallback message',
+            'DustyFontMain',
+            dustyColorSet,
+          ),
           const SizedBox(height: 100),
           _buildLocalizedText(
-              appLocalizations?.dustyPageMessage2 ?? 'Fallback message',
-              'DustyFontSub',
-              dustyColorSet),
+            appLocalizations?.dustyPageMessage2 ?? 'Fallback message',
+            'DustyFontSub',
+            dustyColorSet,
+          ),
         ],
       ),
     );
@@ -152,9 +161,10 @@ class DustyDraftPage extends StatelessWidget {
 
   // 버튼을 포함하는 URL 섹션
   Widget _buildUrlButton(
-      BuildContext context,
-      LocalizationProvider localizationProvider,
-      Map<String, Color> dustyColorSet) {
+    BuildContext context,
+    LocalizationProvider localizationProvider,
+    Map<String, Color> dustyColorSet,
+  ) {
     final appLocalizations = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -170,9 +180,10 @@ class DustyDraftPage extends StatelessWidget {
           ),
           const SizedBox(height: 100),
           _buildLocalizedText(
-              appLocalizations?.dustyPageMessage3 ?? 'Fallback message',
-              'DustyFontSub',
-              dustyColorSet),
+            appLocalizations?.dustyPageMessage3 ?? 'Fallback message',
+            'DustyFontSub',
+            dustyColorSet,
+          ),
         ],
       ),
     );
@@ -180,17 +191,20 @@ class DustyDraftPage extends StatelessWidget {
 
   // PDF 버튼 추가
   Widget _buildFooterButton(
-      BuildContext context,
-      LocalizationProvider localizationProvider,
-      Map<String, Color> dustyColorSet) {
+    BuildContext context,
+    LocalizationProvider localizationProvider,
+    Map<String, Color> dustyColorSet,
+  ) {
     final appLocalizations = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: UrlButton(
         label: appLocalizations?.dustyButtonMessage2 ?? 'Fallback message',
-        onPressed: () => launchURL(
-            'https://github.com/theplaceyoung/draft_co/blob/main/assets/DRAFT_dustydraft_service-description_24.pdf',
-            context),
+        onPressed:
+            () => launchURL(
+              'https://github.com/theplaceyoung/draft_co/blob/main/assets/DRAFT_dustydraft_service-description_24.pdf',
+              context,
+            ),
         colorSet: dustyColorSet,
         fontFamily: 'DustyFontMain',
         fontSize: FontSizeOptions.medium,
@@ -201,27 +215,35 @@ class DustyDraftPage extends StatelessWidget {
 
   // 텍스트를 로컬라이징하여 반환
   Widget _buildLocalizedText(
-      String message, String font, Map<String, Color> dustyColorSet) {
+    String message,
+    String font,
+    Map<String, Color> dustyColorSet,
+  ) {
     return Text(
       message,
-      style: getFontStyle(fontSet: font, styleType: 'heading')
-          .copyWith(color: dustyColorSet['textSecondaryColor']),
+      style: getFontStyle(
+        fontSet: font,
+        styleType: 'heading',
+      ).copyWith(color: dustyColorSet['textSecondaryColor']),
       textAlign: TextAlign.center,
     );
   }
 
   // 마지막 메시지 섹션
   Widget _buildFooterMessage(
-      BuildContext context,
-      LocalizationProvider localizationProvider,
-      Map<String, Color> dustyColorSet) {
+    BuildContext context,
+    LocalizationProvider localizationProvider,
+    Map<String, Color> dustyColorSet,
+  ) {
     final appLocalizations = AppLocalization.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Text(
         appLocalizations?.dustyPageMessage4 ?? 'Fallback message',
-        style: getFontStyle(fontSet: 'DustyFontMain', styleType: 'heading')
-            .copyWith(color: dustyColorSet['textSecondaryColor']),
+        style: getFontStyle(
+          fontSet: 'DustyFontMain',
+          styleType: 'heading',
+        ).copyWith(color: dustyColorSet['textSecondaryColor']),
         textAlign: TextAlign.center,
       ),
     );

@@ -21,9 +21,10 @@ class TheExoticBoutiquePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsController = Provider.of<SettingsController>(context);
-    final boutiqueColorSet = settingsController.themeMode == ThemeMode.dark
-        ? darkModeBoutiqueColorSet
-        : lightModeBoutiqueColorSet;
+    final boutiqueColorSet =
+        settingsController.themeMode == ThemeMode.dark
+            ? darkModeBoutiqueColorSet
+            : lightModeBoutiqueColorSet;
 
     final appLocalizations = AppLocalization.of(context);
     final appBarBackgroundColor =
@@ -33,9 +34,10 @@ class TheExoticBoutiquePage extends StatelessWidget {
     final currentLocale = Localizations.localeOf(context);
 
     void toggleLanguage(BuildContext context) {
-      Locale newLocale = currentLocale.languageCode == 'en'
-          ? const Locale('ko')
-          : const Locale('en');
+      Locale newLocale =
+          currentLocale.languageCode == 'en'
+              ? const Locale('ko')
+              : const Locale('en');
       context.read<LocalizationProvider>().changeLocale(newLocale);
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -68,44 +70,50 @@ class TheExoticBoutiquePage extends StatelessWidget {
               const SizedBox(height: 40),
               Text(
                 appLocalizations?.boutiquePageMessage1 ?? 'Fallback message',
-                style:
-                    getFontStyle(fontSet: 'BoutiqueFont', styleType: 'heading')
-                        .copyWith(color: boutiqueColorSet['textSecondary']),
+                style: getFontStyle(
+                  fontSet: 'BoutiqueFont',
+                  styleType: 'heading',
+                ).copyWith(color: boutiqueColorSet['textSecondary']),
               ),
               const SizedBox(height: 20),
               CardButton(
-                title: appLocalizations?.boutiquePageMessage1 ??
+                title:
+                    appLocalizations?.boutiquePageMessage1 ??
                     'Fallback message',
                 tacticPath: 'assets/exotic/evotic.png',
-                onPressed: () =>
-                    launchURL('https://naver.me/GctERDE8', context),
+                onPressed:
+                    () => launchURL('https://naver.me/GctERDE8', context),
                 shape: CardShape.roundedRectangle,
                 textStyle: getFontStyle(
-                        fontSet: 'BoutiqueFont', styleType: 'body')
-                    .copyWith(color: boutiqueColorSet['textSecondaryColor']),
+                  fontSet: 'BoutiqueFont',
+                  styleType: 'body',
+                ).copyWith(color: boutiqueColorSet['textSecondaryColor']),
                 pageKey: 'boutique',
                 ratio: CardRatio.square,
               ),
               const SizedBox(height: 25),
               CardButton(
-                title: appLocalizations?.boutiquePageMessage2 ??
+                title:
+                    appLocalizations?.boutiquePageMessage2 ??
                     'Fallback message',
                 tacticPath: 'assets/boutique/logo_the_boutique.png',
-                onPressed: () =>
-                    launchURL('https://naver.me/GctERDE8', context),
+                onPressed:
+                    () => launchURL('https://naver.me/GctERDE8', context),
                 shape: CardShape.roundedRectangle,
                 textStyle: getFontStyle(
-                        fontSet: 'BoutiqueFont', styleType: 'body')
-                    .copyWith(color: boutiqueColorSet['textSecondaryColor']),
+                  fontSet: 'BoutiqueFont',
+                  styleType: 'body',
+                ).copyWith(color: boutiqueColorSet['textSecondaryColor']),
                 pageKey: 'boutique',
                 ratio: CardRatio.sixteenBySix,
               ),
               const SizedBox(height: 40),
               UrlButton(
-                label: appLocalizations?.boutiquePageMessage2 ??
+                label:
+                    appLocalizations?.boutiquePageMessage2 ??
                     'Fallback message',
-                onPressed: () =>
-                    launchURL('https://naver.me/GctERDE8', context),
+                onPressed:
+                    () => launchURL('https://naver.me/GctERDE8', context),
                 colorSet: boutiqueColorSet,
                 fontFamily: 'boutiqueFont',
                 fontSize: FontSizeOptions.medium,
@@ -118,7 +126,8 @@ class TheExoticBoutiquePage extends StatelessWidget {
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
-        onPressed: () => launchURL('https://dustyagent.chat', context),
+        onPressed:
+            () => launchURL('https://dusty-agent.github.io/dustie/', context),
         themeMode: ThemeMode.light,
       ),
     );
@@ -129,8 +138,10 @@ class TheExoticBoutiquePage extends StatelessWidget {
       title: '',
       tacticPath: imagePath,
       onPressed: () => launchURL(url, context),
-      textStyle: getFontStyle(fontSet: 'BoutiqueFont', styleType: 'body')
-          .copyWith(color: lightModeBoutiqueColorSet['textSecondary']),
+      textStyle: getFontStyle(
+        fontSet: 'BoutiqueFont',
+        styleType: 'body',
+      ).copyWith(color: lightModeBoutiqueColorSet['textSecondary']),
       pageKey: 'boutique',
     );
   }

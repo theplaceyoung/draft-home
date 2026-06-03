@@ -1,5 +1,5 @@
 class DraftUrls {
-// network
+  // network
   static const dustyStudio = 'https://blog.naver.com/ralalife';
 
   static const exoticArchive =
@@ -17,8 +17,8 @@ class DraftUrls {
   static const exoticOrdinary =
       'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191';
 
-// others
-  static const dustyAgent = 'https://dustyagent.chat';
+  // others
+  static const dustyAgent = 'https://dusty-agent.github.io/dustie/';
 
   static const painter = 'https://my-creative-canvas-browser.web.app';
 

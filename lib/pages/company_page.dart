@@ -39,7 +39,8 @@ class CompanyPage extends StatelessWidget {
 
     return FloatingAction(
       imagePath: 'assets/dusty/dusty-agent-white.png',
-      onPressed: () => launchURL('https://dustyagent.chat', context),
+      onPressed:
+          () => launchURL('https://dusty-agent.github.io/dustie/', context),
       themeMode: themeMode,
     );
   }
@@ -52,15 +53,10 @@ class CompanyPage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 32,
-          vertical: 48,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 48),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 1000,
-            ),
+            constraints: const BoxConstraints(maxWidth: 1000),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -82,28 +78,19 @@ class CompanyPage extends StatelessWidget {
                 const SizedBox(height: 12),
                 const Text(
                   'Founded in Seoul, 2019',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
                 const SizedBox(height: 8),
                 const Text(
                   'Independent Brands, Contents & Tools',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 64),
                 _sectionTitle('GOALS & MISSIONS'),
                 const SizedBox(height: 12),
                 const Text(
                   'Compete with the Most Korean Techniques',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 // ClipRRect(
                 //   borderRadius: BorderRadius.circular(12),
@@ -148,47 +135,30 @@ class CompanyPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 const Text(
                   'Dusty Draft',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Projects, archive and experiments.',
-                ),
+                const Text('Projects, archive and experiments.'),
                 const SizedBox(height: 24),
                 const Text(
                   'Exotic Ordinary',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Jewelry, boutique and creative contents.',
-                ),
+                const Text('Jewelry, boutique and creative contents.'),
                 const SizedBox(height: 24),
                 const Text(
                   'ASSETPICKER',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Research, investing and asset tools.',
-                ),
+                const Text('Research, investing and asset tools.'),
                 const SizedBox(height: 64),
                 _sectionTitle('ECOSYSTEM'),
                 const SizedBox(height: 24),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    'assets/draft/draft_ecosystem.png',
-                  ),
+                  child: Image.asset('assets/draft/draft_ecosystem.png'),
                 ),
                 const SizedBox(height: 64),
                 _sectionTitle('NETWORK'),
@@ -226,26 +196,18 @@ class CompanyPage extends StatelessWidget {
                 const SizedBox(height: 64),
                 _sectionTitle('BUSINESS'),
                 const SizedBox(height: 20),
-                const Text(
-                  '사업자등록번호 : 756-66-00303',
-                ),
+                const Text('사업자등록번호 : 756-66-00303'),
                 const SizedBox(height: 8),
-                const Text(
-                  '통신판매업신고번호 : 2020-서울양천-0014',
-                ),
+                const Text('통신판매업신고번호 : 2020-서울양천-0014'),
                 const SizedBox(height: 16),
                 const Text(
                   'soyoung@draft.best',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 16),
                 Text(
                   '© 2019-${DateTime.now().year} DRAFT Co. All rights reserved.',
-                  style: const TextStyle(
-                    color: Colors.grey,
-                  ),
+                  style: const TextStyle(color: Colors.grey),
                 ),
               ],
             ),
@@ -267,19 +229,13 @@ class CompanyPage extends StatelessWidget {
     );
   }
 
-  static Widget _brandBlock(
-    String title,
-    String description,
-  ) {
+  static Widget _brandBlock(String title, String description) {
     return Column(
       children: [
         Text(
           title,
           textAlign: TextAlign.start,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 8),
         Text(
@@ -307,10 +263,7 @@ class CompanyPage extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              launchURL(
-                targetUrl,
-                context,
-              );
+              launchURL(targetUrl, context);
             },
             child: Text(
               label,
@@ -325,10 +278,7 @@ class CompanyPage extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             description,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.grey,
-            ),
+            style: const TextStyle(fontSize: 12, color: Colors.grey),
           ),
         ],
       ),
@@ -340,17 +290,12 @@ class _HistoryItem extends StatelessWidget {
   final String year;
   final String title;
 
-  const _HistoryItem({
-    required this.year,
-    required this.title,
-  });
+  const _HistoryItem({required this.year, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 24,
-      ),
+      padding: const EdgeInsets.only(bottom: 24),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -358,20 +303,10 @@ class _HistoryItem extends StatelessWidget {
             width: 90,
             child: Text(
               year,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ),
+          Expanded(child: Text(title, style: const TextStyle(fontSize: 16))),
         ],
       ),
     );

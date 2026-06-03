@@ -27,9 +27,10 @@ class DraftPage extends StatelessWidget {
     // Ensure settingsController is available if it's from a provider
     final settingsController = Provider.of<SettingsController>(context);
 
-    final draftColorSet = settingsController.themeMode == ThemeMode.dark
-        ? darkModeDraftColorSet
-        : lightModeDraftColorSet;
+    final draftColorSet =
+        settingsController.themeMode == ThemeMode.dark
+            ? darkModeDraftColorSet
+            : lightModeDraftColorSet;
 
     Color appBarBackgroundColor = draftColorSet['primaryColor'] ?? Colors.black;
     Color appBarIconColor = draftColorSet['textPrimaryColor'] ?? Colors.white;
@@ -39,9 +40,10 @@ class DraftPage extends StatelessWidget {
     Locale currentLocale = Localizations.localeOf(context);
 
     void toggleLanguage(BuildContext context) {
-      Locale newLocale = currentLocale.languageCode == 'en'
-          ? const Locale('ko')
-          : const Locale('en');
+      Locale newLocale =
+          currentLocale.languageCode == 'en'
+              ? const Locale('ko')
+              : const Locale('en');
       context.read<LocalizationProvider>().changeLocale(newLocale);
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -89,10 +91,11 @@ class DraftPage extends StatelessWidget {
             const SizedBox(height: 40),
             UrlButton(
               label: appLocalizations?.webVersion ?? 'Fallback message',
-              onPressed: () => launchURL(
-                'https://my-creative-canvas-browser.web.app/',
-                context,
-              ),
+              onPressed:
+                  () => launchURL(
+                    'https://my-creative-canvas-browser.web.app/',
+                    context,
+                  ),
               colorSet: lightModeDraftColorSet,
               fontFamily: 'draftFont',
               fontSize: FontSizeOptions.medium,
@@ -101,10 +104,11 @@ class DraftPage extends StatelessWidget {
             const SizedBox(height: 40),
             UrlButton(
               label: appLocalizations?.touchPadVersion ?? 'Fallback message',
-              onPressed: () => launchURL(
-                'https://theplaceyoung.github.io/pwa-webapp-canvas/',
-                context,
-              ),
+              onPressed:
+                  () => launchURL(
+                    'https://theplaceyoung.github.io/pwa-webapp-canvas/',
+                    context,
+                  ),
               colorSet: lightModeDraftColorSet,
               fontFamily: 'draftFont',
               fontSize: FontSizeOptions.medium,
@@ -112,8 +116,9 @@ class DraftPage extends StatelessWidget {
             ),
             const SizedBox(height: 90),
             ImageCardWithoutText(
-                imageCardPath: 'assets/draft/goals_and_missions.png',
-                pageKey: 'draft'),
+              imageCardPath: 'assets/draft/goals_and_missions.png',
+              pageKey: 'draft',
+            ),
             ImageCardWithoutText(
               imageCardPath: 'assets/draft/draft_ecosystem.png',
               pageKey: 'draft',
@@ -127,8 +132,10 @@ class DraftPage extends StatelessWidget {
               ).copyWith(color: lightModeDraftColorSet['textSecondaryColor']),
               textAlign: TextAlign.center,
             ),
-            Image.asset('assets/draft/logo_draft_transparentBG.png',
-                height: 100),
+            Image.asset(
+              'assets/draft/logo_draft_transparentBG.png',
+              height: 100,
+            ),
             const SizedBox(height: 40),
           ],
         ),
@@ -136,7 +143,8 @@ class DraftPage extends StatelessWidget {
       bottomNavigationBar: buildFooter(context),
       floatingActionButton: FloatingAction(
         imagePath: 'assets/dusty/dusty-agent-white.png',
-        onPressed: () => launchURL('https://dustyagent.chat', context),
+        onPressed:
+            () => launchURL('https://dusty-agent.github.io/dustie/', context),
         themeMode: ThemeMode.dark,
       ),
     );

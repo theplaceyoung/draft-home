@@ -39,20 +39,12 @@ class OrdinaryLifePage extends StatelessWidget {
     return currentRoute.substring(1); // '/draft' -> 'draft'
   }
 
-  Widget _buildBody(
-    BuildContext context,
-    Map<String, Color> colors,
-  ) {
+  Widget _buildBody(BuildContext context, Map<String, Color> colors) {
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: 800,
-        ),
+        constraints: const BoxConstraints(maxWidth: 800),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 32,
-            vertical: 80,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -115,7 +107,8 @@ class OrdinaryLifePage extends StatelessWidget {
 
     return FloatingAction(
       imagePath: 'assets/dusty/dusty-agent-white.png',
-      onPressed: () => launchURL('https://dustyagent.chat', context),
+      onPressed:
+          () => launchURL('https://dusty-agent.github.io/dustie/', context),
       themeMode: themeMode,
     );
   }
