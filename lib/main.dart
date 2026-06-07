@@ -594,13 +594,21 @@ class MyHomePage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                   vertical: 10,
                 ),
-                color: const Color(0xFFF5F5F5).withOpacity(0.85),
+                color:
+                    const Color.fromARGB(255, 211, 191, 191).withOpacity(0.75),
                 child: Text(
                   title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black38,
+                        blurRadius: 4,
+                        offset: Offset(0, 1),
+                      ),
+                    ],
                   ),
                 ),
               ),
