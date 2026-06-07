@@ -31,49 +31,51 @@ class DustyDraftPage extends StatelessWidget {
       appBar: const CommonAppBar(
         pageKey: 'dusty',
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: gradientColors,
+      body: SizedBox.expand(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: gradientColors,
+            ),
           ),
-        ),
-        child: SingleChildScrollView(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 900,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 64,
+          child: SingleChildScrollView(
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 900,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildHero(dustyColorSet),
-                    const SizedBox(height: 80),
-                    _buildDevelopmentStudio(
-                      context,
-                      dustyColorSet,
-                    ),
-                    const SizedBox(height: 80),
-                    _buildProductLab(
-                      context,
-                      dustyColorSet,
-                    ),
-                    const SizedBox(height: 80),
-                    _buildAbout(
-                      dustyColorSet,
-                    ),
-                    const SizedBox(height: 80),
-                    _buildWebsite(
-                      context,
-                      dustyColorSet,
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 64,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildHero(dustyColorSet),
+                      const SizedBox(height: 80),
+                      _buildDevelopmentStudio(
+                        context,
+                        dustyColorSet,
+                      ),
+                      const SizedBox(height: 80),
+                      _buildProductLab(
+                        context,
+                        dustyColorSet,
+                      ),
+                      const SizedBox(height: 80),
+                      _buildAbout(
+                        dustyColorSet,
+                      ),
+                      const SizedBox(height: 80),
+                      _buildWebsite(
+                        context,
+                        dustyColorSet,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

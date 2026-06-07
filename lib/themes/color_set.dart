@@ -47,10 +47,10 @@ final Map<String, Color> lightModeDustyColorSet = {
   'textSecondaryColor': Color(0xFF6A4A2F),
 };
 final List<Color> dustyLightGradient = [
-  //parchment -> sand -> wood
-  Color(0xFFF6EFE8),
-  Color(0xFFF0E4D8),
+  //wood -> sand -> parchment
   Color(0xFFE5D3C2),
+  Color(0xFFF0E4D8),
+  Color(0xFFF6EFE8),
 ];
 final Map<String, Color> darkModeDustyColorSet = {
   'primaryColor': Color(0xFF4D4038),
@@ -216,18 +216,20 @@ final Map<String, Color> darkModeBoutiqueColorSet = {
 
 // ```dart
 final Map<String, Color> lightModeAssetpickerColorSet = {
-  'primaryColor': Color(0xFF78695C),
-  'secondaryColor': Color(0xFFA89A8B),
-  'accentColor': Color(0xFFC7924A),
-  'backgroundColor': Color(0xFFF7F3EE),
-  'textPrimaryColor': Color(0xFF1E1E1E),
-  'textSecondaryColor': Color(0xFF6A645E),
+  'primaryColor': Color(0xFFD94A64), // Sunset Red
+  'secondaryColor': Color(0xFFFF8A65), // Coral Orange
+
+  'accentColor': Color(0xFF4F7CAC), // Ocean Blue
+
+  'backgroundColor': Color(0xFFFFF4EF),
+
+  'textPrimaryColor': Color(0xFF2A1E1B),
+  'textSecondaryColor': Color(0xFF705754),
 };
 final List<Color> assetpickerLightGradient = [
-  // dawn -> morning -> sunrise
-  Color(0xFFF8F5F1),
-  Color(0xFFEFE8DE),
-  Color(0xFFE4D6C5),
+  Color(0xFFFFFAF8),
+  Color(0xFFFFC0A8),
+  Color(0xFFD94A64),
 ];
 // ```
 
@@ -235,18 +237,17 @@ final List<Color> assetpickerLightGradient = [
 
 // ```dart
 final Map<String, Color> darkModeAssetpickerColorSet = {
-  'primaryColor': Color(0xFFD6C5B6),
-  'secondaryColor': Color(0xFF9E9187),
-  'accentColor': Color(0xFFD0A05A),
-  'backgroundColor': Color(0xFF0D1320),
-  'textPrimaryColor': Color(0xFFF2EDE7),
-  'textSecondaryColor': Color(0xFFB7ACA3),
+  'primaryColor': Color(0xFFF4F7FB),
+  'secondaryColor': Color(0xFFB8C5D6),
+  'accentColor': Color(0xFFFF7A59),
+  'backgroundColor': Color(0xFF081421),
+  'textPrimaryColor': Color(0xFFF5F7FA),
+  'textSecondaryColor': Color(0xFFA9B4C4),
 };
 final List<Color> assetpickerDarkGradient = [
-  // night -> sity lights -> blue hour
-  Color(0xFF0D1320),
-  Color(0xFF172238),
-  Color(0xFF24324A),
+  Color(0xFF081421), // river
+  Color(0xFF1A1F45), // blue hour
+  Color(0xFF7A2D4D), // sunset remains
 ];
 // ```
 

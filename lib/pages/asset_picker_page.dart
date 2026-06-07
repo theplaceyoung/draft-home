@@ -26,7 +26,6 @@ class AssetPickerPage extends StatelessWidget {
       appBar: CommonAppBar(
         pageKey: 'assetpicker',
       ),
-      backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -48,40 +47,43 @@ class AssetPickerPage extends StatelessWidget {
     BuildContext context,
     Map<String, Color> colorSet,
   ) {
-    return SingleChildScrollView(
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: 900,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 32,
-              vertical: 64,
+    return SizedBox(
+      width: double.infinity,
+      child: SingleChildScrollView(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 900,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHero(colorSet),
-                const SizedBox(height: 100),
-                _buildResearch(
-                  context,
-                  colorSet,
-                ),
-                const SizedBox(height: 100),
-                _buildAreas(
-                  colorSet,
-                ),
-                const SizedBox(height: 100),
-                _buildCityTracer(
-                  context,
-                  colorSet,
-                ),
-                const SizedBox(height: 100),
-                _buildAbout(
-                  colorSet,
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 32,
+                vertical: 64,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHero(colorSet),
+                  const SizedBox(height: 100),
+                  _buildResearch(
+                    context,
+                    colorSet,
+                  ),
+                  const SizedBox(height: 100),
+                  _buildAreas(
+                    colorSet,
+                  ),
+                  const SizedBox(height: 100),
+                  _buildCityTracer(
+                    context,
+                    colorSet,
+                  ),
+                  const SizedBox(height: 100),
+                  _buildAbout(
+                    colorSet,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

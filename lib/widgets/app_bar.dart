@@ -33,6 +33,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final iconColor = isDark ? Colors.white : Colors.black;
+    final isMobile = MediaQuery.of(context).size.width < 700;
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: isDark ? Colors.black : Colors.white,
@@ -49,86 +50,61 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 32,
             ),
           ),
-          const SizedBox(width: 6),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-            child: Text(
-              'Home',
-              style: TextStyle(
-                color: isDark ? Colors.white : Colors.black,
+          const SizedBox(width: 8),
+          if (!isMobile) ...[
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+              child: Text(
+                'Home',
+                style: TextStyle(
+                  color: isDark ? Colors.white : Colors.black,
+                ),
               ),
             ),
-          ),
-          Text(
-            '|',
-            style: TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/company');
-            },
-            child: Text(
-              'Company',
-              style: TextStyle(
-                color: isDark ? Colors.white : Colors.black,
+            const Text('|'),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/company');
+              },
+              child: Text(
+                'Company',
+                style: TextStyle(
+                  color: isDark ? Colors.white : Colors.black,
+                ),
               ),
             ),
-          ),
-          Text(
-            '|',
-            style: TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/ordinary');
-            },
-            child: Text(
-              'Ordinary Life',
-              style: TextStyle(
-                color: isDark ? Colors.white : Colors.black,
+            const Text('|'),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/ordinary');
+              },
+              child: Text(
+                'Ordinary Life',
+                style: TextStyle(
+                  color: isDark ? Colors.white : Colors.black,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: SizedBox(
-              height: 38,
-              child: TextField(
-                decoration: InputDecoration(
-                    hintText: ' Search Draft...',
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.grey.shade600,
-                    ),
-                    contentPadding: EdgeInsets.zero,
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                      width: 1,
-                    )),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey.shade600,
-                        width: 1,
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                      width: 1,
-                    ))),
-              ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _buildSearchBar(),
             ),
-          ),
+          ],
         ],
       ),
       actions: [
+        if (isMobile)
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: iconColor,
+            ),
+            onPressed: () {
+              // 추후 검색 다이얼로그
+            },
+          ),
         Builder(
           builder: (context) => IconButton(
             icon: Icon(Icons.menu, color: iconColor),
@@ -165,6 +141,40 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
         ),
       ],
+    );
+  }
+
+  Widget _buildSearchBar() {
+    return SizedBox(
+      height: 38,
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: ' Search Draft...',
+          prefixIcon: Icon(
+            Icons.search,
+            color: Colors.grey.shade600,
+          ),
+          contentPadding: EdgeInsets.zero,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey.shade400,
+              width: 1,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey.shade600,
+              width: 1,
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey.shade400,
+              width: 1,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
