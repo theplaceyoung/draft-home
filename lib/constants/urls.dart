@@ -18,6 +18,8 @@ class DraftUrls {
   static const exoticOrdinary =
       'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191';
 
+  static const exoticShop = 'https://smartstore.naver.com/exoticordinary';
+
   // others
   static const dustyAgent = 'https://dusty-agent.github.io/dustie/';
 

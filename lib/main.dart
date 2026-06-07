@@ -12,7 +12,7 @@ import 'package:draft_home/themes/color_set.dart';
 import 'package:draft_home/utils/card_button.dart';
 import 'package:draft_home/utils/card_button_with_text_over_image.dart';
 import 'package:draft_home/utils/floating_action.dart';
-import 'package:draft_home/widgets/media_card.dart';
+import 'package:draft_home/widgets/featured_media_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -110,8 +110,13 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     final pageKey = _getPageKey(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final colorSet = isDark ? darkModeExoticColorSet : lightModeExoticColorSet;
 
     final localizationProvider = Provider.of<LocalizationProvider>(context);
 
@@ -182,18 +187,23 @@ class MyHomePage extends StatelessWidget {
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
-          _buildMediaSection(context),
+          _buildMedia(
+            context,
+          ),
           const Divider(
             height: 1,
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
+          const SizedBox(height: 10),
           _buildToolSection(context),
+          const SizedBox(height: 10),
           const Divider(
             height: 1,
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
+          const SizedBox(height: 10),
           buildFooter(context),
         ],
       ),
@@ -237,6 +247,24 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildMedia(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle(
+          context,
+          'Media',
+          'Blogs, Video & Publications',
+          'MEDIA & STORYTELLING',
+        ),
+        _buildFeaturedMedia(context),
+        const SizedBox(height: 24),
+        _buildMediaCarousel(context),
+        const SizedBox(height: 32),
+      ],
     );
   }
 
@@ -302,92 +330,115 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMediaSection(BuildContext context) {
+  Widget _buildFeaturedMedia(
+    BuildContext context,
+  ) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle(
-          context,
-          'Media',
-          'Blogs, Video & Publications',
-          'MEDIA & STORYTELLING',
+        FeaturedMediaCard(
+          title: 'Warm Silvlin',
+          imagePath: 'assets/exotic/warm_silvlin.png',
+          onTap: () {
+            launchURL(
+              'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191',
+              context,
+            );
+          },
         ),
-        SizedBox(
-          height: 280,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            children: [
-              // AssetPicker Blog
-              SizedBox(
-                width: 300,
-                child: MediaCard(
-                  title: 'AssetPicker Research',
-                  imagePath: 'assets/assetpicker/assetpicker-hero.jpg',
-                  onPressed: () {
-                    launchURL(
-                      'https://blog.naver.com/assetpicker',
-                      context,
-                    );
-                  },
-                ),
-              ),
-
-              const SizedBox(width: 10),
-
-              // Exotic Archive
-              SizedBox(
-                width: 300,
-                child: MediaCard(
-                  title: 'Exotic Archive',
-                  imagePath: 'assets/ordinary/background_1.png',
-                  onPressed: () {
-                    launchURL(
-                      'https://blog.naver.com/assetpick1',
-                      context,
-                    );
-                  },
-                ),
-              ),
-
-              const SizedBox(width: 10),
-
-              // Exotic Ordinary Blog
-              SizedBox(
-                width: 300,
-                child: MediaCard(
-                  title: 'Warm Silvlin',
-                  imagePath: 'assets/AdobeStock_228406900.jpeg',
-                  onPressed: () {
-                    launchURL(
-                      'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191',
-                      context,
-                    );
-                  },
-                ),
-              ),
-
-              const SizedBox(width: 10),
-
-              // YouTube
-              SizedBox(
-                width: 300,
-                child: MediaCard(
-                  title: 'YouTube',
-                  imagePath: 'assets/exotic/exotic-instagram.jpg',
-                  onPressed: () {
-                    launchURL(
-                      DraftUrls.exoticArchive,
-                      context,
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+        const SizedBox(height: 16),
+        FeaturedMediaCard(
+          title: '',
+          imagePath: 'assets/assetpicker/assetpicker-hero.jpg',
+          onTap: () {
+            launchURL(
+              'https://blog.naver.com/assetpicker',
+              context,
+            );
+          },
         ),
-        const SizedBox(height: 40),
       ],
+    );
+  }
+
+  Widget _buildMediaCarousel(
+    BuildContext context,
+  ) {
+    return SizedBox(
+      height: 160,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          SizedBox(
+            width: 220,
+            child: _mediaTile(
+              'Shop',
+              'assets/exotic/exoticordinary_background.jpg',
+              () {
+                launchURL(
+                  DraftUrls.exoticShop,
+                  context,
+                );
+              },
+            ),
+          ),
+          const SizedBox(width: 16),
+          SizedBox(
+            width: 220,
+            child: _mediaTile(
+              'Tech Diary',
+              'assets/draft/crumpled_paper_1405.jpg',
+              () {
+                launchURL(
+                  DraftUrls.fairyRala,
+                  context,
+                );
+              },
+            ),
+          ),
+          const SizedBox(width: 16),
+          SizedBox(
+            width: 220,
+            child: _mediaTile(
+              'YouTube',
+              'assets/AdobeStock_228406900.jpeg',
+              () {
+                launchURL(
+                  DraftUrls.exoticArchive,
+                  context,
+                );
+              },
+            ),
+          ),
+          const SizedBox(width: 16),
+          SizedBox(
+            width: 220,
+            child: _mediaTile(
+              'Studio',
+              'assets/ordinary/background_1.png',
+              () {
+                launchURL(
+                  DraftUrls.exoticStudio,
+                  context,
+                );
+              },
+            ),
+          ),
+          const SizedBox(width: 16),
+          SizedBox(
+            width: 220,
+            child: _mediaTile(
+              'Instagram',
+              'assets/exotic/exotic-instagram.jpg',
+              () {
+                launchURL(
+                  DraftUrls.exoticInstagram,
+                  context,
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -454,7 +505,7 @@ class MyHomePage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -516,4 +567,139 @@ class MyHomePage extends StatelessWidget {
       themeMode: themeMode,
     );
   }
+
+  Widget _mediaTile(
+    String title,
+    String imagePath,
+    VoidCallback onTap,
+  ) {
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
+                color: Colors.white.withOpacity(0.85),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
+
+
+  // Widget _buildMediaSection(BuildContext context) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       _buildSectionTitle(
+  //         context,
+  //         'Media',
+  //         'Blogs, Video & Publications',
+  //         'MEDIA & STORYTELLING',
+  //       ),
+  //       SizedBox(
+  //         height: 280,
+  //         child: ListView(
+  //           scrollDirection: Axis.horizontal,
+  //           padding: const EdgeInsets.symmetric(horizontal: 24),
+  //           children: [
+  //             // AssetPicker Blog
+  //             SizedBox(
+  //               width: 300,
+  //               child: MediaCard(
+  //                 title: 'AssetPicker Research',
+  //                 imagePath: 'assets/assetpicker/assetpicker-hero.jpg',
+  //                   fontWeight: FontWeight.bold,
+  //                 ),
+  //                 onPressed: () {
+  //                   launchURL(
+  //                     'https://blog.naver.com/assetpicker',
+  //                     context,
+  //                   );
+  //                 },
+  //               ),
+  //             ),
+
+  //             const SizedBox(width: 10),
+
+  //             // Exotic Archive
+  //             SizedBox(
+  //               width: 300,
+  //               child: MediaCard(
+  //                 title: 'Exotic Archive',
+  //                 imagePath: 'assets/ordinary/background_1.png',
+  //                 onPressed: () {
+  //                   launchURL(
+  //                     'https://blog.naver.com/assetpick1',
+  //                     context,
+  //                   );
+  //                 },
+  //               ),
+  //             ),
+
+  //             const SizedBox(width: 10),
+
+  //             // Exotic Ordinary Blog
+  //             SizedBox(
+  //               width: 300,
+  //               child: MediaCard(
+  //                 title: 'Warm Silvlin',
+  //                 imagePath: 'assets/AdobeStock_228406900.jpeg',
+  //                 onPressed: () {
+  //                   launchURL(
+  //                     'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191',
+  //                     context,
+  //                   );
+  //                 },
+  //               ),
+  //             ),
+
+  //             const SizedBox(width: 10),
+
+  //             // YouTube
+  //             SizedBox(
+  //               width: 300,
+  //               child: MediaCard(
+  //                 title: 'YouTube',
+  //                 imagePath: 'assets/exotic/exotic-instagram.jpg',
+  //                 onPressed: () {
+  //                   launchURL(
+  //                     DraftUrls.exoticArchive,
+  //                     context,
+  //                   );
+  //                 },
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //       const SizedBox(height: 40),
+  //     ],
+  //   );
+  // }
