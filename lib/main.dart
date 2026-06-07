@@ -293,8 +293,8 @@ class MyHomePage extends StatelessWidget {
               ),
               const SizedBox(width: 24),
               CardButtonWithTextOverImage(
-                title: 'Me' 'e' 'mo',
-                tacticPath: 'assets/dusty/dusty-agent-white.png',
+                title: '',
+                tacticPath: 'assets/dusty/meemo.png',
                 pageKey: 'dusty',
                 width: 300,
                 height: 300,
