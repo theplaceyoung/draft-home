@@ -12,6 +12,7 @@ import 'package:draft_home/themes/color_set.dart';
 import 'package:draft_home/utils/card_button.dart';
 import 'package:draft_home/utils/card_button_with_text_over_image.dart';
 import 'package:draft_home/utils/floating_action.dart';
+import 'package:draft_home/widgets/media_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -320,15 +321,9 @@ class MyHomePage extends StatelessWidget {
               // AssetPicker Blog
               SizedBox(
                 width: 300,
-                child: CardButton(
+                child: MediaCard(
                   title: 'AssetPicker Research',
-                  tacticPath: 'assets/assetpicker/assetpicker-hero.jpg',
-                  pageKey: 'assetpicker',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  imagePath: 'assets/assetpicker/assetpicker-hero.jpg',
                   onPressed: () {
                     launchURL(
                       'https://blog.naver.com/assetpicker',
@@ -338,20 +333,14 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 20),
+              const SizedBox(width: 10),
 
               // Exotic Archive
               SizedBox(
                 width: 300,
-                child: CardButton(
+                child: MediaCard(
                   title: 'Exotic Archive',
-                  tacticPath: 'assets/ordinary/background_1.png',
-                  pageKey: 'exotic',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'ExoticFont',
-                    styleType: 'cardTitle',
-                  ),
+                  imagePath: 'assets/ordinary/background_1.png',
                   onPressed: () {
                     launchURL(
                       'https://blog.naver.com/assetpick1',
@@ -361,43 +350,31 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 20),
+              const SizedBox(width: 10),
 
               // Exotic Ordinary Blog
               SizedBox(
                 width: 300,
-                child: CardButton(
-                  title: 'Exotic Ordinary',
-                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
-                  pageKey: 'exotic',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'ExoticFont',
-                    styleType: 'cardTitle',
-                  ),
+                child: MediaCard(
+                  title: 'Warm Silvlin',
+                  imagePath: 'assets/AdobeStock_228406900.jpeg',
                   onPressed: () {
                     launchURL(
-                      'https://blog.naver.com/exoticordinary',
+                      'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191',
                       context,
                     );
                   },
                 ),
               ),
 
-              const SizedBox(width: 20),
+              const SizedBox(width: 10),
 
               // YouTube
               SizedBox(
                 width: 300,
-                child: CardButton(
+                child: MediaCard(
                   title: 'YouTube',
-                  tacticPath: 'assets/exotic/exotic-instagram.jpg',
-                  pageKey: 'exotic',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'ExoticFont',
-                    styleType: 'cardTitle',
-                  ),
+                  imagePath: 'assets/exotic/exotic-instagram.jpg',
                   onPressed: () {
                     launchURL(
                       DraftUrls.exoticArchive,
