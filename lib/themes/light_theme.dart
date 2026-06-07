@@ -8,7 +8,7 @@ ThemeData getLightModeThemeWithColors(String pageKey) {
 
   switch (pageKey) {
     case 'home':
-      selectedColors = lightModeHomeColorSet;
+      selectedColors = lightModeDraftColorSet;
       fontSet = 'HomeFont';
       break;
     case 'draft':

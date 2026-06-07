@@ -28,6 +28,7 @@ import 'package:draft_home/pages/old/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
 import 'package:draft_home/pages/exotic_ordinary.dart';
 import 'package:draft_home/pages/the_exotic_boutique.dart';
+import 'package:draft_home/widgets/info_card.dart';
 
 const String homePageKey = 'home';
 const String draftPageKey = 'draft';
@@ -174,19 +175,19 @@ class MyHomePage extends StatelessWidget {
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
-          _buildAssetPickerSection(context),
+          _buildBrandSection(context),
           const Divider(
             height: 1,
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
-          _buildExoticSection(context),
+          _buildMediaSection(context),
           const Divider(
             height: 1,
             thickness: 0.8,
             color: const Color(0xFFC8C8C8),
           ),
-          _buildDustySection(context),
+          _buildToolSection(context),
           const Divider(
             height: 1,
             thickness: 0.8,
@@ -221,6 +222,13 @@ class MyHomePage extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
+            'An independent ecosystem of projects, stories and digital experiences.',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurface.withOpacity(0.6),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
             'Founded in Seoul, 2019',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.6),
@@ -231,15 +239,190 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildDustySection(BuildContext context) {
+  Widget _buildBrandSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildSectionTitle(
           context,
-          'Dusty Draft',
-          'Ongoing Projects & Archive',
-          'IDEAS IN PROGRESS',
+          'Brands',
+          'Independent Brands(Registered & Emerging)',
+          'IDENTITY & OWNERSHIP',
+        ),
+        SizedBox(
+          height: 220,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            children: [
+              InfoCard(
+                title: 'Dusty Draft®',
+                subtitle: 'Projects, experiments and digital products.',
+                status: 'Registered Trademark',
+                onTap: () {
+                  Navigator.pushNamed(context, '/dusty');
+                },
+              ),
+              const SizedBox(width: 24),
+              InfoCard(
+                title: 'Exotic Ordinary®',
+                subtitle: 'Beauty, jewelry and visual storytelling.',
+                status: 'Registered Trademark',
+                onTap: () {
+                  Navigator.pushNamed(context, '/exotic');
+                },
+              ),
+              const SizedBox(width: 24),
+              InfoCard(
+                title: 'ASSETPICKER™',
+                subtitle: 'Research and investing beyond the noise.',
+                status: 'Trademark Pending',
+                onTap: () {
+                  Navigator.pushNamed(context, '/assetpicker');
+                },
+              ),
+              const SizedBox(width: 24),
+              InfoCard(
+                title: 'The Exotic Voutique™',
+                subtitle: 'Curated boutique and digital commerce.',
+                status: 'Trademark Pending',
+                onTap: () {
+                  launchURL(
+                    DraftUrls.theExoticVoutique,
+                    context,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 32),
+      ],
+    );
+  }
+
+  Widget _buildMediaSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle(
+          context,
+          'Media',
+          'Blogs, Video & Publications',
+          'MEDIA & STORYTELLING',
+        ),
+        SizedBox(
+          height: 280,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            children: [
+              // AssetPicker Blog
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'AssetPicker Research',
+                  tacticPath: 'assets/assetpicker/assetpicker-hero.jpg',
+                  pageKey: 'assetpicker',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onPressed: () {
+                    launchURL(
+                      'https://blog.naver.com/assetpicker',
+                      context,
+                    );
+                  },
+                ),
+              ),
+
+              const SizedBox(width: 20),
+
+              // Exotic Archive
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'Exotic Archive',
+                  tacticPath: 'assets/ordinary/background_1.png',
+                  pageKey: 'exotic',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'ExoticFont',
+                    styleType: 'cardTitle',
+                  ),
+                  onPressed: () {
+                    launchURL(
+                      'https://blog.naver.com/assetpick1',
+                      context,
+                    );
+                  },
+                ),
+              ),
+
+              const SizedBox(width: 20),
+
+              // Exotic Ordinary Blog
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'Exotic Ordinary',
+                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
+                  pageKey: 'exotic',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'ExoticFont',
+                    styleType: 'cardTitle',
+                  ),
+                  onPressed: () {
+                    launchURL(
+                      'https://blog.naver.com/exoticordinary',
+                      context,
+                    );
+                  },
+                ),
+              ),
+
+              const SizedBox(width: 20),
+
+              // YouTube
+              SizedBox(
+                width: 300,
+                child: CardButton(
+                  title: 'YouTube',
+                  tacticPath: 'assets/exotic/exotic-instagram.jpg',
+                  pageKey: 'exotic',
+                  ratio: CardRatio.sixteenByNine,
+                  textStyle: getFontStyle(
+                    fontSet: 'ExoticFont',
+                    styleType: 'cardTitle',
+                  ),
+                  onPressed: () {
+                    launchURL(
+                      DraftUrls.exoticArchive,
+                      context,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 40),
+      ],
+    );
+  }
+
+  Widget _buildToolSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle(
+          context,
+          'Creative Tools',
+          'AI & Creative Utilities',
+          'TOOLS FOR THINKING',
         ),
         SizedBox(
           height: 300,
@@ -247,21 +430,6 @@ class MyHomePage extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 24),
             children: [
-              CardButtonWithTextOverImage(
-                title: '',
-                tacticPath: 'assets/dusty/logo_dustydraft+bg.png',
-                pageKey: 'dusty',
-                width: 300,
-                height: 300,
-                textStyle: getFontStyle(
-                  fontSet: 'DustyFont',
-                  styleType: 'cardTitle',
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/dusty');
-                },
-              ),
-              const SizedBox(width: 24),
               CardButtonWithTextOverImage(
                 title: '"Dustie"',
                 tacticPath: 'assets/dusty/dusty-agent-white+bg+gd.png',
@@ -280,7 +448,7 @@ class MyHomePage extends StatelessWidget {
               CardButtonWithTextOverImage(
                 title: '',
                 tacticPath: 'assets/dusty/dusty_painter.png',
-                pageKey: '',
+                pageKey: 'dusty',
                 width: 300,
                 height: 300,
                 textStyle: getFontStyle(
@@ -310,146 +478,6 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 32),
-      ],
-    );
-  }
-
-  Widget _buildExoticSection(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle(
-          context,
-          'Exotic Ordinary',
-          'Official, Boutique & Contents',
-          'BEAUTY IN THE MIRROR',
-        ),
-        SizedBox(
-          height: 280,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            children: [
-              SizedBox(
-                width: 240,
-                child: CardButton(
-                  title: 'Official',
-                  tacticPath: 'assets/exotic/exoticordinary_background.jpg',
-                  pageKey: 'exotic',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'ExoticFont',
-                    styleType: 'cardTitle',
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/exotic');
-                  },
-                ),
-              ),
-              const SizedBox(width: 20),
-              SizedBox(
-                width: 240,
-                child: CardButton(
-                  title: 'YouTube',
-                  tacticPath: 'assets/exotic/exotic-instagram.jpg',
-                  pageKey: 'exotic',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'ExoticFont',
-                    styleType: 'cardTitle',
-                  ),
-                  onPressed: () {
-                    launchURL(DraftUrls.exoticArchive, context);
-                  },
-                ),
-              ),
-              const SizedBox(width: 20),
-              SizedBox(
-                width: 240,
-                child: CardButton(
-                  title: 'Instagram',
-                  tacticPath: 'assets/AdobeStock_228406900.jpeg',
-                  pageKey: 'exotic',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'ExoticFont',
-                    styleType: 'cardTitle',
-                  ),
-                  onPressed: () {
-                    launchURL(DraftUrls.exoticInstagram, context);
-                  },
-                ),
-              ),
-              const SizedBox(width: 20),
-              SizedBox(
-                width: 240,
-                child: CardButton(
-                  title: 'Virtual Boutique (준비중)',
-                  tacticPath: 'assets/exotic/exoticVoutique.png',
-                  pageKey: 'boutique',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'BoutiqueFont',
-                    styleType: 'cardTitle',
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/virtualBoutique');
-                  },
-                ),
-              ),
-              const SizedBox(width: 20),
-              SizedBox(
-                width: 240,
-                child: CardButton(
-                  title: 'The Exotic Boutique',
-                  tacticPath: 'assets/boutique/door_image.jpg',
-                  pageKey: 'boutique',
-                  ratio: CardRatio.sixteenByNine,
-                  textStyle: getFontStyle(
-                    fontSet: 'BoutiqueFont',
-                    styleType: 'cardTitle',
-                  ),
-                  onPressed: () {
-                    launchURL(DraftUrls.theExoticBoutique, context);
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 40),
-      ],
-    );
-  }
-
-  Widget _buildAssetPickerSection(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle(
-          context,
-          'ASSETPICKER',
-          'Research & Investing',
-          'INVEST BEYOND THE NOISE',
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: CardButtonWithTextOverImage(
-            title: 'ASSETPICKER\nResearch & Investing',
-            tacticPath: 'assets/assetpicker/assetpicker-hero.jpg',
-            pageKey: 'assetpicker',
-            width: 1060, //double.infinity,
-            height: 300,
-            textStyle: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),
-            onPressed: () {
-              launchURL(DraftUrls.assetPicker, context);
-            },
-          ),
-        ),
-        const SizedBox(height: 24),
       ],
     );
   }

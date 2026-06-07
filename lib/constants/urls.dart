@@ -9,6 +9,7 @@ class DraftUrls {
 
   static const fairyRala = 'https://blog.naver.com/ralalife';
 
+  static const exoticStudio = 'https://blog.naver.com/assetpick1';
   // website
   static const draft = 'https://draft.best';
 
@@ -29,6 +30,8 @@ class DraftUrls {
 
   static const theExoticBoutique =
       'https://map.naver.com/p/entry/place/1568375372?placePath=%2Fhome';
+  static const theExoticVoutique =
+      'https://blog.naver.com/assetpick1/224308250565';
 
   static String ordinaryLifePdf = "";
 }

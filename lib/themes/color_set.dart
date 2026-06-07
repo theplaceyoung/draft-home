@@ -1,212 +1,277 @@
+// # DRAFT House Brand Color System v1.0
 import 'package:flutter/material.dart';
 
-final Map<String, Color> lightModeHomeColorSet = {
-  'primaryColor': Colors.white,
-  'secondaryColor': Colors.white,
-  'accentColor': Colors.white,
-  'backgroundColor': Colors.white,
-  'textPrimaryColor': const Color.fromARGB(255, 240, 233, 233),
-  'textSecondaryColor': Colors.white,
-};
+// ## DRAFT
 
-final Map<String, Color> darkModeHomeColorSet = {
-  'primaryColor': Colors.black, //다크 그레이, 기본적인 어두운 색
-  'secondaryColor': Colors.black, //어두운 청록색
-  'accentColor': Colors.black, //따뜻한 노란색/금색
-  'backgroundColor': Colors.black, //어두운 배경
-  'textPrimaryColor': Colors.black, //흰색 텍스트
-  'textSecondaryColor': Colors.black, //밝은 회색
-};
+// Archive · Company · Ecosystem
 
+// ```dart
 final Map<String, Color> lightModeDraftColorSet = {
-  'primaryColor': Color.fromARGB(255, 245, 245, 248),
-  'secondaryColor': Color.fromARGB(255, 228, 233, 238),
-  'accentColor': Color.fromARGB(255, 227, 155, 45),
-  'backgroundColor': Color.fromARGB(255, 238, 226, 173),
-  'textPrimaryColor': const Color.fromARGB(255, 24, 23, 23),
-  'textSecondaryColor': Colors.black,
+  'primaryColor': Color(0xFFEAE6DF),
+  'secondaryColor': Color(0xFFD9D2C8),
+  'accentColor': Color(0xFFB8864A),
+  'backgroundColor': Color(0xFFF5F2EC),
+  'textPrimaryColor': Color(0xFF1A1A1A),
+  'textSecondaryColor': Color(0xFF666666),
 };
-
 final Map<String, Color> darkModeDraftColorSet = {
-  'primaryColor': Color.fromARGB(255, 60, 60, 60), //다크 그레이, 기본적인 어두운 색
-  'secondaryColor': Color.fromARGB(255, 40, 60, 80), //어두운 청록색
-  'accentColor': Color.fromARGB(255, 200, 150, 60), //따뜻한 노란색/금색
-  'backgroundColor': Color.fromARGB(255, 30, 30, 30), //어두운 배경
-  'textPrimaryColor': Colors.white, //흰색 텍스트
-  'textSecondaryColor': Color.fromARGB(255, 180, 180, 180), //밝은 회색
+  'primaryColor': Color(0xFF2A2A2A),
+  'secondaryColor': Color(0xFF3C3C3C),
+  'accentColor': Color(0xFFB8864A),
+  'backgroundColor': Color(0xFF151515),
+  'textPrimaryColor': Color(0xFFF2F2F2),
+  'textSecondaryColor': Color(0xFF9C9C9C),
 };
+// ```
 
+// Concept
+
+// * Archive
+// * Documents
+// * Independent Studio
+// * Foundation
+
+// ---
+
+// ## DUSTY DRAFT®
+
+// Development Studio & Product Lab
+
+// ```dart
 final Map<String, Color> lightModeDustyColorSet = {
-  'primaryColor': Color.fromARGB(255, 206, 166, 134), //#A1887F
-  'secondaryColor': Color.fromARGB(255, 224, 195, 171), //#CEA686
-  'accentColor': Color.fromARGB(255, 235, 228, 205), //#D4Af37
-  'backgroundColor': Color.fromARGB(255, 238, 211, 189), //#F0E5DC
-  'textPrimaryColor': Colors.black,
-  'textSecondaryColor': Color.fromARGB(255, 163, 108, 63) //#F0E5DC
+  'primaryColor': Color(0xFFD9C5B6),
+  'secondaryColor': Color(0xFFE8DCD2),
+  'accentColor': Color(0xFFB07A4A),
+  'backgroundColor': Color(0xFFF4ECE5),
+  'textPrimaryColor': Color(0xFF111111),
+  'textSecondaryColor': Color(0xFF6A4A2F),
 };
-
+final List<Color> dustyLightGradient = [
+  //parchment -> sand -> wood
+  Color(0xFFF6EFE8),
+  Color(0xFFF0E4D8),
+  Color(0xFFE5D3C2),
+];
 final Map<String, Color> darkModeDustyColorSet = {
-  'primaryColor': Color.fromARGB(255, 120, 90, 80), //짙은 갈색
-  'secondaryColor': Color.fromARGB(255, 150, 100, 70), //붉은 톤의 갈색
-  'accentColor': Color.fromARGB(255, 200, 180, 70), //밝은 금색
-  'backgroundColor': Color.fromARGB(255, 50, 50, 50), //어두운 회색 배경
-  'textPrimaryColor': Colors.white,
-  'textSecondaryColor': Color.fromARGB(255, 220, 220, 220) //밝은 회색
+  'primaryColor': Color(0xFF4D4038),
+  'secondaryColor': Color(0xFF6B564B),
+  'accentColor': Color(0xFFC29A5B),
+  'backgroundColor': Color(0xFF1C1917),
+  'textPrimaryColor': Color(0xFFF2E7DC),
+  'textSecondaryColor': Color(0xFFC7B5A6),
 };
+final List<Color> dustyDarkGradient = [
+  // workshop -> leather -> walnut
+  Color(0xFF1C1917),
+  Color(0xFF2A241F),
+  Color(0xFF3A312A),
+];
+// ```
 
-// const Map<String, Color> lightModeOrdinaryColorSet = {
-//   'primaryColor': Color(0xFFF8F5F1),
-//   'secondaryColor': Color(0xFFD89CB0),
-//   'accentColor': Color(0xFFE6C46E),
-//   'backgroundColor': Color(0xFFFFFBF7),
-//   'textPrimaryColor': Color(0xFF1A1A1A),
-//   'textSecondaryColor': Color(0xFF6A6A6A),
-// };
-const Map<String, Color> lightModeOrdinaryColorSet = {
+// Concept
+
+// * Workshop
+// * Coffee
+// * Notebook
+// * Build Logs
+// * Product Creation
+
+// ---
+
+// ## ORDINARY LIFE™
+
+// Lifestyle & Daily Stories
+
+// ```dart
+final Map<String, Color> lightModeOrdinaryColorSet = {
   'primaryColor': Color(0xFFFFF8F2),
   'secondaryColor': Color(0xFFD89CB0),
-  'accentColor': Color(0xFFE6C46E),
+  'accentColor': Color(0xFFD89CB0),
   'backgroundColor': Color(0xFFFFFBF7),
   'textPrimaryColor': Color(0xFF1A1A1A),
   'textSecondaryColor': Color(0xFF6A6A6A),
 };
+// ```
 
-const Map<String, Color> darkModeOrdinaryColorSet = {
+// Dark
+
+// ```dart
+final Map<String, Color> darkModeOrdinaryColorSet = {
   'primaryColor': Color(0xFFE7C3CF),
   'secondaryColor': Color(0xFFD89CB0),
-  'accentColor': Color(0xFFE6C46E),
+  'accentColor': Color(0xFFD89CB0),
   'backgroundColor': Color(0xFF090909),
   'textPrimaryColor': Colors.white,
   'textSecondaryColor': Color(0xFFB7B7B7),
 };
-// const Map<String, Color> darkModeOrdinaryColorSet = {
-//   'primaryColor': Color(0xFFE7C3CF),
-//   'secondaryColor': Color(0xFFD89CB0),
-//   'accentColor': Color(0xFFE6C46E),
-//   'backgroundColor': Color(0xFF090909),
-//   'textPrimaryColor': Colors.white,
-//   'textSecondaryColor': Color(0xFFB7B7B7),
-// };
+// ```
 
+// Concept
+
+// * Diary
+// * Everyday Life
+// * Personal Notes
+// * Warm Stories
+
+// ---
+
+// ## EXOTIC ORDINARY®
+
+// Beauty in the Mirror
+
+// ```dart
 final Map<String, Color> lightModeExoticColorSet = {
-  'primaryColor': Color(0xFFD8C2BC),
-  'secondaryColor': Color(0xFFEDE7E2),
+  'primaryColor': Color(0xFFE3D0CC),
+  'secondaryColor': Color(0xFFF4EBE8),
   'accentColor': Color(0xFFDDBB6A),
-  'backgroundColor': Color(0xFFF9F8F6),
-  'textPrimaryColor': Color(0xFF222222),
-  'textSecondaryColor': Color(0xFF8D857F),
+  'backgroundColor': Color(0xFFFFFBF8),
+  'textPrimaryColor': Color(0xFF2A2321),
+  'textSecondaryColor': Color(0xFF8A7A72),
 };
-
+final List<Color> exoticLightGradient = [
+  // ivory -> rose -> champagne
+  Color(0xFFFFFBF8),
+  Color(0xFFF7EEEA),
+  Color(0xFFECDDD6),
+];
+// ```
+// Dark
+// ```dart
 final Map<String, Color> darkModeExoticColorSet = {
-  'primaryColor': Color(0xFF4A3D3A),
-  'secondaryColor': Color(0xFF2F2A28),
+  'primaryColor': Color(0xFF6B5854),
+  'secondaryColor': Color(0xFF403634),
   'accentColor': Color(0xFFDDBB6A),
-  'backgroundColor': Color(0xFF181716),
-  'textPrimaryColor': Color(0xFFF5F1EC),
-  'textSecondaryColor': Color(0xFFB7AEA7),
+  'backgroundColor': Color(0xFF090909),
+  'textPrimaryColor': Color(0xFFF7F1EC),
+  'textSecondaryColor': Color(0xFFC2B5AD),
 };
+final List<Color> exoticDarkGradient = [
+  // luxury -> velvet -> rose noir
+  Color(0xFF090909),
+  Color(0xFF181314),
+  Color(0xFF2A2022),
+];
+// ```
 
+// Concept
+
+// * Gallery
+// * Editorial
+// * Jewelry
+// * Luxury
+// * Beauty
+
+// Keywords
+
+// Pink · Gold · Silver
+
+// ---
+
+// ## THE EXOTIC BOUTIQUE®
+
+// Physical Boutique & Commerce
+
+// ```dart
 final Map<String, Color> lightModeBoutiqueColorSet = {
-  'primaryColor': Color(0xFFB18E84),
-  'secondaryColor': Color(0xFFD8C2BC),
+  'primaryColor': Color(0xFF6F584F),
+  'secondaryColor': Color(0xFFBFA79C),
   'accentColor': Color(0xFFDDBB6A),
-  'backgroundColor': Color(0xFFF5F0EC),
+  'backgroundColor': Color(0xFFF1E8E1),
   'textPrimaryColor': Colors.white,
-  'textSecondaryColor': Color(0xFFE7DDD7),
+  'textSecondaryColor': Color(0xFFF2E7DE),
 };
+// ```
 
+// Dark
+
+// ```dart
 final Map<String, Color> darkModeBoutiqueColorSet = {
-  'primaryColor': Color(0xFF6B514B),
-  'secondaryColor': Color(0xFF403532),
+  'primaryColor': Color(0xFF4B3C36),
+  'secondaryColor': Color(0xFF2C2623),
   'accentColor': Color(0xFFDDBB6A),
-  'backgroundColor': Color(0xFF141313),
+  'backgroundColor': Color(0xFF111111),
   'textPrimaryColor': Color(0xFFF5F1EC),
-  'textSecondaryColor': Color(0xFFC3B5AE),
+  'textSecondaryColor': Color(0xFFC7BBB4),
 };
+// ```
 
-// //old2
-// final Map<String, Color> lightModeExoticColorSet = {
-//   'primaryColor': Color(0xFFA87478), // Dusty Rose
-//   'secondaryColor': Color(0xFFDCCAC3), // Rose Beige
-//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+// Concept
 
-//   'backgroundColor': Color(0xFFF9F8F6), // Warm Ivory
+// * Hotel Lobby
+// * Leather
+// * Marble
+// * Boutique Retail
 
-//   'textPrimaryColor': Color(0xFF222222),
-//   'textSecondaryColor': Color(0xFF8D857F)
-// };
+// Keywords
 
-// final Map<String, Color> darkModeExoticColorSet = {
-//   'primaryColor': Color(0xFF7D5A5D), // Dried Rose
-//   'secondaryColor': Color(0xFF5A4547), // Deep Rose Brown
-//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+// Beige · Gray Marble · Gold
 
-//   'backgroundColor': Color(0xFF1B1A1A), // Soft Black
+// ---
 
-//   'textPrimaryColor': Color(0xFFF6F1EC),
-//   'textSecondaryColor': Color(0xFFC8BBB4),
-// };
+// ## ASSETPICKER™
 
-// final Map<String, Color> lightModeBoutiqueColorSet = {
-//   'primaryColor': Color(0xFF7C5D53),      // Bronze Brown
-//   'secondaryColor': Color(0xFFB59C90),    // Stone Beige
-//   'accentColor': Color(0xFFDDBB6A),       // Champagne Gold
+// Real Estate Research & Urban Intelligence
 
-//   'backgroundColor': Color(0xFFF6F2ED),
+// Light Mode (Dawn)
 
-//   'textPrimaryColor': Colors.white,
-//   'textSecondaryColor': Color(0xFFE7D8CF),
-// };
+// ```dart
+final Map<String, Color> lightModeAssetpickerColorSet = {
+  'primaryColor': Color(0xFF78695C),
+  'secondaryColor': Color(0xFFA89A8B),
+  'accentColor': Color(0xFFC7924A),
+  'backgroundColor': Color(0xFFF7F3EE),
+  'textPrimaryColor': Color(0xFF1E1E1E),
+  'textSecondaryColor': Color(0xFF6A645E),
+};
+final List<Color> assetpickerLightGradient = [
+  // dawn -> morning -> sunrise
+  Color(0xFFF8F5F1),
+  Color(0xFFEFE8DE),
+  Color(0xFFE4D6C5),
+];
+// ```
 
-// final Map<String, Color> darkModeBoutiqueColorSet = {
-//   'primaryColor': Color(0xFF4D3C37),      // Deep Bronze
-//   'secondaryColor': Color(0xFF312926),    // Dark Stone
+// Dark Mode (Dusk)
 
-//   'accentColor': Color(0xFFDDBB6A),
+// ```dart
+final Map<String, Color> darkModeAssetpickerColorSet = {
+  'primaryColor': Color(0xFFD6C5B6),
+  'secondaryColor': Color(0xFF9E9187),
+  'accentColor': Color(0xFFD0A05A),
+  'backgroundColor': Color(0xFF0D1320),
+  'textPrimaryColor': Color(0xFFF2EDE7),
+  'textSecondaryColor': Color(0xFFB7ACA3),
+};
+final List<Color> assetpickerDarkGradient = [
+  // night -> sity lights -> blue hour
+  Color(0xFF0D1320),
+  Color(0xFF172238),
+  Color(0xFF24324A),
+];
+// ```
 
-//   'backgroundColor': Color(0xFF151414),
+// Concept
 
-//   'textPrimaryColor': Color(0xFFF3ECE6),
-//   'textSecondaryColor': Color(0xFFC4B6AE),
-// };
+// * City Research
+// * Real Estate
+// * Redevelopment
+// * Neighborhood Analysis
+// * Urban Observation
 
-// old
+// Keywords
 
-// final Map<String, Color> lightModeExoticColorSet = {
-//   'primaryColor': Color(0xFFD8C2BC), // Soft Rose Beige
-//   'secondaryColor': Color(0xFFEDE7E2), // Warm Ivory
-//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+// Dawn · Dusk · City Lights · River Walk
 
-//   'backgroundColor': Color(0xFFF9F8F6),
+// ```
 
-//   'textPrimaryColor': Color(0xFF222222),
-//   'textSecondaryColor': Color(0xFF8D857F),
-// };
-// final Map<String, Color> darkModeExoticColorSet = {
-//   'primaryColor': Color(0xFF4A3D3A), // Deep Rose Brown
-//   'secondaryColor': Color(0xFF2F2A28), // Charcoal Ivory
-//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
+// Brand Narrative
 
-//   'backgroundColor': Color(0xFF181716), // Soft Black
+// ASSETPICKER is not an investing influencer brand.
 
-//   'textPrimaryColor': Color(0xFFF5F1EC), // Warm White
-//   'textSecondaryColor': Color(0xFFB7AEA7),
-// };
+// It is an independent urban intelligence project documenting cities through assets.
 
-// final Map<String, Color> lightModeBoutiqueColorSet = {
-//   'primaryColor': Color(0xFFA87478), // Dusty Rose
-//   'secondaryColor': Color(0xFFD6B7AE), // Rose Beige
-//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
-//   'backgroundColor': Color(0xFFF7F2EE),
-//   'textPrimaryColor': Colors.white,
-//   'textSecondaryColor': Color(0xFFF2E5DF),
-// };
+// A licensed real estate agent observes places, records change, studies transactions and follows the flow of neighborhoods.
 
-// final Map<String, Color> darkModeBoutiqueColorSet = {
-//   'primaryColor': Color(0xFF7D5A5D), // Dusty Rose Night
-//   'secondaryColor': Color(0xFF5A4547), // Deep Rose Brown
-//   'accentColor': Color(0xFFDDBB6A), // Champagne Gold
-//   'backgroundColor': Color(0xFF1C1A1B), // Warm Black
-//   'textPrimaryColor': Color(0xFFF6F1EC),
-//   'textSecondaryColor': Color(0xFFC8BBB4),
-// };
+// The city becomes the research object.
+// The asset becomes the lens.
+// ```

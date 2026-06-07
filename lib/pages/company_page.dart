@@ -39,8 +39,8 @@ class CompanyPage extends StatelessWidget {
 
     return FloatingAction(
       imagePath: 'assets/dusty/dusty-agent-white.png',
-      onPressed:
-          () => launchURL('https://dusty-agent.github.io/dustie/', context),
+      onPressed: () =>
+          launchURL('https://dusty-agent.github.io/dustie/', context),
       themeMode: themeMode,
     );
   }
@@ -80,35 +80,15 @@ class CompanyPage extends StatelessWidget {
                   'Founded in Seoul, 2019',
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 64),
+                _sectionTitle('Philosophy'),
+                const SizedBox(height: 32),
                 const Text(
-                  'Independent Brands, Contents & Tools',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  'Building brands, products and stories.\n\nTechnology.\nCraftsmanship.\nCreativity.\nWorking together.',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 64),
-                _sectionTitle('GOALS & MISSIONS'),
-                const SizedBox(height: 12),
-                const Text(
-                  'Compete with the Most Korean Techniques',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-                // ClipRRect(
-                //   borderRadius: BorderRadius.circular(12),
-                //   child: Image.asset(
-                //     'assets/draft/goals_and_missions.png',
-                //   ),
-                // ),
-                const SizedBox(height: 64),
-                // _sectionTitle('ECOSYSTEM'),
-                // const SizedBox(height: 24),
-                // ClipRRect(
-                //   borderRadius: BorderRadius.circular(12),
-                //   child: Image.asset(
-                //     'assets/draft/draft_ecosystem.png',
-                //   ),
-                // ),
-                // const SizedBox(height: 64),
-                _sectionTitle('HISTORY'),
+                _sectionTitle('Timeline'),
                 const SizedBox(height: 32),
                 const _HistoryItem(
                   year: '2019',
@@ -119,51 +99,82 @@ class CompanyPage extends StatelessWidget {
                   title: 'Exotic Ordinary Warehouse established',
                 ),
                 const _HistoryItem(
-                  year: '2024',
+                  year: '2022',
                   title: 'The Exotic Boutique launched',
+                ),
+                const _HistoryItem(
+                  year: '2023',
+                  title: 'Metal Jewelry Craft Program completed',
                 ),
                 const _HistoryItem(
                   year: '2024',
                   title: 'DRAFT brand identity introduced',
                 ),
                 const _HistoryItem(
+                  year: '2025',
+                  title: 'Dusty Draft trademark filed',
+                ),
+                const _HistoryItem(
                   year: '2026',
                   title: 'Dusty Draft trademark registered',
                 ),
+                const _HistoryItem(
+                  year: '2026',
+                  title: 'ASSETPICKER/The Exotic Voutique trademark filed',
+                ),
                 const SizedBox(height: 64),
-                _sectionTitle('BRANDS'),
+                _sectionTitle('Ecosystem'),
                 const SizedBox(height: 24),
                 const Text(
-                  'Dusty Draft',
+                  'Dusty Draft®',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
-                const Text('Projects, archive and experiments.'),
+                const Text('Development Studio & Product Lab'),
+                const SizedBox(height: 6),
+                const Text(
+                  'Independent software projects, AI tools and experiments.',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                ),
                 const SizedBox(height: 24),
                 const Text(
-                  'Exotic Ordinary',
+                  'Exotic Ordinary®',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
-                const Text('Jewelry, boutique and creative contents.'),
+                const Text('Beauty, Craft & Storytelling'),
+                const SizedBox(height: 6),
+                const Text(
+                  'Jewelry, visual identity and creative media.',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                ),
+                const SizedBox(height: 24),
+                const Text(
+                  'The Exotic Voutique™',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: 4),
+                const Text('Virtual Boutique, Commerce & Experience'),
+                const SizedBox(height: 6),
+                const Text(
+                  'Custom production, curated products and technology.',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                ),
                 const SizedBox(height: 24),
                 const Text(
                   'ASSETPICKER',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
-                const Text('Research, investing and asset tools.'),
-                const SizedBox(height: 64),
-                _sectionTitle('ECOSYSTEM'),
-                const SizedBox(height: 24),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.asset('assets/draft/draft_ecosystem.png'),
+                const Text('Research, Investing & Intelligence'),
+                const SizedBox(height: 6),
+                const Text(
+                  'Investment research, market insights and tools.',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
                 ),
                 const SizedBox(height: 64),
                 _sectionTitle('NETWORK'),
                 const SizedBox(height: 24),
-
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

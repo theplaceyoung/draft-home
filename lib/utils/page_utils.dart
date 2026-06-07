@@ -17,7 +17,6 @@ const Map<String, String> pageLogos = {
 
 // 페이지별 색상 설정 (라이트 모드, 다크 모드)
 Map<String, Map<String, Color>> pageColors = {
-  'home': lightModeHomeColorSet,
   'draft': lightModeDraftColorSet,
   'dusty': lightModeDustyColorSet,
   'ordinary': lightModeDustyColorSet,
