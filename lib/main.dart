@@ -594,7 +594,7 @@ class MyHomePage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                   vertical: 10,
                 ),
-                color: Colors.white.withOpacity(0.85),
+                color: const Color(0xFFF5F5F5).withOpacity(0.85),
                 child: Text(
                   title,
                   textAlign: TextAlign.center,
