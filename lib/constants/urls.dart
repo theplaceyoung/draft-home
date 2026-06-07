@@ -22,6 +22,8 @@ class DraftUrls {
 
   static const painter = 'https://my-creative-canvas-browser.web.app';
 
+  static const meemo = 'https://meemo-451116.web.app/';
+
   static const exoticInstagram =
       'https://www.instagram.com/exoticordinary_official';
 

@@ -293,7 +293,7 @@ class MyHomePage extends StatelessWidget {
               ),
               const SizedBox(width: 24),
               CardButtonWithTextOverImage(
-                title: '...',
+                title: 'Me' 'e' 'mo',
                 tacticPath: 'assets/dusty/dusty-agent-white.png',
                 pageKey: 'dusty',
                 width: 300,
@@ -302,7 +302,9 @@ class MyHomePage extends StatelessWidget {
                   fontSet: 'DustyFont',
                   styleType: 'cardTitle',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  launchURL(DraftUrls.meemo, context);
+                },
               ),
             ],
           ),
