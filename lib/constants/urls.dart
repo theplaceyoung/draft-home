@@ -1,9 +1,8 @@
 class DraftUrls {
   // network
   static const dustyStudio = 'https://blog.naver.com/ralalife';
-
-  static const exoticArchive =
-      'https://youtu.be/Hjsu0l1TBe0?si=28moAojWyV1JMPhH';
+  static const dustyArchive = 'https://www.youtube.com/@dustydraft';
+  static const exoticArchive = 'https://www.youtube.com/@exoticordinary';
 
   static const assetPicker = 'https://blog.naver.com/assetpicker';
 

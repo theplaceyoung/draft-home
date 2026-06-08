@@ -164,6 +164,13 @@ class DustyDraftPage extends StatelessWidget {
           'https://github.com/dusty-agent',
           colorSet,
         ),
+        _linkItem(
+          context,
+          'YouTube',
+          'Studio Films & Product Stories',
+          DraftUrls.dustyArchive,
+          colorSet,
+        ),
       ],
     );
   }
