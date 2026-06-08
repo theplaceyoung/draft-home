@@ -226,7 +226,7 @@ class MyHomePage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Independent Brands · Contents · Creative Tools',
+            'Independent Brands · Contents · Experimental Tools',
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.8),
             ),
@@ -356,6 +356,17 @@ class MyHomePage extends StatelessWidget {
             );
           },
         ),
+        const SizedBox(height: 16),
+        FeaturedMediaCard(
+          title: '',
+          imagePath: 'assets/dusty/dustydraft_banner.png',
+          onTap: () {
+            launchURL(
+              'https://www.youtube.com/@dustydraft',
+              context,
+            );
+          },
+        ),
       ],
     );
   }
@@ -448,8 +459,8 @@ class MyHomePage extends StatelessWidget {
       children: [
         _buildSectionTitle(
           context,
-          'Creative Tools',
-          'AI & Creative Utilities',
+          'Experimental Tools',
+          'AI & Innovation Utilities',
           'TOOLS FOR THINKING',
         ),
         SizedBox(

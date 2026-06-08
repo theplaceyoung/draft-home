@@ -61,7 +61,7 @@ class DustyDraftPage extends StatelessWidget {
                         dustyColorSet,
                       ),
                       const SizedBox(height: 80),
-                      _buildProductLab(
+                      _buildInnovationLab(
                         context,
                         dustyColorSet,
                       ),
@@ -128,7 +128,7 @@ class DustyDraftPage extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          'Independent software development, AI services and digital products.',
+          'An independent studio \nfor AI, software and digital ventures.',
           style: TextStyle(
             fontSize: 18,
             height: 1.8,
@@ -150,6 +150,16 @@ class DustyDraftPage extends StatelessWidget {
           'Development Studio',
           colorSet,
         ),
+        // const SizedBox(height: ),
+        Text(
+          'Notes, code and stories behind our work.',
+          style: TextStyle(
+            fontSize: 14,
+            height: 1.8,
+            color: colorSet['textPrimaryColor'],
+          ),
+        ),
+        const SizedBox(height: 30),
         _linkItem(
           context,
           '랄라선녀의 테크일기',
@@ -175,7 +185,7 @@ class DustyDraftPage extends StatelessWidget {
     );
   }
 
-  Widget _buildProductLab(
+  Widget _buildInnovationLab(
     BuildContext context,
     Map<String, Color> colorSet,
   ) {
@@ -183,27 +193,37 @@ class DustyDraftPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
-          'Product Lab',
+          'Innovation Lab',
           colorSet,
         ),
+        const SizedBox(height: 5),
+        Text(
+          'Where ideas are tested before becoming products.',
+          style: TextStyle(
+            fontSize: 14,
+            height: 1.8,
+            color: colorSet['textPrimaryColor'],
+          ),
+        ),
+        const SizedBox(height: 30),
         _linkItem(
           context,
           'Dustie',
-          'AI Assistant Platform',
+          'AI Assistant Sandbox',
           DraftUrls.dustyAgent,
           colorSet,
         ),
         _linkItem(
           context,
           'Painter',
-          'Creative Generation Tool',
+          'Creative Generation Sandbox',
           DraftUrls.painter,
           colorSet,
         ),
         _linkItem(
           context,
           'Meemo',
-          'Knowledge Workspace',
+          'Knowledge Workspace Sandbox',
           DraftUrls.meemo,
           colorSet,
         ),
@@ -222,18 +242,26 @@ class DustyDraftPage extends StatelessWidget {
           colorSet,
         ),
         Text(
-          'Founded in Seoul, 2019',
+          'Part of DRAFT House',
           style: TextStyle(
             color: colorSet['textSecondaryColor'],
           ),
         ),
         const SizedBox(height: 8),
         Text(
-          'Part of DRAFT House',
+          'AI Strategy & Product Studio',
           style: TextStyle(
             color: colorSet['textSecondaryColor'],
           ),
         ),
+        const SizedBox(height: 8),
+        Text(
+          'From validation to implementation.',
+          style: TextStyle(
+            color: colorSet['textSecondaryColor'],
+          ),
+        ),
+        const SizedBox(height: 8),
       ],
     );
   }
