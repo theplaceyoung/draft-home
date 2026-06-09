@@ -3,6 +3,8 @@ class DraftUrls {
   static const dustyStudio = 'https://blog.naver.com/ralalife';
   static const dustyArchive = 'https://www.youtube.com/@dustydraft';
   static const exoticArchive = 'https://www.youtube.com/@exoticordinary';
+  static const exoticOfficial = 'https://exoticordinary.com';
+  static const voutiqueOfficial = 'https://exoticordinary.com/voutique';
 
   static const assetPicker = 'https://blog.naver.com/assetpicker';
 
