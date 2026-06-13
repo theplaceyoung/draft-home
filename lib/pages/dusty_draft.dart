@@ -56,21 +56,22 @@ class DustyDraftPage extends StatelessWidget {
                     children: [
                       _buildHero(dustyColorSet),
                       const SizedBox(height: 80),
-                      _buildDevelopmentStudio(
+                      _buildWorkspace(
                         context,
                         dustyColorSet,
                       ),
                       const SizedBox(height: 80),
-                      _buildInnovationLab(
+                      _buildProjects(
                         context,
                         dustyColorSet,
                       ),
                       const SizedBox(height: 80),
-                      _buildAbout(
+                      _buildLibrary(
+                        context,
                         dustyColorSet,
                       ),
                       const SizedBox(height: 80),
-                      _buildWebsite(
+                      _buildEcosystem(
                         context,
                         dustyColorSet,
                       ),
@@ -92,17 +93,6 @@ class DustyDraftPage extends StatelessWidget {
     );
   }
 
-  // Widget _buildBody(BuildContext context) {
-  //   return const Center(
-  //     child: Text(
-  //       'BODY TEST',
-  //       style: TextStyle(
-  //         fontSize: 40,
-  //         color: Colors.red,
-  //       ),
-  //     ),
-  //   );
-  // }
   Widget _buildHero(
     Map<String, Color> colorSet,
   ) {
@@ -119,16 +109,26 @@ class DustyDraftPage extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          'Development Studio & Product Lab',
+          '인텔리전스 랩 & 프로덕트 워크스페이스',
           style: TextStyle(
             fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: colorSet['textPrimaryColor'],
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Intelligence Lab & Product Workspace',
+          style: TextStyle(
+            fontSize: 16,
             fontStyle: FontStyle.italic,
             color: colorSet['textSecondaryColor'],
           ),
         ),
         const SizedBox(height: 24),
         Text(
-          'An independent studio \nfor AI, software and digital ventures.',
+          '자산, 비즈니스 그리고 기술을 탐구하고,\n'
+          '도구와 프로젝트를 통해 아이디어를 현실로 만듭니다.',
           style: TextStyle(
             fontSize: 18,
             height: 1.8,
@@ -139,7 +139,7 @@ class DustyDraftPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDevelopmentStudio(
+  Widget _buildWorkspace(
     BuildContext context,
     Map<String, Color> colorSet,
   ) {
@@ -147,12 +147,13 @@ class DustyDraftPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
-          'Development Studio',
+          '워크스페이스',
+          'Workspace',
           colorSet,
         ),
-        // const SizedBox(height: ),
         Text(
-          'Notes, code and stories behind our work.',
+          '탐구와 실험이 이루어지는 영역.\n'
+          'Areas of exploration and experimentation.',
           style: TextStyle(
             fontSize: 14,
             height: 1.8,
@@ -162,22 +163,133 @@ class DustyDraftPage extends StatelessWidget {
         const SizedBox(height: 30),
         _linkItem(
           context,
+          '자산 인텔리전스',
+          'Asset Intelligence',
+          '건물, 자산 및 투자 분석',
+          'https://www.dustydraft.com/#/workspace/building-intelligence',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          '비즈니스 인텔리전스',
+          'Business Intelligence',
+          '비즈니스 모델, 운영 및 실행',
+          'https://www.dustydraft.com/#/workspace/business-intelligence',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'AI 준비도',
+          'AI Readiness',
+          'AI 도입 및 자동화 기회 분석',
+          'https://www.dustydraft.com/#/workspace',
+          colorSet,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProjects(
+    BuildContext context,
+    Map<String, Color> colorSet,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _sectionTitle(
+          '프로젝트',
+          'Projects',
+          colorSet,
+        ),
+        Text(
+          '제품, 도구 및 운영 중인 프로젝트.\n'
+          'Products, tools and active initiatives.',
+          style: TextStyle(
+            fontSize: 14,
+            height: 1.8,
+            color: colorSet['textPrimaryColor'],
+          ),
+        ),
+        const SizedBox(height: 30),
+        _linkItem(
+          context,
+          'AssetPicker',
+          'Asset Intelligence',
+          '실제 사례 기반 자산 분석',
+          'https://blog.naver.com/assetpicker',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'Real Estate Toolkit',
+          'Investment Tools',
+          '부동산 투자 분석 계산기',
+          'https://www.dustydraft.com/#/workspace/real-estate-toolkit',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'ASSIST',
+          'AI Workspace',
+          'AI 어시스턴트 및 생산성 도구',
+          'https://www.dustydraft.com/#/workspace/assist',
+          colorSet,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLibrary(
+    BuildContext context,
+    Map<String, Color> colorSet,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _sectionTitle(
+          '라이브러리',
+          'Library',
+          colorSet,
+        ),
+        Text(
+          '기록, 기술 문서 및 미디어.\n'
+          'Research notes, technical writing and media.',
+          style: TextStyle(
+            fontSize: 14,
+            height: 1.8,
+            color: colorSet['textPrimaryColor'],
+          ),
+        ),
+        const SizedBox(height: 30),
+        _linkItem(
+          context,
+          'AssetPicker Journal',
+          'Investment Research',
+          '투자 리서치 및 자산 분석',
+          'https://blog.naver.com/assetpicker',
+          colorSet,
+        ),
+        _linkItem(
+          context,
           '랄라선녀의 테크일기',
-          'Technical Notes & Build Logs',
-          'https://blog.naver.com/ralalife',
+          'Rala\'s Tech Notes',
+          '기술 노트, 개발 기록 및 실험',
+          'https://theplaceyoung.wordpress.com/',
           colorSet,
         ),
         _linkItem(
           context,
           'GitHub',
-          'Projects, Source Code & Experiments',
+          'Open Projects',
+          '소스코드 및 오픈 프로젝트',
           'https://github.com/dusty-agent',
           colorSet,
         ),
         _linkItem(
           context,
           'YouTube',
-          'Studio Films & Product Stories',
+          'Videos & Stories',
+          '영상 콘텐츠 및 프로젝트 기록',
           DraftUrls.dustyArchive,
           colorSet,
         ),
@@ -185,7 +297,7 @@ class DustyDraftPage extends StatelessWidget {
     );
   }
 
-  Widget _buildInnovationLab(
+  Widget _buildEcosystem(
     BuildContext context,
     Map<String, Color> colorSet,
   ) {
@@ -193,105 +305,25 @@ class DustyDraftPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
-          'Innovation Lab',
-          colorSet,
-        ),
-        const SizedBox(height: 5),
-        Text(
-          'Where ideas are tested before becoming products.',
-          style: TextStyle(
-            fontSize: 14,
-            height: 1.8,
-            color: colorSet['textPrimaryColor'],
-          ),
-        ),
-        const SizedBox(height: 30),
-        _linkItem(
-          context,
-          'Dustie',
-          'AI Assistant Sandbox',
-          DraftUrls.dustyAgent,
+          '생태계',
+          'Ecosystem',
           colorSet,
         ),
         _linkItem(
           context,
-          'Painter',
-          'Creative Generation Sandbox',
-          DraftUrls.painter,
+          'DRAFT House',
+          'Independent Ventures',
+          '독립 프로젝트와 실험의 기반',
+          'https://draft.best',
           colorSet,
         ),
         _linkItem(
           context,
-          'Meemo',
-          'Knowledge Workspace Sandbox',
-          DraftUrls.meemo,
+          'The Exotic Ordinary',
+          'Creative Projects',
+          '브랜딩, 라이프스타일 및 창작 프로젝트',
+          'https://exoticordinary.com',
           colorSet,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAbout(
-    Map<String, Color> colorSet,
-  ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _sectionTitle(
-          'About',
-          colorSet,
-        ),
-        Text(
-          'Part of DRAFT House',
-          style: TextStyle(
-            color: colorSet['textSecondaryColor'],
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'AI Strategy & Product Studio',
-          style: TextStyle(
-            color: colorSet['textSecondaryColor'],
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'From validation to implementation.',
-          style: TextStyle(
-            color: colorSet['textSecondaryColor'],
-          ),
-        ),
-        const SizedBox(height: 8),
-      ],
-    );
-  }
-
-  Widget _buildWebsite(
-    BuildContext context,
-    Map<String, Color> colorSet,
-  ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _sectionTitle(
-          'Website',
-          colorSet,
-        ),
-        InkWell(
-          onTap: () {
-            launchURL(
-              'https://www.dustydraft.com',
-              context,
-            );
-          },
-          child: Text(
-            'dustydraft.com →',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: colorSet['textPrimaryColor'],
-            ),
-          ),
         ),
       ],
     );
@@ -301,13 +333,12 @@ class DustyDraftPage extends StatelessWidget {
     BuildContext context,
     String title,
     String subtitle,
+    String description,
     String url,
     Map<String, Color> colorSet,
   ) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 24,
-      ),
+      padding: const EdgeInsets.only(bottom: 24),
       child: InkWell(
         onTap: () => launchURL(url, context),
         child: Column(
@@ -325,6 +356,14 @@ class DustyDraftPage extends StatelessWidget {
             Text(
               subtitle,
               style: TextStyle(
+                fontSize: 14,
+                color: colorSet['textSecondaryColor'],
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              description,
+              style: TextStyle(
                 color: colorSet['textSecondaryColor'],
                 height: 1.5,
               ),
@@ -337,19 +376,30 @@ class DustyDraftPage extends StatelessWidget {
 
   Widget _sectionTitle(
     String title,
+    String subtitle,
     Map<String, Color> colorSet,
   ) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 24,
-      ),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-          color: colorSet['textPrimaryColor'],
-        ),
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: colorSet['textPrimaryColor'],
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            subtitle,
+            style: TextStyle(
+              color: colorSet['textSecondaryColor'],
+            ),
+          ),
+        ],
       ),
     );
   }

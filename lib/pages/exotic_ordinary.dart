@@ -64,17 +64,26 @@ class ExoticOrdinaryPage extends StatelessWidget {
                   colorSet,
                 ),
                 const SizedBox(height: 100),
-                _buildMedia(context, colorSet),
-                const SizedBox(height: 100),
-                _buildOngoings(context, colorSet),
-                const SizedBox(height: 100),
-                _buildCraft(
+                _buildChannels(
+                  context,
                   colorSet,
                 ),
                 const SizedBox(height: 100),
-                _buildTimeline(colorSet),
+                _buildProjects(
+                  context,
+                  colorSet,
+                ),
                 const SizedBox(height: 100),
-                _buildAbout(
+                _buildLibrary(
+                  context,
+                  colorSet,
+                ),
+                const SizedBox(height: 100),
+                _buildBrand(
+                  colorSet,
+                ),
+                const SizedBox(height: 100),
+                _buildTimeline(
                   colorSet,
                 ),
               ],
@@ -101,36 +110,36 @@ class ExoticOrdinaryPage extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          'Beauty in the Mirror.',
+          '브랜드, 큐레이션 그리고 스토리텔링',
           style: TextStyle(
             fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: colorSet['textPrimaryColor'],
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Brand, Curation & Storytelling',
+          style: TextStyle(
+            fontSize: 16,
             fontStyle: FontStyle.italic,
             color: colorSet['textSecondaryColor'],
           ),
         ),
         const SizedBox(height: 24),
         Text(
-          'Beauty, craft and storytelling.',
+          '실물과 디지털 공간을 넘나들며\n브랜드와 경험을 만들어갑니다.',
           style: TextStyle(
             fontSize: 18,
             height: 1.8,
             color: colorSet['textPrimaryColor'],
           ),
         ),
-        const SizedBox(height: 12),
-        Text(
-          'From jewelry and objects to media, archives and future collections.',
-          style: TextStyle(
-            fontSize: 16,
-            height: 1.6,
-            color: colorSet['textSecondaryColor'],
-          ),
-        ),
       ],
     );
   }
 
-  Widget _buildMedia(
+  Widget _buildChannels(
     BuildContext context,
     Map<String, Color> colorSet,
   ) {
@@ -138,34 +147,31 @@ class ExoticOrdinaryPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
+          '채널',
           'Channels',
           colorSet,
         ),
         _linkItem(
           context,
-          'The Exotic Boutique',
-          'Boutique, Warehouse & Selected Collections',
-          DraftUrls.theExoticBoutique,
-          colorSet,
-        ),
-        _linkItem(
-          context,
           'Instagram',
-          'Visual Journal, Daily Stories & New Works',
+          'Visual Journal',
+          '브랜드와 일상의 기록',
           DraftUrls.exoticInstagram,
           colorSet,
         ),
         _linkItem(
           context,
-          'Archive',
-          'Articles, Essays & Editorial Contents',
+          'Shop',
+          'Naver SmartStore',
+          '네이버 스마트스토어',
           DraftUrls.exoticOrdinary,
           colorSet,
         ),
         _linkItem(
           context,
           'YouTube',
-          'Short Films, Behind The Scenes & Creative Contents',
+          'Video Stories',
+          '영상 콘텐츠 및 프로젝트 기록',
           DraftUrls.exoticArchive,
           colorSet,
         ),
@@ -173,41 +179,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCraft(
-    Map<String, Color> colorSet,
-  ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Craft',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: colorSet['textPrimaryColor'],
-          ),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          'Metal Jewelry Craft Program completed in 2023.',
-          style: TextStyle(
-            fontSize: 18,
-            color: colorSet['textPrimaryColor'],
-          ),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'Currently exploring jewelry, objects and future collections.',
-          style: TextStyle(
-            fontSize: 16,
-            color: colorSet['textSecondaryColor'],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildOngoings(
+  Widget _buildProjects(
     BuildContext context,
     Map<String, Color> colorSet,
   ) {
@@ -215,21 +187,23 @@ class ExoticOrdinaryPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
-          'The Exotic Boutique',
+          '프로젝트',
+          'Projects',
           colorSet,
         ),
         _linkItem(
           context,
-          'Boutique & Warehouse',
-          'Actual boutique, custom production and real commerce.',
+          'The Exotic Boutique',
+          'Physical Boutique',
+          '실물 기반 큐레이션과 커머스',
           DraftUrls.exoticOfficial,
           colorSet,
         ),
-        SizedBox(height: 12),
         _linkItem(
           context,
-          'The Exotic Voutique™',
-          'Virtual boutique, custom production and future commerce.',
+          'The Exotic Voutique(Voutiq™)',
+          'Virtual Boutique',
+          '가상 부티크와 디지털 경험',
           DraftUrls.voutiqueOfficial,
           colorSet,
         ),
@@ -237,25 +211,52 @@ class ExoticOrdinaryPage extends StatelessWidget {
     );
   }
 
-  Widget _buildAbout(
+  Widget _buildLibrary(
+    BuildContext context,
     Map<String, Color> colorSet,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        _sectionTitle(
+          '라이브러리',
+          'Library',
+          colorSet,
+        ),
         Text(
-          'About',
+          '기록, 콘텐츠 및 브랜드 아카이브.\nLibrary of stories, media and archives.',
           style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+            color: colorSet['textSecondaryColor'],
+            height: 1.7,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBrand(
+    Map<String, Color> colorSet,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _sectionTitle(
+          '브랜드',
+          'Brand',
+          colorSet,
+        ),
+        Text(
+          'Exotic Ordinary는 브랜드, 큐레이션,\n공예 및 스토리텔링을 탐구하는 독립 프로젝트입니다.',
+          style: TextStyle(
+            fontSize: 18,
+            height: 1.8,
             color: colorSet['textPrimaryColor'],
           ),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 20),
         Text(
           'Founded in Seoul, 2019',
           style: TextStyle(
-            fontSize: 16,
             color: colorSet['textSecondaryColor'],
           ),
         ),
@@ -263,7 +264,6 @@ class ExoticOrdinaryPage extends StatelessWidget {
         Text(
           'Part of DRAFT House',
           style: TextStyle(
-            fontSize: 16,
             color: colorSet['textSecondaryColor'],
           ),
         ),
@@ -278,18 +278,32 @@ class ExoticOrdinaryPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
+          '연혁',
           'Timeline',
           colorSet,
         ),
         const SizedBox(height: 24),
-        _timelineItem('2019', 'Exotic Ordinary founded', colorSet),
         _timelineItem(
-            '2021', 'Exotic Ordinary Warehouse established', colorSet),
-        _timelineItem('2022', 'The Exotic Boutique launched', colorSet),
+          '2024',
+          'The Exotic Voutique(Voutiq™) 프로젝트 시작',
+          colorSet,
+        ),
         _timelineItem(
-            '2023', 'Metal Jewelry Craft Program completed', colorSet),
+          '2023',
+          '주얼리 공예 및 제품 개발',
+          colorSet,
+        ),
         _timelineItem(
-            '2025', 'The Exotic Voutique project initiated', colorSet),
+          '2022',
+          'The Exotic Boutique 런칭',
+          colorSet,
+        ),
+        _timelineItem(
+          '2021',
+          '창고 운영 시작',
+          colorSet,
+        ),
+        _timelineItem('2019', 'Exotic Ordinary 시작', colorSet),
       ],
     );
   }
@@ -335,6 +349,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
     BuildContext context,
     String title,
     String subtitle,
+    String description,
     String url,
     Map<String, Color> colorSet,
   ) {
@@ -359,6 +374,14 @@ class ExoticOrdinaryPage extends StatelessWidget {
             Text(
               subtitle,
               style: TextStyle(
+                fontSize: 14,
+                color: colorSet['textSecondaryColor'],
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              description,
+              style: TextStyle(
                 color: colorSet['textSecondaryColor'],
                 height: 1.5,
               ),
@@ -371,19 +394,32 @@ class ExoticOrdinaryPage extends StatelessWidget {
 
   Widget _sectionTitle(
     String title,
+    String subtitle,
     Map<String, Color> colorSet,
   ) {
     return Padding(
       padding: const EdgeInsets.only(
         bottom: 24,
       ),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-          color: colorSet['textPrimaryColor'],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: colorSet['textPrimaryColor'],
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            subtitle,
+            style: TextStyle(
+              color: colorSet['textSecondaryColor'],
+            ),
+          ),
+        ],
       ),
     );
   }
