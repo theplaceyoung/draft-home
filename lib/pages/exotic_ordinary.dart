@@ -278,7 +278,7 @@ class ExoticOrdinaryPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
-          '연혁',
+          '타임라인',
           'Timeline',
           colorSet,
         ),

@@ -204,6 +204,8 @@ class MyHomePage extends StatelessWidget {
             color: const Color(0xFFC8C8C8),
           ),
           const SizedBox(height: 10),
+          _buildContactCTA(context),
+          const SizedBox(height: 10),
           buildFooter(context),
         ],
       ),
@@ -226,14 +228,21 @@ class MyHomePage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Independent Brands · Contents · Experimental Tools',
+            'Explore · Build · Operate',
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: theme.colorScheme.onSurface.withOpacity(0.8),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Assets, Brands and Digital Products',
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.8),
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            'An independent ecosystem of projects, stories and digital experiences.',
+            'An independent business operating across\nasset intelligence, brand development and digital tools.',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurface.withOpacity(0.6),
             ),
@@ -286,7 +295,7 @@ class MyHomePage extends StatelessWidget {
             children: [
               InfoCard(
                 title: 'Dusty Draft®',
-                subtitle: 'Projects, experiments and digital products.',
+                subtitle: 'Intelligence Lab & Product Workspace.',
                 status: 'Registered Trademark',
                 onTap: () {
                   Navigator.pushNamed(context, '/dusty');
@@ -304,7 +313,7 @@ class MyHomePage extends StatelessWidget {
               const SizedBox(width: 24),
               InfoCard(
                 title: 'ASSETPICKER™',
-                subtitle: 'Research and investing beyond the noise.',
+                subtitle: 'Asset intelligence and investment research.',
                 status: 'Trademark Pending',
                 onTap: () {
                   Navigator.pushNamed(context, '/assetpicker');
@@ -313,7 +322,7 @@ class MyHomePage extends StatelessWidget {
               const SizedBox(width: 24),
               InfoCard(
                 title: 'The Exotic Voutique™',
-                subtitle: 'Curated boutique and digital commerce.',
+                subtitle: 'Virtual boutique and digital experiences.',
                 status: 'Trademark Pending',
                 onTap: () {
                   launchURL(
@@ -459,9 +468,9 @@ class MyHomePage extends StatelessWidget {
       children: [
         _buildSectionTitle(
           context,
-          'Experimental Tools',
-          'AI & Innovation Utilities',
-          'TOOLS FOR THINKING',
+          'Workspace',
+          'Tools You Can Use',
+          'PRODUCTS & UTILITIES',
         ),
         SizedBox(
           height: 300,
@@ -469,6 +478,23 @@ class MyHomePage extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 24),
             children: [
+              CardButtonWithTextOverImage(
+                title: 'Real Estate Toolkit',
+                tacticPath: 'assets/assetpicker/assetpicker-hero.jpg',
+                pageKey: 'assetpicker',
+                width: 300,
+                height: 300,
+                textStyle: getFontStyle(
+                  fontSet: 'DustyFont',
+                  styleType: 'cardTitle',
+                ),
+                onPressed: () {
+                  launchURL(
+                    'https://www.dustydraft.com/workspace/real-estate-toolkit',
+                    context,
+                  );
+                },
+              ),
               CardButtonWithTextOverImage(
                 title: '"Dustie"',
                 tacticPath: 'assets/dusty/dusty-agent-white+bg+gd.png',
@@ -518,6 +544,43 @@ class MyHomePage extends StatelessWidget {
         ),
         const SizedBox(height: 24),
       ],
+    );
+  }
+
+  Widget _buildContactCTA(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'What Do You Need?',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Looking for investment opportunities?\n'
+            'Need help evaluating an asset or business?\n'
+            'Interested in AI tools or digital products?\n'
+            'Or simply exploring a new idea?',
+          ),
+          const SizedBox(height: 24),
+          ElevatedButton(
+            onPressed: () {
+              launchURL(
+                'mailto:soyoung@draft.best',
+                context,
+              );
+            },
+            child: const Text(
+              'Let\'s Talk',
+            ),
+          ),
+        ],
+      ),
     );
   }
 

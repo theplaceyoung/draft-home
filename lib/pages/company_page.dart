@@ -67,7 +67,7 @@ class CompanyPage extends StatelessWidget {
                       Navigator.pushNamed(context, '/');
                     },
                     child: const Text(
-                      'DRAFT Co.',
+                      'DRAFT House',
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
@@ -76,6 +76,30 @@ class CompanyPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
+                const Text(
+                  '소개 · About',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 48),
+                const Text(
+                  '자산, 비즈니스 그리고 기술을 탐구합니다.',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  'We explore assets, businesses and technology\nthrough research, tools and real-world projects.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                    height: 1.8,
+                  ),
+                ),
                 const Text(
                   'Founded in Seoul, 2019',
                   style: TextStyle(fontSize: 14, color: Colors.grey),
@@ -88,92 +112,140 @@ class CompanyPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 64),
-                _sectionTitle('Timeline'),
+                _sectionTitle(
+                  '철학 · Philosophy',
+                ),
+                const SizedBox(height: 24),
+                const Text(
+                  '탐구하고,\n만들고,\n운영합니다.',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    height: 2,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Explore.\nBuild.\nOperate.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                    height: 2,
+                  ),
+                ),
+                const SizedBox(height: 64),
+                _sectionTitle(
+                  '타임라인 · Timeline',
+                ),
                 const SizedBox(height: 32),
                 const _HistoryItem(
                   year: '2019',
-                  title: 'Exotic Ordinary founded',
+                  title: 'Exotic Ordinary 시작',
                 ),
                 const _HistoryItem(
                   year: '2021',
-                  title: 'Exotic Ordinary Warehouse established',
+                  title: '창고 운영 시작',
                 ),
                 const _HistoryItem(
                   year: '2022',
-                  title: 'The Exotic Boutique launched',
+                  title: 'The Exotic Boutique 런칭',
                 ),
                 const _HistoryItem(
                   year: '2023',
-                  title: 'Metal Jewelry Craft Program completed',
-                ),
-                const _HistoryItem(
-                  year: '2024',
-                  title: 'DRAFT brand identity introduced',
+                  title: '주얼리 공예 및 제품 개발',
                 ),
                 const _HistoryItem(
                   year: '2025',
-                  title: 'Dusty Draft trademark filed',
+                  title: 'DUSTY DRAFT 및 The Exotic Voutique™ 시작',
                 ),
                 const _HistoryItem(
                   year: '2026',
-                  title: 'Dusty Draft trademark registered',
-                ),
-                const _HistoryItem(
-                  year: '2026',
-                  title: 'ASSETPICKER/The Exotic Voutique trademark filed',
+                  title: 'Workspace 및 Library 공개',
                 ),
                 const SizedBox(height: 64),
-                _sectionTitle('Ecosystem'),
+                _sectionTitle(
+                  '생태계 · Ecosystem',
+                ),
                 const SizedBox(height: 24),
                 const Text(
-                  'Dusty Draft®',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  'DUSTY DRAFT®',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 4),
-                const Text('Development Studio & Product Lab'),
-                const SizedBox(height: 6),
                 const Text(
-                  'Independent software projects, AI tools and experiments.',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                  '인텔리전스 랩 & 프로덕트 워크스페이스',
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Intelligence Lab & Product Workspace',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
                 const SizedBox(height: 24),
                 const Text(
                   'Exotic Ordinary®',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 4),
-                const Text('Beauty, Craft & Storytelling'),
-                const SizedBox(height: 6),
                 const Text(
-                  'Jewelry, visual identity and creative media.',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                  '브랜드, 큐레이션 그리고 스토리텔링',
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Brand, Curation & Storytelling',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  'The Exotic Voutique™',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  'The Exotic Voutiq™',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 4),
-                const Text('Virtual Boutique, Commerce & Experience'),
-                const SizedBox(height: 6),
                 const Text(
-                  'Custom production, curated products and technology.',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                  '가상 부티크와 디지털 경험',
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Virtual Boutique & Digital Experience',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  'ASSETPICKER',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  'AssetPicker',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: 4),
-                const Text('Research, Investing & Intelligence'),
-                const SizedBox(height: 6),
                 const Text(
-                  'Investment research, market insights and tools.',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
+                  '자산 분석 및 투자 연구',
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Asset Intelligence & Investment Research',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
                 const SizedBox(height: 64),
-                _sectionTitle('NETWORK'),
+                _sectionTitle(
+                  '네트워크 · Network',
+                ),
                 const SizedBox(height: 24),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,25 +253,25 @@ class CompanyPage extends StatelessWidget {
                     Expanded(
                       child: _websiteBlock(
                         context,
-                        'Dusty Studio',
-                        DraftUrls.dustyStudio,
-                        'Consulting & Development',
+                        'dustydraft.com',
+                        'https://www.dustydraft.com',
+                        'Workspace',
                       ),
                     ),
                     Expanded(
                       child: _websiteBlock(
                         context,
-                        'YouTube',
-                        DraftUrls.exoticArchive,
-                        '@exoticordinary',
+                        'draft.best',
+                        'https://draft.best',
+                        'DRAFT House',
                       ),
                     ),
                     Expanded(
                       child: _websiteBlock(
                         context,
-                        'Blog',
-                        DraftUrls.assetPicker,
-                        'ASSETPICKER',
+                        'exoticordinary.com',
+                        'https://exoticordinary.com',
+                        'Exotic Ordinary',
                       ),
                     ),
                   ],
@@ -211,14 +283,26 @@ class CompanyPage extends StatelessWidget {
                 const SizedBox(height: 8),
                 const Text('통신판매업신고번호 : 2020-서울양천-0014'),
                 const SizedBox(height: 16),
+                _sectionTitle(
+                  '연락처 · Contact',
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Email',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 8),
                 const Text(
                   'soyoung@draft.best',
-                  style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  '© 2019-${DateTime.now().year} DRAFT Co. All rights reserved.',
-                  style: const TextStyle(color: Colors.grey),
+                  '© 2019-${DateTime.now().year} DRAFT House. All rights reserved.',
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
                 ),
               ],
             ),
