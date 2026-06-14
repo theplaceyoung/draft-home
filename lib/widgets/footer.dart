@@ -29,7 +29,7 @@ Widget buildFooter(BuildContext context) {
         _buildFooterLinks(context),
         const SizedBox(height: 8),
         Text(
-          '© 2019-${DateTime.now().year} DRAFT Co.',
+          '© 2019-${DateTime.now().year} DRAFT House',
           style: const TextStyle(
             fontSize: 12,
             color: Colors.white54,

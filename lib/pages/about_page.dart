@@ -28,7 +28,7 @@ class AboutPage extends StatelessWidget {
                         Navigator.pushNamed(context, '/');
                       },
                       child: const Text(
-                        'DRAFT Co.',
+                        'DRAFT House',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -177,7 +177,7 @@ class AboutPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    '© 2019-${DateTime.now().year} DRAFT Co. All rights reserved.',
+                    '© 2019-${DateTime.now().year} DRAFT House All rights reserved.',
                     style: const TextStyle(
                       fontSize: 13,
                       color: Colors.grey,

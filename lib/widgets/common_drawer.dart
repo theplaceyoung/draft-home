@@ -30,7 +30,7 @@ class CommonDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'DRAFT Co.',
+                    'DRAFT House',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
