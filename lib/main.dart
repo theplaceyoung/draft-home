@@ -8,9 +8,6 @@ import 'package:draft_home/pages/virtual_boutique_page.dart';
 import 'package:draft_home/settings/settings_view.dart';
 import 'package:draft_home/themes/dart_theme.dart';
 import 'package:draft_home/themes/light_theme.dart';
-import 'package:draft_home/themes/color_set.dart';
-import 'package:draft_home/utils/card_button.dart';
-import 'package:draft_home/utils/card_button_with_text_over_image.dart';
 import 'package:draft_home/utils/floating_action.dart';
 import 'package:draft_home/widgets/featured_media_card.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +17,6 @@ import 'package:draft_home/l10n/app_localization.dart';
 import 'package:draft_home/provider/localization_provider.dart';
 import 'package:draft_home/settings/settings_controller.dart';
 import 'package:draft_home/settings/settings_service.dart';
-import 'package:draft_home/utils/font_map.dart';
 import 'package:draft_home/utils/url_utils.dart';
 import 'package:draft_home/widgets/common_drawer.dart';
 import 'package:draft_home/widgets/app_bar.dart';
@@ -106,35 +102,62 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final ScrollController _brandScrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _brandScrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(
     BuildContext context,
   ) {
     final pageKey = _getPageKey(context);
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final colorSet = isDark ? darkModeExoticColorSet : lightModeExoticColorSet;
 
     final localizationProvider = Provider.of<LocalizationProvider>(context);
 
     return Scaffold(
-      endDrawer: CommonDrawer(pageKey: pageKey),
+      endDrawer: CommonDrawer(
+        pageKey: pageKey,
+      ),
       appBar: CommonAppBar(
-        backgroundColor: Colors.white,
-        actions: [_buildLanguageSwitchButton(localizationProvider, context)],
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        actions: [
+          _buildLanguageSwitchButton(
+            localizationProvider,
+            context,
+          ),
+        ],
         pageKey: pageKey,
       ),
       body: _buildBody(context),
-      floatingActionButton: _buildFloatingActionButton(pageKey, context),
+      floatingActionButton: _buildFloatingActionButton(
+        pageKey,
+        context,
+      ),
     );
   }
 
-  String _getPageKey(BuildContext context) {
+  String _getPageKey(
+    BuildContext context,
+  ) {
     final currentRoute = ModalRoute.of(context)?.settings.name ?? '/';
-    return currentRoute.substring(1); // '/draft' -> 'draft'
+
+    if (currentRoute == '/') {
+      return homePageKey;
+    }
+
+    return currentRoute.substring(1);
   }
 
   IconButton _buildLanguageSwitchButton(
@@ -142,10 +165,16 @@ class MyHomePage extends StatelessWidget {
     BuildContext context,
   ) {
     return IconButton(
-      icon: const Icon(Icons.language),
+      icon: const Icon(
+        Icons.language,
+      ),
       onPressed: () {
         provider.toggleLanguage();
-        debugPrint("현재 언어: ${provider.locale.languageCode}");
+
+        debugPrint(
+          '현재 언어: ${provider.locale.languageCode}',
+        );
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -159,427 +188,798 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  // Widget _buildBody(BuildContext context) {
-  //   return const Center(
-  //     child: Text(
-  //       'BODY TEST',
-  //       style: TextStyle(
-  //         fontSize: 40,
-  //         color: Colors.red,
-  //       ),
-  //     ),
-  //   );
-  // }
-  Widget _buildBody(BuildContext context) {
+  Widget _buildBody(
+    BuildContext context,
+  ) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHero(context),
-          const Divider(
-            height: 1,
-            thickness: 0.8,
-            color: const Color(0xFFC8C8C8),
-          ),
+          _sectionDivider(),
           _buildBrandSection(context),
-          const Divider(
-            height: 1,
-            thickness: 0.8,
-            color: const Color(0xFFC8C8C8),
-          ),
-          _buildMedia(
-            context,
-          ),
-          const Divider(
-            height: 1,
-            thickness: 0.8,
-            color: const Color(0xFFC8C8C8),
-          ),
-          const SizedBox(height: 10),
-          _buildToolSection(context),
-          const SizedBox(height: 10),
-          const Divider(
-            height: 1,
-            thickness: 0.8,
-            color: const Color(0xFFC8C8C8),
-          ),
-          const SizedBox(height: 10),
+          _sectionDivider(),
+          _buildNowBuildingSection(context),
+          _sectionDivider(),
+          _buildMediaSection(context),
+          _sectionDivider(),
           _buildContactCTA(context),
-          const SizedBox(height: 10),
           buildFooter(context),
         ],
       ),
     );
   }
 
-  Widget _buildHero(BuildContext context) {
+  Widget _sectionDivider() {
+    return const Divider(
+      height: 1,
+      thickness: 0.8,
+      color: Color(0xFFD8CEC4),
+    );
+  }
+
+  Widget _buildHero(
+    BuildContext context,
+  ) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'DRAFT House',
-            style: theme.textTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Explore · Build · Operate',
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.8),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Assets, Brands and Digital Products',
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.8),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'An independent business operating across\nasset intelligence, brand development and digital tools.',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.6),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Founded in Seoul, 2019',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.6),
-            ),
-          ),
-        ],
+    final primaryColor = isDark ? Colors.white : const Color(0xFF211A16);
+
+    final secondaryColor = isDark ? Colors.white70 : const Color(0xFF745C4A);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(
+        32,
+        72,
+        32,
+        72,
       ),
-    );
-  }
-
-  Widget _buildMedia(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle(
-          context,
-          'Media',
-          'Blogs, Video & Publications',
-          'MEDIA & STORYTELLING',
-        ),
-        _buildFeaturedMedia(context),
-        const SizedBox(height: 24),
-        _buildMediaCarousel(context),
-        const SizedBox(height: 32),
-      ],
-    );
-  }
-
-  Widget _buildBrandSection(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle(
-          context,
-          'Brands',
-          'Independent Brands(Registered & Emerging)',
-          'IDENTITY & OWNERSHIP',
-        ),
-        SizedBox(
-          height: 220,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF171412) : const Color(0xFFF3E7DB),
+      ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 1050,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              InfoCard(
-                title: 'Dusty Draft®',
-                subtitle: 'Intelligence Lab & Product Workspace.',
-                status: 'Registered Trademark',
-                onTap: () {
-                  Navigator.pushNamed(context, '/dusty');
-                },
+              Text(
+                'DRAFT House',
+                style: TextStyle(
+                  fontSize: 44,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: -1.2,
+                  color: primaryColor,
+                ),
               ),
-              const SizedBox(width: 24),
-              InfoCard(
-                title: 'Exotic Ordinary®',
-                subtitle: 'Beauty, jewelry and visual storytelling.',
-                status: 'Registered Trademark',
-                onTap: () {
-                  Navigator.pushNamed(context, '/exotic');
-                },
+              const SizedBox(height: 16),
+              Text(
+                'Independent Technology & Creative Studio',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: primaryColor,
+                ),
               ),
-              const SizedBox(width: 24),
-              InfoCard(
-                title: 'ASSETPICKER™',
-                subtitle: 'Asset intelligence and investment research.',
-                status: 'Trademark Pending',
-                onTap: () {
-                  Navigator.pushNamed(context, '/assetpicker');
-                },
+              const SizedBox(height: 10),
+              Text(
+                'Technology · Brands · Media · Independent Products',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontStyle: FontStyle.italic,
+                  color: secondaryColor,
+                ),
               ),
-              const SizedBox(width: 24),
-              InfoCard(
-                title: 'The Exotic Voutique™',
-                subtitle: 'Virtual boutique and digital experiences.',
-                status: 'Trademark Pending',
-                onTap: () {
-                  launchURL(
-                    DraftUrls.theExoticVoutique,
+              const SizedBox(height: 34),
+              Text(
+                'Less repetition.\n'
+                'More room to create.',
+                style: TextStyle(
+                  fontSize: 30,
+                  height: 1.35,
+                  fontWeight: FontWeight.w600,
+                  color: primaryColor,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                '반복되는 문제를 구조화하고,\n'
+                '기술과 콘텐츠를 실제 제품과 브랜드로 발전시킵니다.',
+                style: TextStyle(
+                  fontSize: 17,
+                  height: 1.75,
+                  color: primaryColor,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Founded in Seoul, 2019',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: secondaryColor,
+                ),
+              ),
+              const SizedBox(height: 34),
+              Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                children: [
+                  _primaryButton(
                     context,
-                  );
-                },
+                    'Explore DRAFT',
+                    () {
+                      Navigator.pushNamed(
+                        context,
+                        '/about',
+                      );
+                    },
+                  ),
+                  _secondaryButton(
+                    context,
+                    'Work With Us',
+                    () {
+                      launchURL(
+                        'mailto:soyoung@draft.best',
+                        context,
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),
         ),
-        const SizedBox(height: 32),
-      ],
-    );
-  }
-
-  Widget _buildFeaturedMedia(
-    BuildContext context,
-  ) {
-    return Column(
-      children: [
-        FeaturedMediaCard(
-          title: 'Warm Silvlin',
-          imagePath: 'assets/exotic/warm_silvlin.png',
-          onTap: () {
-            launchURL(
-              'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191',
-              context,
-            );
-          },
-        ),
-        const SizedBox(height: 16),
-        FeaturedMediaCard(
-          title: '',
-          imagePath: 'assets/assetpicker/assetpicker-hero.jpg',
-          onTap: () {
-            launchURL(
-              'https://blog.naver.com/assetpicker',
-              context,
-            );
-          },
-        ),
-        const SizedBox(height: 16),
-        FeaturedMediaCard(
-          title: '',
-          imagePath: 'assets/dusty/dustydraft_banner.png',
-          onTap: () {
-            launchURL(
-              'https://www.youtube.com/@dustydraft',
-              context,
-            );
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget _buildMediaCarousel(
-    BuildContext context,
-  ) {
-    return SizedBox(
-      height: 160,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          SizedBox(
-            width: 220,
-            child: _mediaTile(
-              'Shop',
-              'assets/exotic/exoticordinary_background.jpg',
-              () {
-                launchURL(
-                  DraftUrls.exoticShop,
-                  context,
-                );
-              },
-            ),
-          ),
-          const SizedBox(width: 16),
-          SizedBox(
-            width: 220,
-            child: _mediaTile(
-              'Tech Diary',
-              'assets/draft/crumpled_paper_1405.jpg',
-              () {
-                launchURL(
-                  DraftUrls.fairyRala,
-                  context,
-                );
-              },
-            ),
-          ),
-          const SizedBox(width: 16),
-          SizedBox(
-            width: 220,
-            child: _mediaTile(
-              'YouTube',
-              'assets/AdobeStock_228406900.jpeg',
-              () {
-                launchURL(
-                  DraftUrls.exoticArchive,
-                  context,
-                );
-              },
-            ),
-          ),
-          const SizedBox(width: 16),
-          SizedBox(
-            width: 220,
-            child: _mediaTile(
-              'Studio',
-              'assets/ordinary/background_1.png',
-              () {
-                launchURL(
-                  DraftUrls.exoticStudio,
-                  context,
-                );
-              },
-            ),
-          ),
-          const SizedBox(width: 16),
-          SizedBox(
-            width: 220,
-            child: _mediaTile(
-              'Instagram',
-              'assets/exotic/exotic-instagram.jpg',
-              () {
-                launchURL(
-                  DraftUrls.exoticInstagram,
-                  context,
-                );
-              },
-            ),
-          ),
-        ],
       ),
     );
   }
 
-  Widget _buildToolSection(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle(
-          context,
-          'Workspace',
-          'Tools You Can Use',
-          'PRODUCTS & UTILITIES',
-        ),
-        SizedBox(
-          height: 300,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            children: [
-              CardButtonWithTextOverImage(
-                title: 'Real Estate Toolkit',
-                tacticPath: 'assets/assetpicker/assetpicker-hero.jpg',
-                pageKey: 'assetpicker',
-                width: 300,
-                height: 300,
-                textStyle: getFontStyle(
-                  fontSet: 'DustyFont',
-                  styleType: 'cardTitle',
-                ),
-                onPressed: () {
-                  launchURL(
-                    'https://www.dustydraft.com/workspace/real-estate-toolkit',
-                    context,
-                  );
-                },
-              ),
-              CardButtonWithTextOverImage(
-                title: '"Dustie"',
-                tacticPath: 'assets/dusty/dusty-agent-white+bg+gd.png',
-                pageKey: 'dusty',
-                width: 300,
-                height: 300,
-                textStyle: getFontStyle(
-                  fontSet: 'DustyFont',
-                  styleType: 'cardTitle',
-                ),
-                onPressed: () {
-                  launchURL(DraftUrls.dustyAgent, context);
-                },
-              ),
-              const SizedBox(width: 24),
-              CardButtonWithTextOverImage(
-                title: '',
-                tacticPath: 'assets/dusty/dusty_painter.png',
-                pageKey: 'dusty',
-                width: 300,
-                height: 300,
-                textStyle: getFontStyle(
-                  fontSet: 'DustyFont',
-                  styleType: 'cardTitle',
-                ),
-                onPressed: () {
-                  launchURL(DraftUrls.painter, context);
-                },
-              ),
-              const SizedBox(width: 24),
-              CardButtonWithTextOverImage(
-                title: '',
-                tacticPath: 'assets/dusty/meemo.png',
-                pageKey: 'dusty',
-                width: 300,
-                height: 300,
-                textStyle: getFontStyle(
-                  fontSet: 'DustyFont',
-                  styleType: 'cardTitle',
-                ),
-                onPressed: () {
-                  launchURL(DraftUrls.meemo, context);
-                },
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 24),
-      ],
-    );
-  }
-
-  Widget _buildContactCTA(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
+  Widget _buildBrandSection(
+    BuildContext context,
+  ) {
+    return _sectionContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'What Do You Need?',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Looking for investment opportunities?\n'
-            'Need help evaluating an asset or business?\n'
-            'Interested in AI tools or digital products?\n'
-            'Or simply exploring a new idea?',
+          _buildSectionTitle(
+            context,
+            'Brands',
+            'Independent brands operated by DRAFT House',
+            'BRAND ECOSYSTEM',
           ),
           const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () {
+          _buildBrandCarousel(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBrandCarousel(
+    BuildContext context,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final buttonBackground =
+        isDark ? const Color(0xFF3A302A) : const Color(0xFFF7F1EA);
+
+    final buttonForeground = isDark ? Colors.white : const Color(0xFF2B211B);
+
+    return LayoutBuilder(
+      builder: (
+        context,
+        constraints,
+      ) {
+        final showArrowButtons = constraints.maxWidth >= 700;
+
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              height: 240,
+              child: ListView(
+                controller: _brandScrollController,
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                padding: EdgeInsets.symmetric(
+                  horizontal: showArrowButtons ? 52 : 0,
+                ),
+                children: [
+                  InfoCard(
+                    title: 'DustyDraft®',
+                    subtitle: 'AI, data, automation and digital products.',
+                    status: 'Registered Trademark',
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/dusty',
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 24),
+                  InfoCard(
+                    title: 'Exotic Ordinary®',
+                    subtitle: 'Lifestyle, jewelry, music and creative content.',
+                    status: 'Registered Trademark',
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/exotic',
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 24),
+                  InfoCard(
+                    title: 'ASSETPICKER™',
+                    subtitle: 'Real estate research and asset intelligence.',
+                    status: 'Trademark Pending',
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/assetpicker',
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 24),
+                  InfoCard(
+                    title: 'VOUTIQ™',
+                    subtitle: 'Virtual boutique and digital brand experiences.',
+                    status: 'Trademark Pending',
+                    onTap: () {
+                      launchURL(
+                        DraftUrls.voutiqueOfficial,
+                        context,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            if (showArrowButtons)
+              Positioned(
+                left: 0,
+                child: _carouselArrowButton(
+                  icon: Icons.chevron_left,
+                  backgroundColor: buttonBackground,
+                  foregroundColor: buttonForeground,
+                  onPressed: () {
+                    _scrollBrands(
+                      direction: -1,
+                    );
+                  },
+                ),
+              ),
+            if (showArrowButtons)
+              Positioned(
+                right: 0,
+                child: _carouselArrowButton(
+                  icon: Icons.chevron_right,
+                  backgroundColor: buttonBackground,
+                  foregroundColor: buttonForeground,
+                  onPressed: () {
+                    _scrollBrands(
+                      direction: 1,
+                    );
+                  },
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _carouselArrowButton({
+    required IconData icon,
+    required Color backgroundColor,
+    required Color foregroundColor,
+    required VoidCallback onPressed,
+  }) {
+    return Material(
+      color: backgroundColor,
+      shape: const CircleBorder(),
+      elevation: 2,
+      child: InkWell(
+        onTap: onPressed,
+        customBorder: const CircleBorder(),
+        child: SizedBox(
+          width: 44,
+          height: 44,
+          child: Icon(
+            icon,
+            color: foregroundColor,
+            size: 28,
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _scrollBrands({
+    required int direction,
+  }) {
+    if (!_brandScrollController.hasClients) {
+      return;
+    }
+
+    final currentOffset = _brandScrollController.offset;
+
+    final targetOffset = currentOffset + (330 * direction);
+
+    final maxOffset = _brandScrollController.position.maxScrollExtent;
+
+    final safeOffset = targetOffset.clamp(
+      0.0,
+      maxOffset,
+    );
+
+    _brandScrollController.animateTo(
+      safeOffset,
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.easeOutCubic,
+    );
+  }
+
+  Widget _buildNowBuildingSection(
+    BuildContext context,
+  ) {
+    return _sectionContainer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle(
+            context,
+            'Now Building',
+            'Products and systems currently in development',
+            'ACTIVE PRODUCTS',
+          ),
+          const SizedBox(height: 28),
+          _responsiveProjectCards(
+            children: [
+              _homeProjectCard(
+                context,
+                title: 'Dustie',
+                subtitle: 'AI Decision-Support Workspace',
+                description: '문서, 데이터와 분석을 연결하는 '
+                    'AI 기반 업무 및 의사결정 지원 공간입니다.',
+                icon: Icons.auto_awesome_outlined,
+                onTap: () {
+                  launchURL(
+                    DraftUrls.dustie,
+                    context,
+                  );
+                },
+              ),
+              _homeProjectCard(
+                context,
+                title: 'AssetPicker',
+                subtitle: 'Asset Intelligence',
+                description: '부동산 정책, 시장과 자산 데이터를 '
+                    '구조화해 전달하는 리서치 프로젝트입니다.',
+                icon: Icons.apartment_outlined,
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/assetpicker',
+                  );
+                },
+              ),
+              _homeProjectCard(
+                context,
+                title: 'AP Daily',
+                subtitle: 'Automated Real Estate Brief',
+                description: '주요 부동산 뉴스를 수집하고 정리해 '
+                    '매일 전달하는 자동화 브리핑입니다.',
+                icon: Icons.newspaper_outlined,
+                onTap: () {
+                  launchURL(
+                    DraftUrls.assetPicker,
+                    context,
+                  );
+                },
+              ),
+              _homeProjectCard(
+                context,
+                title: 'Real Estate Toolkit',
+                subtitle: 'Analysis & Decision Tools',
+                description: '부동산 투자와 실무 판단을 돕는 '
+                    '계산기 및 분석 도구 모음입니다.',
+                icon: Icons.calculate_outlined,
+                onTap: () {
+                  launchURL(
+                    '${DraftUrls.dustyDraft}'
+                    '/#/workspace/real-estate-toolkit',
+                    context,
+                  );
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 32),
+          _secondaryButton(
+            context,
+            'Explore DustyDraft',
+            () {
+              Navigator.pushNamed(
+                context,
+                '/dusty',
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _homeProjectCard(
+    BuildContext context, {
+    required String title,
+    required String subtitle,
+    required String description,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final foregroundColor = isDark ? Colors.white : const Color(0xFF241C18);
+
+    final secondaryColor = isDark ? Colors.white60 : const Color(0xFF755C4A);
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(14),
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: const EdgeInsets.all(26),
+        decoration: BoxDecoration(
+          color: foregroundColor.withOpacity(
+            isDark ? 0.06 : 0.025,
+          ),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: foregroundColor.withOpacity(
+              0.13,
+            ),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              icon,
+              size: 27,
+              color: foregroundColor,
+            ),
+            const SizedBox(height: 22),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.w600,
+                color: foregroundColor,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              subtitle,
+              style: TextStyle(
+                fontSize: 13,
+                color: secondaryColor,
+              ),
+            ),
+            const SizedBox(height: 14),
+            Text(
+              description,
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.65,
+                color: secondaryColor,
+              ),
+            ),
+            const Spacer(),
+            Icon(
+              Icons.arrow_outward,
+              size: 19,
+              color: foregroundColor,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _responsiveProjectCards({
+    required List<Widget> children,
+  }) {
+    return LayoutBuilder(
+      builder: (
+        context,
+        constraints,
+      ) {
+        final isMobile = constraints.maxWidth < 720;
+
+        final width =
+            isMobile ? constraints.maxWidth : (constraints.maxWidth - 24) / 2;
+
+        return Wrap(
+          spacing: 24,
+          runSpacing: 24,
+          children: children
+              .map(
+                (child) => SizedBox(
+                  width: width,
+                  height: isMobile ? 250 : 270,
+                  child: child,
+                ),
+              )
+              .toList(),
+        );
+      },
+    );
+  }
+
+  Widget _buildMediaSection(
+    BuildContext context,
+  ) {
+    return _sectionContainer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle(
+            context,
+            'Media & Channels',
+            'Research, music and visual archives',
+            'CONTENT & PUBLISHING',
+          ),
+          const SizedBox(height: 28),
+          _responsiveMediaCards(
+            children: [
+              _mediaLinkCard(
+                context,
+                'AssetPicker',
+                'Real estate research and daily briefings',
+                DraftUrls.assetPickerYouTube,
+              ),
+              _mediaLinkCard(
+                context,
+                'DustyDraft Archive',
+                'Development, products and project stories',
+                DraftUrls.dustyArchive,
+              ),
+              _mediaLinkCard(
+                context,
+                'DraftAmbient',
+                'Ambient sounds, keyboards and quiet moments',
+                DraftUrls.draftAmbient,
+              ),
+              _mediaLinkCard(
+                context,
+                'Exotic Lounge',
+                'Music for beautiful spaces',
+                DraftUrls.exoticLounge,
+              ),
+            ],
+          ),
+          const SizedBox(height: 36),
+          FeaturedMediaCard(
+            title: '', //'Exotic Ordinary — Official Store',
+            imagePath: 'assets/exotic/warm_silvlin.png',
+            onTap: () {
               launchURL(
-                'mailto:soyoung@draft.best',
+                DraftUrls.exoticOfficial,
                 context,
               );
             },
-            child: const Text(
-              'Let\'s Talk',
-            ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _responsiveMediaCards({
+    required List<Widget> children,
+  }) {
+    return LayoutBuilder(
+      builder: (
+        context,
+        constraints,
+      ) {
+        final isMobile = constraints.maxWidth < 720;
+
+        final width =
+            isMobile ? constraints.maxWidth : (constraints.maxWidth - 24) / 2;
+
+        return Wrap(
+          spacing: 24,
+          runSpacing: 24,
+          children: children
+              .map(
+                (child) => SizedBox(
+                  width: width,
+                  child: child,
+                ),
+              )
+              .toList(),
+        );
+      },
+    );
+  }
+
+  Widget _mediaLinkCard(
+    BuildContext context,
+    String title,
+    String description,
+    String url,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final primaryColor = isDark ? Colors.white : const Color(0xFF241C18);
+
+    final secondaryColor = isDark ? Colors.white60 : const Color(0xFF755C4A);
+
+    return InkWell(
+      onTap: () {
+        launchURL(
+          url,
+          context,
+        );
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 4,
+          vertical: 12,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: primaryColor,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    description,
+                    style: TextStyle(
+                      fontSize: 14,
+                      height: 1.6,
+                      color: secondaryColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 12),
+            Icon(
+              Icons.arrow_outward,
+              size: 19,
+              color: primaryColor,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContactCTA(
+    BuildContext context,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final primaryColor = isDark ? Colors.white : const Color(0xFF241C18);
+
+    final secondaryColor = isDark ? Colors.white70 : const Color(0xFF755C4A);
+
+    return _sectionContainer(
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 32,
+          vertical: 38,
+        ),
+        decoration: BoxDecoration(
+          color: primaryColor.withOpacity(
+            isDark ? 0.07 : 0.035,
+          ),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: primaryColor.withOpacity(
+              0.16,
+            ),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Work With DRAFT',
+              style: TextStyle(
+                fontSize: 29,
+                fontWeight: FontWeight.bold,
+                color: primaryColor,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'AI, 데이터, 자동화, 웹 도구와 독립 제품을 중심으로\n'
+              '목적이 분명한 프로젝트를 함께 설계하고 개발합니다.',
+              style: TextStyle(
+                fontSize: 16,
+                height: 1.75,
+                color: secondaryColor,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Research · Data Structuring · Workflow Automation · '
+              'Web Tools · Prototyping',
+              style: TextStyle(
+                fontSize: 13,
+                height: 1.6,
+                fontStyle: FontStyle.italic,
+                color: secondaryColor,
+              ),
+            ),
+            const SizedBox(height: 28),
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: [
+                _primaryButton(
+                  context,
+                  'Discuss a Project',
+                  () {
+                    launchURL(
+                      'mailto:soyoung@draft.best',
+                      context,
+                    );
+                  },
+                ),
+                _secondaryButton(
+                  context,
+                  'View DustyDraft',
+                  () {
+                    Navigator.pushNamed(
+                      context,
+                      '/dusty',
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _sectionContainer({
+    required Widget child,
+  }) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxWidth: 1100,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 32,
+            vertical: 64,
+          ),
+          child: child,
+        ),
       ),
     );
   }
@@ -592,39 +992,105 @@ class MyHomePage extends StatelessWidget {
   ) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 32, 24, 6),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.w700,
-              color: isDark ? Colors.white : Colors.black87,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            color: isDark ? Colors.white : Colors.black87,
           ),
-          const SizedBox(height: 6),
-          Text(
-            subtitle,
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark ? Colors.white60 : Colors.black54,
-            ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 14,
+            color: isDark ? Colors.white60 : Colors.black54,
           ),
-          const SizedBox(height: 4),
-          Text(
-            tagline,
-            style: TextStyle(
-              fontSize: 13,
-              fontStyle: FontStyle.italic,
-              color: isDark ? Colors.white60 : Colors.black54,
-            ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          tagline,
+          style: TextStyle(
+            fontSize: 13,
+            fontStyle: FontStyle.italic,
+            color: isDark ? Colors.white60 : Colors.black54,
           ),
-          const SizedBox(height: 5),
-        ],
+        ),
+      ],
+    );
+  }
+
+  Widget _primaryButton(
+    BuildContext context,
+    String label,
+    VoidCallback onPressed,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return FilledButton.icon(
+      onPressed: onPressed,
+      icon: const Icon(
+        Icons.arrow_forward,
+        size: 17,
       ),
+      label: Text(label),
+      style: FilledButton.styleFrom(
+        backgroundColor:
+            isDark ? const Color(0xFFF2E6DA) : const Color(0xFF2B211B),
+        foregroundColor:
+            isDark ? const Color(0xFF2B211B) : const Color(0xFFF7EFE6),
+        elevation: 0,
+        minimumSize: const Size(160, 50),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 16,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  Widget _secondaryButton(
+    BuildContext context,
+    String label,
+    VoidCallback onPressed,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final color = isDark ? const Color(0xFFF2E6DA) : const Color(0xFF2B211B);
+
+    return OutlinedButton(
+      onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: color,
+        minimumSize: const Size(160, 50),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 16,
+        ),
+        side: BorderSide(
+          color: color,
+          width: 1.2,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      child: Text(label),
     );
   }
 
@@ -632,156 +1098,17 @@ class MyHomePage extends StatelessWidget {
     String pageKey,
     BuildContext context,
   ) {
-    final themeMode = Provider.of<SettingsController>(context).themeMode;
+    final themeMode = Provider.of<SettingsController>(
+      context,
+    ).themeMode;
 
     return FloatingAction(
       imagePath: 'assets/dusty/dusty-agent-white.png',
-      onPressed: () =>
-          launchURL('https://dusty-agent.github.io/dustie/', context),
+      onPressed: () => launchURL(
+        DraftUrls.dustyAgent,
+        context,
+      ),
       themeMode: themeMode,
     );
   }
-
-  Widget _mediaTile(
-    String title,
-    String imagePath,
-    VoidCallback onTap,
-  ) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: InkWell(
-        onTap: onTap,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                ),
-                color:
-                    const Color.fromARGB(255, 211, 191, 191).withOpacity(0.75),
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black38,
-                        blurRadius: 4,
-                        offset: Offset(0, 1),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
-
-
-  // Widget _buildMediaSection(BuildContext context) {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       _buildSectionTitle(
-  //         context,
-  //         'Media',
-  //         'Blogs, Video & Publications',
-  //         'MEDIA & STORYTELLING',
-  //       ),
-  //       SizedBox(
-  //         height: 280,
-  //         child: ListView(
-  //           scrollDirection: Axis.horizontal,
-  //           padding: const EdgeInsets.symmetric(horizontal: 24),
-  //           children: [
-  //             // AssetPicker Blog
-  //             SizedBox(
-  //               width: 300,
-  //               child: MediaCard(
-  //                 title: 'AssetPicker Research',
-  //                 imagePath: 'assets/assetpicker/assetpicker-hero.jpg',
-  //                   fontWeight: FontWeight.bold,
-  //                 ),
-  //                 onPressed: () {
-  //                   launchURL(
-  //                     'https://blog.naver.com/assetpicker',
-  //                     context,
-  //                   );
-  //                 },
-  //               ),
-  //             ),
-
-  //             const SizedBox(width: 10),
-
-  //             // Exotic Archive
-  //             SizedBox(
-  //               width: 300,
-  //               child: MediaCard(
-  //                 title: 'Exotic Archive',
-  //                 imagePath: 'assets/ordinary/background_1.png',
-  //                 onPressed: () {
-  //                   launchURL(
-  //                     'https://blog.naver.com/assetpick1',
-  //                     context,
-  //                   );
-  //                 },
-  //               ),
-  //             ),
-
-  //             const SizedBox(width: 10),
-
-  //             // Exotic Ordinary Blog
-  //             SizedBox(
-  //               width: 300,
-  //               child: MediaCard(
-  //                 title: 'Warm Silvlin',
-  //                 imagePath: 'assets/AdobeStock_228406900.jpeg',
-  //                 onPressed: () {
-  //                   launchURL(
-  //                     'https://smartstore.naver.com/exoticordinary/shoppingstory/detail?id=5002773191',
-  //                     context,
-  //                   );
-  //                 },
-  //               ),
-  //             ),
-
-  //             const SizedBox(width: 10),
-
-  //             // YouTube
-  //             SizedBox(
-  //               width: 300,
-  //               child: MediaCard(
-  //                 title: 'YouTube',
-  //                 imagePath: 'assets/exotic/exotic-instagram.jpg',
-  //                 onPressed: () {
-  //                   launchURL(
-  //                     DraftUrls.exoticArchive,
-  //                     context,
-  //                   );
-  //                 },
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //       const SizedBox(height: 40),
-  //     ],
-  //   );
-  // }

@@ -90,4 +90,7 @@ class DraftUrls {
   // ─────────────────────────────────────────────
 
   static String ordinaryLifePdf = '';
+
+  // Professional
+  static const linkedIn = 'https://www.linkedin.com/in/thebestsoyoung/';
 }
