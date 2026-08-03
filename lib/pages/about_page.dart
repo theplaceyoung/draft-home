@@ -5,12 +5,6 @@ import 'package:flutter/material.dart';
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
-  static const String _draftAmbientUrl =
-      'https://www.youtube.com/@draftambient';
-
-  static const String _exoticLoungeUrl =
-      'https://www.youtube.com/@exoticlounge';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +27,7 @@ class AboutPage extends StatelessWidget {
                   const SizedBox(height: 24),
                   const Text(
                     'DRAFT House is an independent studio and brand ecosystem '
-                    'building practical tools, contents and experiences.',
+                    'building practical tools, content and experiences.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
@@ -89,7 +83,7 @@ class AboutPage extends StatelessWidget {
                         context,
                         'Exotic Ordinary®',
                         DraftUrls.exoticOrdinary,
-                        'Lifestyle, design, music and creative contents',
+                        'Lifestyle, design, music and creative content',
                       ),
                       _websiteBlock(
                         context,
@@ -107,13 +101,13 @@ class AboutPage extends StatelessWidget {
                       _websiteBlock(
                         context,
                         'DraftAmbient',
-                        _draftAmbientUrl,
+                        DraftUrls.draftAmbient,
                         'Ambient sounds, keyboards and quiet moments',
                       ),
                       _websiteBlock(
                         context,
                         'Exotic Lounge',
-                        _exoticLoungeUrl,
+                        DraftUrls.exoticLounge,
                         'Music for beautiful spaces',
                       ),
                       _websiteBlock(
@@ -132,7 +126,7 @@ class AboutPage extends StatelessWidget {
                       _websiteBlock(
                         context,
                         'Dustie',
-                        'https://dustie.xyz',
+                        DraftUrls.dustie,
                         'AI-assisted knowledge and decision-support workspace',
                       ),
                       _websiteBlock(
@@ -144,7 +138,7 @@ class AboutPage extends StatelessWidget {
                       _websiteBlock(
                         context,
                         'GitHub',
-                        'https://github.com/dusty-agent',
+                        DraftUrls.github,
                         'Source code and open projects',
                       ),
                     ],
@@ -175,7 +169,7 @@ class AboutPage extends StatelessWidget {
                       _websiteBlock(
                         context,
                         'dustie.xyz',
-                        'https://dustie.xyz',
+                        DraftUrls.dustie,
                         'AI workspace and decision-support tools',
                       ),
                     ],
