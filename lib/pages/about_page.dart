@@ -94,6 +94,25 @@ class AboutPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 72),
+                  _sectionTitle('SHOP'),
+                  const SizedBox(height: 28),
+                  _responsiveBlocks(
+                    children: [
+                      _websiteBlock(
+                        context,
+                        'Official Store',
+                        DraftUrls.exoticOrdinary,
+                        'Shop directly at exoticordinary.com',
+                      ),
+                      _websiteBlock(
+                        context,
+                        'Naver Smart Store',
+                        DraftUrls.exoticShop,
+                        'Shop through Naver Smart Store',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 72),
                   _sectionTitle('MEDIA'),
                   const SizedBox(height: 28),
                   _responsiveBlocks(
@@ -164,7 +183,7 @@ class AboutPage extends StatelessWidget {
                         context,
                         'exoticordinary.com',
                         DraftUrls.exoticOrdinary,
-                        'Boutique and creative contents',
+                        'Boutique and creative content',
                       ),
                       _websiteBlock(
                         context,

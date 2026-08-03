@@ -42,7 +42,7 @@ class DraftUrls {
   static const voutiqueOfficial = 'https://exoticordinary.com/voutique';
 
   // ─────────────────────────────────────────────
-  // Stores
+  // Stores & Shop(Naver)
   // ─────────────────────────────────────────────
 
   static const exoticShop = 'https://smartstore.naver.com/exoticordinary';
