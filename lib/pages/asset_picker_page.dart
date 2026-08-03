@@ -65,7 +65,7 @@ class AssetPickerPage extends StatelessWidget {
                 children: [
                   _buildHero(colorSet),
                   const SizedBox(height: 100),
-                  _buildResearch(
+                  _buildNow(
                     context,
                     colorSet,
                   ),
@@ -74,12 +74,17 @@ class AssetPickerPage extends StatelessWidget {
                     colorSet,
                   ),
                   const SizedBox(height: 100),
-                  _buildCityTracer(
+                  _buildAbout(
+                    colorSet,
+                  ),
+                  const SizedBox(height: 100),
+                  _buildArchive(
                     context,
                     colorSet,
                   ),
                   const SizedBox(height: 100),
-                  _buildAbout(
+                  _buildConnect(
+                    context,
                     colorSet,
                   ),
                 ],
@@ -115,7 +120,7 @@ class AssetPickerPage extends StatelessWidget {
         ),
         SizedBox(height: 24),
         Text(
-          'Real estate, urban research and market intelligence.',
+          'Real estate research, market intelligence and field insights.',
           style: TextStyle(
             fontSize: 18,
             height: 1.8,
@@ -123,7 +128,7 @@ class AssetPickerPage extends StatelessWidget {
         ),
         SizedBox(height: 12),
         Text(
-          'Recording places, analyzing assets and following the flow of cities.',
+          'Following real estate issues, analyzing properties and building practical tools for better decisions.',
           style: TextStyle(
             fontSize: 16,
             color: Colors.grey,
@@ -134,20 +139,85 @@ class AssetPickerPage extends StatelessWidget {
     );
   }
 
-  Widget _buildResearch(
+  // Widget _buildResearch(
+  //   BuildContext context,
+  //   Map<String, Color> colorSet,
+  // ) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       _sectionTitle('Research', colorSet),
+  //       _linkItem(
+  //           context,
+  //           'AP Research',
+  //           'Real Estate, Urban Research & Investment Notes',
+  //           DraftUrls.assetPicker,
+  //           colorSet),
+  //     ],
+  //   );
+  // }
+
+  Widget _buildNow(
     BuildContext context,
     Map<String, Color> colorSet,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _sectionTitle('Research', colorSet),
+        _sectionTitle(
+          'Now',
+          colorSet,
+        ),
         _linkItem(
-            context,
-            'AP Research',
-            'Real Estate, Urban Research & Investment Notes',
-            DraftUrls.assetPicker,
-            colorSet),
+          context,
+          'AP Daily',
+          'Daily real estate news and market updates.',
+          'https://www.instagram.com/assetpicker',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'AP Research',
+          'Real estate research, analysis and investment notes.',
+          DraftUrls.assetPicker,
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'Dustie',
+          'Real estate intelligence and decision-support tools.',
+          'https://dustie.xyz',
+          colorSet,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildArchive(
+    BuildContext context,
+    Map<String, Color> colorSet,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _sectionTitle(
+          'Archive',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'City Tracer',
+          'An occasional archive of cities, neighborhoods and places.',
+          'https://blog.naver.com/assetpicker/224289835524',
+          colorSet,
+        ),
+        Text(
+          'A side project documenting places and urban stories whenever there is something worth tracing.',
+          style: TextStyle(
+            height: 1.7,
+            color: colorSet['textSecondaryColor'],
+          ),
+        ),
       ],
     );
   }
@@ -167,7 +237,7 @@ class AssetPickerPage extends StatelessWidget {
         ),
         SizedBox(height: 24),
         Text(
-          'Real Estate',
+          'Market Intelligence',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -175,11 +245,11 @@ class AssetPickerPage extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-          'Property analysis, transactions and market research.',
+          'Real estate news, policies and market developments.',
         ),
         SizedBox(height: 32),
         Text(
-          'Urban Research',
+          'Property Research',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -187,7 +257,7 @@ class AssetPickerPage extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-          'Cities, neighborhoods and local economic activity.',
+          'Property, location and transaction analysis.',
         ),
         SizedBox(height: 32),
         Text(
@@ -199,7 +269,7 @@ class AssetPickerPage extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-          'Cash flow, investment structure and asset strategy.',
+          'Cash flow, investment structure and decision-support tools.',
         ),
       ],
     );
@@ -331,6 +401,42 @@ class AssetPickerPage extends StatelessWidget {
             color: colorSet['textSecondaryColor'],
             height: 1.6,
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildConnect(
+    BuildContext context,
+    Map<String, Color> colorSet,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _sectionTitle(
+          'Connect',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'Instagram',
+          'Follow AssetPicker on Instagram.',
+          'https://www.instagram.com/assetpicker',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'Facebook',
+          'Follow AssetPicker on Facebook.',
+          'https://www.facebook.com/assetpicker',
+          colorSet,
+        ),
+        _linkItem(
+          context,
+          'Dustie',
+          'Real estate intelligence and decision-support tools.',
+          'https://dustie.xyz',
+          colorSet,
         ),
       ],
     );
