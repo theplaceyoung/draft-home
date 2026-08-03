@@ -25,7 +25,6 @@ import 'package:draft_home/pages/old/draft_page.dart';
 import 'package:draft_home/pages/dusty_draft.dart';
 import 'package:draft_home/pages/exotic_ordinary.dart';
 import 'package:draft_home/pages/the_exotic_boutique.dart';
-import 'package:draft_home/widgets/info_card.dart';
 
 const String homePageKey = 'home';
 const String draftPageKey = 'draft';
@@ -102,22 +101,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final ScrollController _brandScrollController = ScrollController();
-
-  @override
-  void dispose() {
-    _brandScrollController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(
     BuildContext context,
@@ -242,95 +227,98 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(
-            maxWidth: 1050,
+            maxWidth: 1100,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'DRAFT House',
-                style: TextStyle(
-                  fontSize: 44,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: -1.2,
-                  color: primaryColor,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Independent Technology & Creative Studio',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: primaryColor,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Technology · Brands · Media · Independent Products',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontStyle: FontStyle.italic,
-                  color: secondaryColor,
-                ),
-              ),
-              const SizedBox(height: 34),
-              Text(
-                'Less repetition.\n'
-                'More room to create.',
-                style: TextStyle(
-                  fontSize: 30,
-                  height: 1.35,
-                  fontWeight: FontWeight.w600,
-                  color: primaryColor,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                '반복되는 문제를 구조화하고,\n'
-                '기술과 콘텐츠를 실제 제품과 브랜드로 발전시킵니다.',
-                style: TextStyle(
-                  fontSize: 17,
-                  height: 1.75,
-                  color: primaryColor,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Founded in Seoul, 2019',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: secondaryColor,
-                ),
-              ),
-              const SizedBox(height: 34),
-              Wrap(
-                spacing: 12,
-                runSpacing: 12,
-                children: [
-                  _primaryButton(
-                    context,
-                    'Explore DRAFT',
-                    () {
-                      Navigator.pushNamed(
-                        context,
-                        '/about',
-                      );
-                    },
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'DRAFT House',
+                  style: TextStyle(
+                    fontSize: 44,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: -1.2,
+                    color: primaryColor,
                   ),
-                  _secondaryButton(
-                    context,
-                    'Work With Us',
-                    () {
-                      launchURL(
-                        'mailto:soyoung@draft.best',
-                        context,
-                      );
-                    },
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Independent Technology & Creative Studio',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: primaryColor,
                   ),
-                ],
-              ),
-            ],
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Technology · Brands · Media · Independent Products',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontStyle: FontStyle.italic,
+                    color: secondaryColor,
+                  ),
+                ),
+                const SizedBox(height: 34),
+                Text(
+                  'Less repetition.\n'
+                  'More room to create.',
+                  style: TextStyle(
+                    fontSize: 30,
+                    height: 1.35,
+                    fontWeight: FontWeight.w600,
+                    color: primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  '반복되는 문제를 구조화하고,\n'
+                  '기술과 콘텐츠를 실제 제품과 브랜드로 발전시킵니다.',
+                  style: TextStyle(
+                    fontSize: 17,
+                    height: 1.75,
+                    color: primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Founded in Seoul, 2019',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: secondaryColor,
+                  ),
+                ),
+                const SizedBox(height: 34),
+                Wrap(
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    _primaryButton(
+                      context,
+                      'Explore DRAFT',
+                      () {
+                        Navigator.pushNamed(
+                          context,
+                          '/about',
+                        );
+                      },
+                    ),
+                    _secondaryButton(
+                      context,
+                      'Work With Us',
+                      () {
+                        launchURL(
+                          'mailto:soyoung@draft.best',
+                          context,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -350,175 +338,232 @@ class _MyHomePageState extends State<MyHomePage> {
             'Independent brands operated by DRAFT House',
             'BRAND ECOSYSTEM',
           ),
-          const SizedBox(height: 24),
-          _buildBrandCarousel(context),
+          const SizedBox(height: 28),
+          LayoutBuilder(
+            builder: (
+              context,
+              constraints,
+            ) {
+              final isMobile = constraints.maxWidth < 760;
+
+              if (isMobile) {
+                return Column(
+                  children: [
+                    _brandCard(
+                      context,
+                      title: 'DustyDraft®',
+                      description: 'AI, data, automation and digital products.',
+                      status: 'Registered Trademark',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/dusty',
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    _brandCard(
+                      context,
+                      title: 'Exotic Ordinary®',
+                      description:
+                          'Lifestyle, jewelry, music and creative content.',
+                      status: 'Registered Trademark',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/exotic',
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    _brandCard(
+                      context,
+                      title: 'ASSETPICKER™',
+                      description:
+                          'Real estate research and asset intelligence.',
+                      status: 'Trademark Pending',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/assetpicker',
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    _brandCard(
+                      context,
+                      title: 'VOUTIQ™',
+                      description:
+                          'Virtual boutique and digital brand experiences.',
+                      status: 'Trademark Pending',
+                      onTap: () {
+                        launchURL(
+                          DraftUrls.voutiqueOfficial,
+                          context,
+                        );
+                      },
+                    ),
+                  ],
+                );
+              }
+
+              final cardWidth = (constraints.maxWidth - 54) / 4;
+
+              return Wrap(
+                spacing: 18,
+                runSpacing: 18,
+                children: [
+                  SizedBox(
+                    width: cardWidth,
+                    child: _brandCard(
+                      context,
+                      title: 'DustyDraft®',
+                      description: 'AI, data, automation and digital products.',
+                      status: 'Registered Trademark',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/dusty',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: cardWidth,
+                    child: _brandCard(
+                      context,
+                      title: 'Exotic Ordinary®',
+                      description:
+                          'Lifestyle, jewelry, music and creative content.',
+                      status: 'Registered Trademark',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/exotic',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: cardWidth,
+                    child: _brandCard(
+                      context,
+                      title: 'ASSETPICKER™',
+                      description:
+                          'Real estate research and asset intelligence.',
+                      status: 'Trademark Pending',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/assetpicker',
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: cardWidth,
+                    child: _brandCard(
+                      context,
+                      title: 'VOUTIQ™',
+                      description:
+                          'Virtual boutique and digital brand experiences.',
+                      status: 'Trademark Pending',
+                      onTap: () {
+                        launchURL(
+                          DraftUrls.voutiqueOfficial,
+                          context,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildBrandCarousel(
-    BuildContext context,
-  ) {
+  Widget _brandCard(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required String status,
+    required VoidCallback onTap,
+  }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final buttonBackground =
-        isDark ? const Color(0xFF3A302A) : const Color(0xFFF7F1EA);
+    final primaryColor = isDark ? Colors.white : const Color(0xFF241C18);
 
-    final buttonForeground = isDark ? Colors.white : const Color(0xFF2B211B);
+    final secondaryColor = isDark ? Colors.white60 : const Color(0xFF75675D);
 
-    return LayoutBuilder(
-      builder: (
-        context,
-        constraints,
-      ) {
-        final showArrowButtons = constraints.maxWidth >= 700;
-
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            SizedBox(
-              height: 240,
-              child: ListView(
-                controller: _brandScrollController,
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(
-                  horizontal: showArrowButtons ? 52 : 0,
-                ),
-                children: [
-                  InfoCard(
-                    title: 'DustyDraft®',
-                    subtitle: 'AI, data, automation and digital products.',
-                    status: 'Registered Trademark',
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/dusty',
-                      );
-                    },
-                  ),
-                  const SizedBox(width: 24),
-                  InfoCard(
-                    title: 'Exotic Ordinary®',
-                    subtitle: 'Lifestyle, jewelry, music and creative content.',
-                    status: 'Registered Trademark',
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/exotic',
-                      );
-                    },
-                  ),
-                  const SizedBox(width: 24),
-                  InfoCard(
-                    title: 'ASSETPICKER™',
-                    subtitle: 'Real estate research and asset intelligence.',
-                    status: 'Trademark Pending',
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/assetpicker',
-                      );
-                    },
-                  ),
-                  const SizedBox(width: 24),
-                  InfoCard(
-                    title: 'VOUTIQ™',
-                    subtitle: 'Virtual boutique and digital brand experiences.',
-                    status: 'Trademark Pending',
-                    onTap: () {
-                      launchURL(
-                        DraftUrls.voutiqueOfficial,
-                        context,
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-            if (showArrowButtons)
-              Positioned(
-                left: 0,
-                child: _carouselArrowButton(
-                  icon: Icons.chevron_left,
-                  backgroundColor: buttonBackground,
-                  foregroundColor: buttonForeground,
-                  onPressed: () {
-                    _scrollBrands(
-                      direction: -1,
-                    );
-                  },
-                ),
-              ),
-            if (showArrowButtons)
-              Positioned(
-                right: 0,
-                child: _carouselArrowButton(
-                  icon: Icons.chevron_right,
-                  backgroundColor: buttonBackground,
-                  foregroundColor: buttonForeground,
-                  onPressed: () {
-                    _scrollBrands(
-                      direction: 1,
-                    );
-                  },
-                ),
-              ),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _carouselArrowButton({
-    required IconData icon,
-    required Color backgroundColor,
-    required Color foregroundColor,
-    required VoidCallback onPressed,
-  }) {
-    return Material(
-      color: backgroundColor,
-      shape: const CircleBorder(),
-      elevation: 2,
-      child: InkWell(
-        onTap: onPressed,
-        customBorder: const CircleBorder(),
-        child: SizedBox(
-          width: 44,
-          height: 44,
-          child: Icon(
-            icon,
-            color: foregroundColor,
-            size: 28,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(14),
+      child: Container(
+        width: double.infinity,
+        height: 220,
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: primaryColor.withOpacity(
+            isDark ? 0.06 : 0.018,
+          ),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: primaryColor.withOpacity(0.14),
           ),
         ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.w600,
+                color: primaryColor,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              description,
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.55,
+                color: secondaryColor,
+              ),
+            ),
+            const Spacer(),
+            Text(
+              status,
+              style: TextStyle(
+                fontSize: 12,
+                color: secondaryColor,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Text(
+                  'Explore',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: primaryColor,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Icon(
+                  Icons.arrow_forward,
+                  size: 16,
+                  color: primaryColor,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    );
-  }
-
-  void _scrollBrands({
-    required int direction,
-  }) {
-    if (!_brandScrollController.hasClients) {
-      return;
-    }
-
-    final currentOffset = _brandScrollController.offset;
-
-    final targetOffset = currentOffset + (330 * direction);
-
-    final maxOffset = _brandScrollController.position.maxScrollExtent;
-
-    final safeOffset = targetOffset.clamp(
-      0.0,
-      maxOffset,
-    );
-
-    _brandScrollController.animateTo(
-      safeOffset,
-      duration: const Duration(milliseconds: 350),
-      curve: Curves.easeOutCubic,
     );
   }
 
